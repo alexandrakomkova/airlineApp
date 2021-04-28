@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "971jlLEStmmkMEapC8PY0yf1CaB5OGxXZpL/QhEUOatJyJj0draLf6wqOL+Pp+MISHa5JAxv0/QIAn8BVWwzLA==",
+  "dgSpecHash": "7/8wDZQdHe+udiYskWE0IOwQ5JSYrRb5lEF4hmy9Sfwy7t/MLNHslja/MggpgVoBQOUEN6ThhSNbVQbTsKsGvA==",
   "success": true,
-  "projectFilePath": "D:\\uni\\ооп\\кп\\AirlineApp\\airlineApp\\airlineApp.csproj",
+  "projectFilePath": "D:\\uni\\ооп\\coursework\\airlineApp\\airlineApp\\airlineApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sasha\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Sasha\\.nuget\\packages\\materialdesigncolors\\2.0.0\\materialdesigncolors.2.0.0.nupkg.sha512",

@@ -5882,11 +5882,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\uni\\ооп\\кп\\airlineApp\\airlineApp\\airlineApp.csproj",
+      "projectUniqueName": "D:\\uni\\ооп\\coursework\\airlineApp\\airlineApp\\airlineApp.csproj",
       "projectName": "airlineApp",
-      "projectPath": "D:\\uni\\ооп\\кп\\airlineApp\\airlineApp\\airlineApp.csproj",
+      "projectPath": "D:\\uni\\ооп\\coursework\\airlineApp\\airlineApp\\airlineApp.csproj",
       "packagesPath": "C:\\Users\\Sasha\\.nuget\\packages\\",
-      "outputPath": "D:\\uni\\ооп\\кп\\airlineApp\\airlineApp\\obj\\",
+      "outputPath": "D:\\uni\\ооп\\coursework\\airlineApp\\airlineApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sasha\\AppData\\Roaming\\NuGet\\NuGet.Config",

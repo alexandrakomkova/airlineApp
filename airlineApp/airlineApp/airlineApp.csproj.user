@@ -13,6 +13,9 @@
     <Compile Update="View\AddFlightWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\EditFlightWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\FindTicketPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AddFlightWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\EditFlightWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\FindTicketPage.xaml">

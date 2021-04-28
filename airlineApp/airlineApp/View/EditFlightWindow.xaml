@@ -1,0 +1,144 @@
+﻿<Window x:Class="airlineApp.View.EditFlightWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:airlineApp.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Edit Flight" Height="300" Width="250"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Name="EditFlightWnd">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#000080" Offset="0.0"/>
+            <GradientStop Color="#0000cd" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1"
+                  Grid.Row="1"
+                  >
+            <ComboBox 
+                ItemsSource="{Binding AllCompanies}"
+                DisplayMemberPath="Name"
+                SelectedItem="{Binding FlightCompany}"
+                  Width="200" 
+                  Height="30"
+                  Padding="4"
+                  Background="WhiteSmoke"
+                  Foreground="black"
+                  Margin="0,10,0,0"
+                  materialDesign:HintAssist.Hint="Choose a company">
+            </ComboBox>
+            <ComboBox 
+                ItemsSource="{Binding AllWays}"
+                SelectedItem="{Binding FlightWay}"
+                DisplayMemberPath="Departure"
+                  Width="200" 
+                  Height="30"
+                  Padding="4"
+                  Margin="0,15,0,15"
+                  Background="WhiteSmoke"
+                  Foreground="black"
+                  materialDesign:HintAssist.Hint="Choose a way">
+            </ComboBox>
+            <TextBox x:Name="AllPlacesTextBox"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="12"
+                         Foreground="WhiteSmoke"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         BorderThickness="1"
+                         Width="200"
+                         Height="25"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.7"
+                         Text="{Binding FlightAllPlaces}"
+                         PreviewTextInput="PreviewTextInput"/>
+            <TextBlock  IsHitTestVisible="False" 
+                                Text="Max of Places"
+                                FontWeight="Light"
+                         HorizontalAlignment="Left"
+                         FontFamily="helvetica"
+                         FontSize="12"
+                         Foreground="WhiteSmoke"
+                         Background="Transparent"
+                         Width="120"
+                         Height="20"
+                         Opacity="0.7"
+                        Margin="15,-20,0,0"
+                         >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=AllPlacesTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBox x:Name="PriceTextBox"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="12"
+                         Foreground="WhiteSmoke"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         BorderThickness="1"
+                         Width="200"
+                         Height="25"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.7"
+                         Text="{Binding FlightPrice}"
+                         Margin="0,15,0,0" 
+                       PreviewTextInput="PreviewTextInput" Cursor="IBeam"/>
+            <TextBlock  IsHitTestVisible="False" 
+                                Text="Price"
+                                FontWeight="Light"
+                         HorizontalAlignment="Left"
+                         FontFamily="helvetica"
+                         FontSize="12"
+                         Foreground="WhiteSmoke"
+                         Background="Transparent"
+                         Width="120"
+                         Height="20"
+                         Opacity="0.7"
+                        Margin="15,-20,0,0"
+                         >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=PriceTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <Button Style="{DynamicResource InstrumentsButton}" 
+                    Width="100" 
+                    Height="40" 
+                    Content="SAVE EDITS"
+                    Margin="0,20,0,0"
+                    Command="{Binding EditFlightWndCommand}"
+                    CommandParameter="{Binding EditFlightWnd}"/>
+        </StackPanel>
+    </Grid>
+</Window>

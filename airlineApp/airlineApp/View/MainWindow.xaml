@@ -22,14 +22,23 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
 
+           
             
             <ListView
-                Name="ViewAllFlights"
+                x:Name="ViewAllFlights"
                 ItemsSource="{Binding AllFlights}"
                 Foreground="black"
                 HorizontalContentAlignment="Center"
+                SelectedItem="{Binding SelectedFlight}"
                 >
-                
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Command="{Binding EditFlightWndCommand}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteFlightCommand}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+
+
                 <ListView.View>
                     <GridView>
                         <GridViewColumn

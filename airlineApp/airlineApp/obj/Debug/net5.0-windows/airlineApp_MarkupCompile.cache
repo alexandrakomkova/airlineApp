@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\
 airlineApp
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\uni\ооп\кп\airlineApp\airlineApp\App.xaml
-9-1051486077
+D:\uni\ооп\coursework\airlineApp\airlineApp\App.xaml
+101713129293
 
-23-239912162
+24-382951522
 216-1232592862
-CustomControls\AnalogClock.xaml;Styles\Styles.xaml;View\AddCompanyWindow.xaml;View\AddFlightWindow.xaml;View\FindTicketPage.xaml;View\LoginRegisterWindow.xaml;View\MainWindow.xaml;View\Message.xaml;View\UserWindow.xaml;
+CustomControls\AnalogClock.xaml;Styles\Styles.xaml;View\AddCompanyWindow.xaml;View\AddFlightWindow.xaml;View\EditFlightWindow.xaml;View\FindTicketPage.xaml;View\LoginRegisterWindow.xaml;View\MainWindow.xaml;View\Message.xaml;View\UserWindow.xaml;
 
 False
 

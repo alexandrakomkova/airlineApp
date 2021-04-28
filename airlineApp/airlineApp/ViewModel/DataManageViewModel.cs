@@ -27,15 +27,6 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllFlights");
             }
         }
-        //public ObservableCollection<Flight> AllFlights 
-        //{
-        //    get { return allFlights; }
-        //    set 
-        //    {
-        //        allFlights = value;
-        //        NotifyPropertyChanged("AllFlights");
-        //    }
-        //}
         public List<Company> AllCompanies
         {
             get { return allCompanies; }
@@ -54,6 +45,14 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllWays");
             }
         }
+        public ListView SelectedList { get; set; }
+        public static Flight SelectedFlight { get; set; }
+        public static string CompanyName { get; set; }
+        public static string CompanyLogo { get; set; }
+        public static Way FlightWay { get; set; }
+        public static Company FlightCompany { get; set; }
+        public static decimal FlightPrice { get; set; }
+        public static int FlightAllPlaces { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName) 
@@ -77,6 +76,11 @@ namespace airlineApp.ViewModel
             AddFlightWindow addFlightWindow = new AddFlightWindow();
             SetWindowPosition(addFlightWindow);
         }
+        private void OpenEditFlightWndMethod(Flight flight)
+        {
+            EditFlightWindow editFlightWindow = new EditFlightWindow(flight);
+            SetWindowPosition(editFlightWindow);
+        }
         private void OpenAddCompanyWndMethod()
         {
             AddCompanyWindow addCompanyWindow = new AddCompanyWindow();
@@ -96,8 +100,10 @@ namespace airlineApp.ViewModel
         #region commands to open windows
         private Command openAddFlightWndCommand;
         private Command openAddCompanyWndCommand;
+        private Command openEditFlightWndCommand;
         private Command loadCompanyLogoWndCommand;
         private Command closeWndCommand;
+
         public Command OpenAddFlightWndCommand 
         {
             get 
@@ -106,6 +112,21 @@ namespace airlineApp.ViewModel
                     obj =>
                     {
                         OpenAddFlightWndMethod();
+                    }
+                    );
+            }
+        }
+        public Command OpenEditFlightWndCommand
+        {
+            get
+            {
+                return openEditFlightWndCommand ?? new Command(
+                    obj =>
+                    {
+                        if (SelectedFlight != null)
+                        {
+                            OpenEditFlightWndMethod(SelectedFlight);
+                        }
                     }
                     );
             }
@@ -152,8 +173,6 @@ namespace airlineApp.ViewModel
         //commands to add 
         #region commands to add 
         private Command addCompanyWndCommand;
-        public string CompanyName { get; set; }
-        public string CompanyLogo { get; set; }
         public Command AddCompanyWndCommand
         {
             get
@@ -181,10 +200,6 @@ namespace airlineApp.ViewModel
             }
         }
         private Command addFlightWndCommand;
-        public Way FlightWay { get; set; }
-        public Company FlightCompany { get; set; }
-        public int FlightPrice { get; set; }
-        public int FlightAllPlaces { get; set; }
         public Command AddFlightWndCommand
         {
             get
@@ -220,10 +235,9 @@ namespace airlineApp.ViewModel
                         {
                             resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPrice, FlightAllPlaces);
                             UpdateAllDataView();
-
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
-                            //window.Close();
+                           // window.Close();
                         }
                     }
                     );
@@ -272,20 +286,22 @@ namespace airlineApp.ViewModel
 
         //delete data
         #region commands to delete data
-
         private Command deleteFlight { get; set; }
-        public Command DeleteFlight 
+        public Command DeleteFlightCommand
         {
             get 
             {
                 return deleteFlight ?? new Command(obj=>
                 {
                     string resultStr = "Пожалуйста, выберите объект для удаления.";
-                    if (SelectedTabItem.Name == "UsersTab" && SelectedUser != null)
+                    
+                    if (SelectedFlight!=null)
                     {
-                        resultStr = DataWorker.DeleteUser(SelectedUser);
+                        resultStr = DataWorker.DeleteFlight(SelectedFlight);
                         UpdateAllDataView();
                     }
+                    SetNullValuesToProperties();
+                    ShowMessageToUser(resultStr);
                 }
                     );
             }
@@ -294,7 +310,63 @@ namespace airlineApp.ViewModel
 
         //edit data
         #region edit data
+        private Command editFlight { get; set; }
+        public Command EditFlightWndCommand
+        {
+            get
+            {
+                return editFlight ?? new Command(obj =>
+                {
+                    if (SelectedFlight != null)
+                    {
+                        OpenEditFlightWndMethod(SelectedFlight);
+                    }
+                   
+                }
+                    );
+            }
+        }
         #endregion
+
+        #region edit command
+        private Command editFlightCommand { get; set; }
+        public Command EditFlight
+        {
+            get
+            {
+                return editFlightCommand ?? new Command(obj =>
+                {
+                    Window window = obj as Window;
+                    string resultStr = "Пожалуйста, выберите рейс для редактирования.";
+                    string noCompanyStr = "Не выбрана новая компания дл авиарейса.";
+                    string noWayStr = "Не выбран новый маршрут для авиарейса.";
+                    if (SelectedFlight != null)
+                    {
+                        if (FlightCompany != null)
+                        {
+                            if (FlightWay != null)
+                            {
+                                resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPrice, FlightAllPlaces);
+
+                                UpdateAllDataView();
+                                SetNullValuesToProperties();
+                                ShowMessageToUser(resultStr);
+                                window.Close();
+                            }
+                            else ShowMessageToUser(noWayStr);
+                        }
+                        else ShowMessageToUser(noCompanyStr);
+                    }
+                    else ShowMessageToUser(resultStr);
+                }
+                    );
+            }
+        }
+        #endregion
+
+
+
+
         private void SetRedBlockControll(Window wnd, string blockName)
         {
             Control block = wnd.FindName(blockName) as Control;
