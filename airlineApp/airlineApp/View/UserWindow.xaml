@@ -1,0 +1,120 @@
+﻿<Window x:Class="airlineApp.View.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:airlineApp.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="UserWindow"  MinHeight="600" MinWidth="1024"
+        Height="600" Width="1024"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#000080" Offset="0"/>
+            <GradientStop Color="#0000cd" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <StackPanel VerticalAlignment="Center"
+                            Margin="0,0,30,0"
+                            Orientation="Horizontal">
+                <ComboBox
+                        materialDesign:HintAssist.Hint="Language"
+                        Foreground="black"
+                        Background="White"
+                        Padding="4"
+                        >
+                    <ComboBoxItem
+                            Content="Русский" />
+                    <ComboBoxItem
+                            
+                            Content="English" />
+                </ComboBox>
+                <materialDesign:PackIcon Kind="WhiteBalanceSunny" 
+                                             Width="22" Height="22"
+                                             Foreground="WhiteSmoke"
+                                             Margin="50,0,0,0"/>
+                <ToggleButton
+                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                        ToolTip="MaterialDesignSwitchToggleButton"
+                        IsChecked="true" 
+                        Margin="7,0,0,0"/>
+                <materialDesign:PackIcon 
+                        Kind="MoonWaxingCrescent " 
+                        Width="22" Height="22"
+                        Foreground="WhiteSmoke"
+                        Margin="0,0,0,0"/>
+            </StackPanel>
+            <Button Width="25" Height="25"  
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}" 
+                        Foreground="WhiteSmoke" 
+                        Padding="1" 
+                        Margin="6,0,0,0">
+
+                <materialDesign:PackIcon 
+                        Kind="Help" Width="22" Height="22"/>
+            </Button>
+            <Button x:Name="LogOutButton" 
+                        Width="25" Height="25" 
+                        Foreground="WhiteSmoke" 
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                        Padding="1"
+                         Margin="6,0,6,0">
+                <materialDesign:PackIcon 
+                        Kind="Logout" 
+                        Width="22" Height="22"/>
+            </Button>
+            <Button x:Name="ShutDownButton" 
+                        Width="25" Height="25"  
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="WhiteSmoke" 
+                        Padding="1"
+                       >
+                <materialDesign:PackIcon 
+                        Kind="power" 
+                        Width="22" Height="22"/>
+            </Button>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
+            <ProgressBar
+                Value="5"
+                Height="6" 
+                Foreground="WhiteSmoke"
+                Background="#FF673AB7"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Frame x:Name="mainFrame"/>
+        </StackPanel>
+    </Grid>
+</Window>

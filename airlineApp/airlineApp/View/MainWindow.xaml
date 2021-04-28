@@ -1,0 +1,229 @@
+﻿<Window x:Class="airlineApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:airlineApp.View"
+        xmlns:custom="clr-namespace:AirlineApp.CustomControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="600" MinWidth="1040"
+        Height="600" Width="1024"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+
+            
+            <ListView
+                Name="ViewAllFlights"
+                ItemsSource="{Binding AllFlights}"
+                Foreground="black"
+                HorizontalContentAlignment="Center"
+                >
+                
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Id}"
+                            Header="Id" 
+                            Width="auto"
+                            />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            Header="Departure" 
+                            Width="auto"/>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            Header="Arrival" 
+                            Width="auto"/>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightCompany.Name}"
+                            Header="Company" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Price}"
+                            Header="Price" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=AllPlaces}"
+                            Header="Max of places" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding FreePlaces}"
+                            Header="Free places" />
+
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#000080" Offset="0"/>
+                    <GradientStop Color="#0000cd" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <custom:AnalogClock Margin="0,0,30,0"/>
+                    <custom:AnalogClock/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0,30,0,0">
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="VIEW ALL" Margin="0,0,0,0" Command="{Binding UpdateAllFlightsCommand }"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="DELETE FLIGHT" Margin="0,10,0,0" Command="{Binding}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding}"/>
+                <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" />
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of departure" Margin="0,5,0,0" />
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of arrival" Margin="0,5,0,0" />
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by price" Margin="0,5,0,0" />
+                </StackPanel>
+            </StackPanel>
+
+
+
+
+        </Grid>
+
+
+
+        <Grid x:Name="ToolBarGrid" Grid.ColumnSpan="2" Background="#000080" >
+            <!--MouseDown="ToolBarGrid_MouseDown"-->
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
+                        Margin="0,0,15,0">
+
+                <TextBox Style="{DynamicResource FindTextBox}" Width="250"
+                         Height="25"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Left"
+                         Margin="0,0,80,0"
+                         />
+
+                <!--<Button x:Name="ChangeLanguageButton" Width="25" Height="25"  Background="{x:Null}" BorderBrush="{x:Null}" Click="ShutDownButton_Click">
+                    <iconPacks:PackIconMaterial 
+                    Kind="Earth" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke" Width="18"/>
+                </Button>-->
+                <StackPanel VerticalAlignment="Center"
+                            Margin="0,0,30,0"
+                            Orientation="Horizontal">
+                    <ComboBox
+                        materialDesign:HintAssist.Hint="Language"
+                        Foreground="black"
+                        Background="White"
+                        Padding="4"
+                        >
+                        <ComboBoxItem
+                            Content="Русский" />
+                        <ComboBoxItem
+                            
+                            Content="English" />
+                    </ComboBox>
+                    <materialDesign:PackIcon Kind="WhiteBalanceSunny" 
+                                             Width="22" Height="22"
+                                             Foreground="WhiteSmoke"
+                                             Margin="50,0,0,0"/>
+                    <ToggleButton
+                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                        ToolTip="MaterialDesignSwitchToggleButton"
+                        IsChecked="true" 
+                        Margin="7,0,0,0"/>
+                    <materialDesign:PackIcon 
+                        Kind="MoonWaxingCrescent " 
+                        Width="22" Height="22"
+                        Foreground="WhiteSmoke"
+                        Margin="0,0,0,0"/>
+                </StackPanel>
+
+                <!--<Button Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Padding="1">
+                    -->
+                <!--<iconPacks:PackIconMaterial 
+                    Kind="Cog" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke" Width="18"/>-->
+                <!--
+                    <materialDesign:PackIcon 
+                        Kind="Cog" Width="22" Height="22"/>
+                </Button>-->
+
+                <Button Width="25" Height="25"  
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}" 
+                        Foreground="WhiteSmoke" 
+                        Padding="1" 
+                        Margin="6,0,0,0">
+                    <!--<iconPacks:PackIconMaterial 
+                    Kind="Help" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke" Width="18"/>-->
+                    <materialDesign:PackIcon 
+                        Kind="Help" Width="22" Height="22"/>
+                </Button>
+                <Button x:Name="LogOutButton" 
+                        Width="25" Height="25" 
+                        Foreground="WhiteSmoke" 
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                        Padding="1"
+                         Margin="6,0,6,0">
+                    <!--<iconPacks:PackIconMaterial 
+                    Kind="Logout" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke" Width="18"/>-->
+                    <materialDesign:PackIcon 
+                        Kind="Logout" 
+                        Width="22" Height="22"/>
+                </Button>
+                <Button x:Name="ShutDownButton" 
+                        Width="25" Height="25"  
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="WhiteSmoke" 
+                        Padding="1"
+                       >
+                    <!--<iconPacks:PackIconMaterial 
+                    Kind="Power" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke" Width="18"/>-->
+                    <materialDesign:PackIcon 
+                        Kind="power" 
+                        Width="22" Height="22"/>
+                </Button>
+
+
+            </StackPanel>
+
+        </Grid>
+
+
+
+    </Grid>
+</Window>

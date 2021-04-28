@@ -1,0 +1,112 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="LoginRegisterButton" TargetType="Button">
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="20"
+                            BorderThickness="2"
+                            BorderBrush="WhiteSmoke">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="Foreground" Value="DarkBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="InstrumentsButton" TargetType="Button">
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="20"
+                            BorderThickness="2"
+                            BorderBrush="WhiteSmoke">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="Foreground" Value="DarkBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="InstrumentsRadionButton" TargetType="RadioButton">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+        <Setter Property="VerticalAlignment"  Value="Center"/>
+        <Setter Property="HorizontalAlignment"  Value="Left"/>
+        <Setter Property="HorizontalContentAlignment"  Value="Center"/>
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style x:Key="FindTextBox" TargetType="TextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="10"
+                            Background="WhiteSmoke"
+                            Width="200"
+                            Height="25">
+                        <Grid>
+                            <Rectangle StrokeThickness="0"/>
+                            <TextBox x:Name="SearchBox" Margin="1"
+                                     Text="{TemplateBinding Text}"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5,0,0,0"
+                                     Foreground="Black" />
+                            <TextBlock IsHitTestVisible="false"
+                                       Text="Search"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       FontFamily="Helvetica"
+                                       FontWeight="Light"
+                                       FontSize="12"
+                                       Foreground="DarkGray"
+                                       Grid.Column="1">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName= SearchBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
