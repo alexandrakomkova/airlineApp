@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:airlineApp.View"
+         xmlns:custom="clr-namespace:airlineApp.CustomControls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="380"
@@ -14,7 +15,7 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="200"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -38,9 +39,26 @@
                            HorizontalAlignment="Center"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1">
-                <StackPanel  Orientation="Horizontal">
-                    <TextBox x:Name="UsernameTextBox"
+            <StackPanel Grid.Row="1" >
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon
+                    Kind="Account" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke"
+                         Margin="0,0,10,0"/>
+                    <TextBox
+                         x:Name="EmailBox"
+                         materialDesign:HintAssist.Hint="Email"
+                         materialDesign:HintAssist.HelperText=""
+                         Foreground="WhiteSmoke"
+                         BorderBrush="WhiteSmoke"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="20"
+                         Width="200"
+                         Text="{Binding LoginEmail}"/>
+                    <!--<TextBox x:Name="UsernameTextBox"
                          FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="20"
@@ -80,15 +98,33 @@
                     Kind="Account" 
                     VerticalAlignment="Center" 
                     HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke"/>
+                    Foreground="WhiteSmoke"/>-->
                 </StackPanel>
-                <Border Width="250"
+                <!--<Border Width="250"
                     Height="2"
                     Background="WhiteSmoke"
-                    Opacity="0.5"/>
+                    Opacity="0.5"/>-->
 
-                <StackPanel  Orientation="Horizontal" Margin="0,20,0,0">
-                    <PasswordBox x:Name="PasswordPassBox" 
+                <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <materialDesign:PackIcon
+                    Kind="Key" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke"
+                         Margin="0,0,10,0"/>
+                    <custom:BindablePasswordBox
+                         x:Name="PasswordBox"
+                         Foreground="WhiteSmoke"
+                         BorderBrush="WhiteSmoke"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="20"
+                         materialDesign:HintAssist.Hint="Password"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.HelperText="At least 6 characters" 
+                        Width="200" 
+                        Password="{Binding LoginPassword}"/>
+                    <!--<PasswordBox x:Name="PasswordPassBox" 
                         Password="1111"
                          FontWeight="Light"
                          FontFamily="Helvetica"
@@ -101,22 +137,50 @@
                          Height="25"
                          HorizontalContentAlignment="Left"
                          Opacity="0.7"
-                         Margin="63,0,0,0"/>
+                         Margin="63,0,0,0"/>-->
 
-                    <materialDesign:PackIcon
+                    <!--<materialDesign:PackIcon
                     Kind="FormTextboxPassword" 
                     VerticalAlignment="Center" 
                     HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke"/>
+                    Foreground="WhiteSmoke"/>-->
                 </StackPanel>
-                <Border Width="250"
+                <!--<Border Width="250"
                     Height="2"
                     Background="WhiteSmoke"
-                    Opacity="0.5"/>
+                    Opacity="0.5"/>-->
 
-                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    <Button Style="{DynamicResource LoginRegisterButton}"  Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0"/>
-                    <Button Style="{DynamicResource LoginRegisterButton}" Width="100" Height="40" Content="REGISTER"/>
+                <StackPanel Orientation="Vertical" 
+                            HorizontalAlignment="Center" 
+                            Margin="0,30,0,0">
+                    <Button Style="{DynamicResource LoginRegisterButton}"  Width="100" Height="40" Content="LOGIN" Margin="0,0,0,0" Command="{Binding LoginCommand}"/>
+                
+                    <Button Name="ForgotPassLabel" 
+                           Content="Forgot your password or login?"
+                           Foreground="WhiteSmoke"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="10"
+                             Background="Transparent"
+                            BorderBrush="Transparent"
+                           Margin="0,0,0,0"
+                           Opacity="0.7"
+                           HorizontalContentAlignment="Center"
+                             Command="{Binding }"/>
+                    <Button Name="RegisterLabel" 
+                           Content="Don't have an account?"
+                           Foreground="WhiteSmoke"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="16"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                           Margin="0,0,0,0"
+                           Opacity="0.7"
+                           HorizontalContentAlignment="Center"
+                           Command="{Binding OpenRegisterWndCommand}"
+                          />
+                   
                 </StackPanel>
             </StackPanel>
 

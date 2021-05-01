@@ -1,0 +1,133 @@
+﻿<Window x:Class="airlineApp.View.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:airlineApp.View"
+        xmlns:custom="clr-namespace:airlineApp.CustomControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:customcontrols="clr-namespace:airlineApp.CustomControls"
+        mc:Ignorable="d"
+        Title="RegisterWindow" Height="450" Width="380"
+         Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="10" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#000080" Offset="0.0"/>
+                        <GradientStop Color="#0000cd" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="/Styles/logo.png" Width="80"
+                       Margin="0,0,0,7"/>
+                <TextBlock Text="AirlineApp" 
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="22"
+                           Foreground="WhiteSmoke"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" >
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon
+                    Kind="Account" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke"
+                         Margin="0,0,10,0"/>
+                    <TextBox
+                         x:Name="EmailBox"
+                         materialDesign:HintAssist.Hint="Email"
+                         materialDesign:HintAssist.HelperText=""
+                         Foreground="WhiteSmoke"
+                         BorderBrush="WhiteSmoke"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="20"
+                         Width="200"
+                         Text="{Binding EmailText}"/>
+                </StackPanel>
+
+
+                <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <materialDesign:PackIcon
+                    Kind="Key" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke"
+                         Margin="0,0,10,0"/>
+                    <custom:BindablePasswordBox
+                         x:Name="passwordBox"
+                         Foreground="WhiteSmoke"
+                         BorderBrush="WhiteSmoke"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="20"
+                         materialDesign:HintAssist.Hint="Password"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.HelperText="At least 6 characters" 
+                         Width="200" 
+                        Password="{Binding PasswordText}"
+                         />
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <materialDesign:PackIcon
+                    Kind="Key" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="WhiteSmoke"
+                         Margin="0,0,10,0"/>
+
+                    <custom:BindablePasswordBox
+                         x:Name="ConfirmPasswordBox"
+                         Foreground="WhiteSmoke"
+                         BorderBrush="WhiteSmoke"
+                         FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="20"
+                         materialDesign:HintAssist.Hint="Confirm Password"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.HelperText="Confirm to know if you type it correct :) " 
+                         Width="200" 
+                         Password="{Binding ConfirmPasswordText}"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" 
+                            HorizontalAlignment="Center" 
+                            Margin="0,30,0,0">
+                    <Button Style="{DynamicResource LoginRegisterButton}" Width="100" Height="40" Content="REGISTER" Command="{Binding RegisterCommand}"/>
+                    
+                    <Button Name="RegisterLabel" 
+                           Content="Have already an account? Login!"
+                           Foreground="WhiteSmoke"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           Background="Transparent"
+                            BorderBrush="Transparent"
+                           FontSize="16"
+                           Margin="0,10,0,0"
+                           Opacity="0.7"
+                           HorizontalContentAlignment="Center"
+                          Command="{Binding OpenLoginWndCommand}" Cursor="Hand"/>
+
+                </StackPanel>
+            </StackPanel>
+
+
+
+
+        </Grid>
+    </Grid>
+</Window>

@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CustomControls\BindablePasswordBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AddCompanyWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,12 +28,18 @@
     <Compile Update="View\Message.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\RegisterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\UserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CustomControls\AnalogClock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Styles.xaml">
@@ -55,6 +64,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Message.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RegisterWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\UserWindow.xaml">

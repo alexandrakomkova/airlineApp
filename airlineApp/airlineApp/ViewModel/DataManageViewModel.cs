@@ -11,6 +11,7 @@ using System.Windows.Media;
 using airlineApp.Model;
 using airlineApp.Model.Data;
 using airlineApp.View;
+using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 
@@ -112,9 +113,31 @@ namespace airlineApp.ViewModel
                 }
             }
         }
-        private void CloseWndMethod()
+        private void OpenLoginWndMethod()
         {
-            App.Current.Windows.OfType<Message>().First().Close();
+            LoginRegisterWindow loginWindow = new LoginRegisterWindow();
+            SetWindowPosition(loginWindow);
+        }
+        private void OpenRegisterWndMethod()
+        {
+            RegisterWindow registerWindow = new RegisterWindow();
+            SetWindowPosition(registerWindow);
+        }
+        private void OpenMainWndMethod()
+        {
+            MainWindow mainWindow = new MainWindow();
+            SetWindowPosition(mainWindow);
+        }
+        private void OpenUserWndMethod()
+        {
+            UserWindow userWindow = new UserWindow();
+            SetWindowPosition(userWindow);
+        }
+
+        private void CloseWndMethod(object obj)
+        {
+            Window win = obj as Window;
+            win.Close();
         }
         #endregion
 
@@ -124,8 +147,38 @@ namespace airlineApp.ViewModel
         private Command openAddCompanyWndCommand;
         private Command openEditFlightWndCommand;
         private Command loadCompanyLogoWndCommand;
+        private Command openLoginWndCommand;
+        private Command openRegisterWndCommand;
+  
         private Command closeWndCommand;
 
+        public Command OpenLoginWndCommand
+        {
+            get
+            {
+                return openLoginWndCommand ?? new Command(
+                    obj =>
+                    {
+                        OpenLoginWndMethod();
+                    }
+                    );
+            }
+        }
+        public Command OpenRegisterWndCommand
+        {
+            get
+            {
+                return openRegisterWndCommand ?? new Command(
+                    obj =>
+                    {
+                        OpenRegisterWndMethod();
+                    }
+                    );
+            }
+        }
+       
+
+        
         public Command OpenAddFlightWndCommand 
         {
             get 
@@ -182,10 +235,7 @@ namespace airlineApp.ViewModel
             get
             {
                 return closeWndCommand ?? new Command(
-                    obj =>
-                    { 
-                        CloseWndMethod();
-                    }
+                        CloseWndMethod
                     );
             }
         }
@@ -387,8 +437,135 @@ namespace airlineApp.ViewModel
         }
         #endregion
 
+        
 
 
+        #region login and register command
+        public string EmailText { get; set; }
+        public string PasswordText { get; set; }
+        public string ConfirmPasswordText { get; set; }
+        public string LoginEmail { get; set; }
+        public string LoginPassword { get; set; }
+        private Command login { get; set; }
+        private Command register { get; set; }
+        public Command LoginCommand
+        {
+            get
+            {
+                return login ?? new Command(obj =>
+                {
+                    Window window = obj as Window;
+                    string resultStr = "";
+                    if (LoginEmail == null || LoginEmail.Replace(" ", "").Length == 0 
+                    || LoginPassword==null || LoginPassword.Replace(" ", "").Length == 0) 
+                    {
+                        resultStr = "Пожалуйста, введите email и пароль для входа.";
+                        ShowMessageToUser(resultStr);
+                    }
+                    User authUser = null;
+                    IPasswordHasher passwordHashed = new PasswordHasher();
+                    
+                    using (ApplicationContext db = new ApplicationContext()) 
+                    {
+                        authUser = DataWorker.GetUserByEmail(LoginEmail);
+                        PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
+                        if (authUser == null || verificationResult ==PasswordVerificationResult.Failed)
+                        {
+                            resultStr = "Неверный email или пароль.";
+                            ShowMessageToUser(resultStr);
+                        }
+                        else 
+                        {
+
+                            if (IsAdmin(authUser) == true)
+                            {
+                                OpenMainWndMethod();
+                                (window as Window).Close();
+
+                            }
+                            else 
+                            {
+                                OpenUserWndMethod();
+                                
+                                (window as Window).Close();
+                            }
+                        }
+                    }
+                }
+                    );
+            }
+        }
+       
+        public Command RegisterCommand
+        {
+            get
+            {
+                return register ?? new Command(obj =>
+                {
+
+                    string resultStr = "";
+                   
+                    try
+                    {
+                        //if (EmailText == null || PasswordText == null || ConfirmPasswordText == null)
+                        //{
+                        //    resultStr = "Пожалуйста, заполните поля для регистрации.";
+                        //    ShowMessageToUser(resultStr);
+                        //}
+                        if (EmailText == null || EmailText.Replace(" ", "").Length == 0)
+                        {
+                            //SetRedBlockControll(window, "EmailBox");
+                            resultStr = "Пожалуйста, введите email для регистрации.";
+                            ShowMessageToUser(resultStr);
+                        }
+                        if (PasswordText == null || PasswordText.Replace(" ", "").Length == 0 || PasswordText.Length < 6)
+                        {
+                            resultStr = "Пароль должен быть не меньше 6 символов.";
+                            // SetRedBlockControll(window, "PasswordBox");
+                            ShowMessageToUser(resultStr);
+                        }
+                        if (PasswordText != ConfirmPasswordText)
+                        {
+                            resultStr = "Пароли не совпадают.";
+                            //SetRedBlockControll(window, "PasswordBox");
+                            //SetRedBlockControll(window, "ConfirmPasswordBox");
+                            ShowMessageToUser(resultStr);
+                        }
+                        else
+                        {
+
+                            resultStr = DataWorker.CreateUser(EmailText, PasswordText);
+                            ShowMessageToUser(resultStr);
+                            OpenLoginWndMethod();
+                            SetNullValuesToProperties();
+                        }
+                    }
+                    catch
+                    {
+                        resultStr = "Пожалуйста, заполните поля для регистрации.";
+                        ShowMessageToUser(resultStr);
+                    }
+                }
+                );
+            }
+        }
+        private bool IsAdmin(User user) 
+        {
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                string isAdmin = "admin";
+                bool i = false;
+                user = db.Users.Where(u=> u.IsAdmin.ToLower() == isAdmin ).FirstOrDefault();
+                if (user != null) 
+                {
+                    i = true;
+                }
+                
+                return i;
+            }
+        }
+
+        #endregion
 
         private void SetRedBlockControll(Window wnd, string blockName)
         {
@@ -408,71 +585,35 @@ namespace airlineApp.ViewModel
             FlightCompany = null;
             FlightPrice = 0;
             FlightAllPlaces = 0;
+            EmailText = null;
+            PasswordText = null;
+            LoginPassword = null;
+            LoginEmail = null;
+            ConfirmPasswordText = null;
+
         }
 
 
         #region search bar and sorting
         private string searchText { get; set; }
-        public static ObservableCollection<Flight> FlightCollection { get; set; }
-        //private List<DataManageViewModel> GetFlightsVM()
-        //{
-
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-        //        var result = new List<DataManageViewModel>();
-        //       result = new ObservableCollection<RentObject>(dbContext.RentObjects.ToList());
-
-        //        return result;
-        //    }
-        //}
-        public ObservableCollection<Flight> FlightsCollection { get; set; }
-        public ICollectionView List { get; set; }
-        //public FlightListViewModel()//modified to public
-        //{
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-        //        FlightCollection = new ObservableCollection<Flight>(db.Flights.ToList());
-        //    }
-        //    //List = CollectionViewSource.GetDefaultView(AllFlights);
-        //    this._view = new ListCollectionView(this.employeeList);
-        //}
-
+        
         public string SearchText
         {
             get { return searchText; }
             set
             {
-                //ShowMessageToUser("n");
+                
                 searchText = value;
                 NotifyPropertyChanged("SearchText");
-                
-                   // List = CollectionViewSource.GetDefaultView(FlightCollection);
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == value);
+                    AllFlights = findFlight.ToList();
+                }
+               
 
-                //string pattern = $"{value}";
-                // Regex regex = new Regex(pattern);
-                // var findFlight = from i in AllFlights
-                //                  where regex.IsMatch(i.Company.Name)
-                //                  select i;
-                // //AllFlights = findFlight.ToList();
-                // MainWindow.AllFlightsView.Items.Clear();
-                // MainWindow.AllFlightsView.ItemsSource = findFlight.ToList();
-                //// NotifyPropertyChanged("AllFlights");
-                // //MainWindow.AllFlightsView.ItemsSource = AllFlights;
-
-
-                //List.Filter = (obj) =>
-                //{
-                //    if (obj is Flight f)
-                //    {
-                //        return f.Company.Name.ToLower().Contains(SearchText.ToLower());
-                //    }
-
-                //return false;
-                //if (String.IsNullOrEmpty(value))
-                //    List.Filter = null;
-                //else
-                //    List.Filter = new Predicate<object>(o => ((Flight)o).Company.Name == value);
-                //List.Refresh();
+                NotifyPropertyChanged("AllFlights");
+              
             }
                
 
@@ -578,23 +719,14 @@ namespace airlineApp.ViewModel
                         using (ApplicationContext db = new ApplicationContext())
                         {
                             //  UpdateAllDataView();
-                            //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name.Any(p => p.Contains(SearchText)));
-
-                            //string pattern = $"{SearchText}";
-                            //Regex regex = new Regex(pattern);
-                            //var findFlight = (from i in db.Flights
-                            //                  where regex.IsMatch(i.Company.Name)
-                            //                  select i).ToList() ;
-                            //ShowMessageToUser($"{findFlight.ToList()}");
-
-                            // var findFlight = db.Flights.Where(p => p.Company.Name.Contains(SearchText));
-                            var findFlight = db.
-                            AllFlights = findFlight.ToList();
-                            //AllFlights = findFlight;
+                            //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name.Contains(SearchText));
+                            //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == "h");
+                           // var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == value);
+                           // AllFlights = findFlight.ToList();
+                           
                             NotifyPropertyChanged("AllFlights");
 
-                            //MainWindow.AllFlightsView.Items.Clear();
-                            //MainWindow.AllFlightsView.ItemsSource = users.ToList();
+                           
                         }
                     }
                     );

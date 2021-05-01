@@ -16,11 +16,11 @@ using airlineApp.ViewModel;
 namespace airlineApp.View
 {
     /// <summary>
-    /// Логика взаимодействия для LoginRegisterWindow.xaml
+    /// Логика взаимодействия для RegisterWindow.xaml
     /// </summary>
-    public partial class LoginRegisterWindow : Window
+    public partial class RegisterWindow : Window
     {
-        public LoginRegisterWindow()
+        public RegisterWindow()
         {
             InitializeComponent();
             DataContext = new DataManageViewModel();

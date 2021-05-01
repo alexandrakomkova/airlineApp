@@ -1,5 +1,6 @@
 ﻿using airlineApp.Model.Data;
 using airlineApp.ViewModel;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -199,6 +200,41 @@ namespace airlineApp.Model
                 Way way  = db.Ways.FirstOrDefault(p => p.Id == id);
                 return way;
             }
+        }
+
+        //create user
+        public static string CreateUser(string email, string password)
+        {
+            string result = "Пользователь с таким email уже зарегистрирован.";
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //check existence
+                bool IsExist = db.Users.Any(u => u.Email == email && u.Password==password);
+                if (IsExist == false)
+                {
+                    IPasswordHasher hasher = new PasswordHasher();
+                    string hashedPassword = hasher.HashPassword(password);
+
+                    User newUser = new User { Email = email, Password = hashedPassword };
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+                    result = "Регистрация прошла успешно! Войдите в систему для дальнейшей работы.";
+
+                }
+                return result;
+            }
+        }
+        //get user by email
+        public static User GetUserByEmail(string e)
+        {
+            User user = null;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                user = db.Users.Where(u => u.Email == e).FirstOrDefault();
+               
+            }
+            return user;
         }
     }
 }

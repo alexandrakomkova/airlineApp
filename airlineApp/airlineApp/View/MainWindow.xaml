@@ -26,7 +26,7 @@
             
             <ListView
                 x:Name="ViewAllFlights"
-                ItemsSource="{Binding List}"
+                ItemsSource="{Binding AllFlights}"
                 Foreground="black"
                 HorizontalContentAlignment="Center"
                 SelectedItem="{Binding SelectedFlight}"
