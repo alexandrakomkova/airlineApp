@@ -1,4 +1,5 @@
 ﻿using airlineApp.Model.Data;
+using airlineApp.ViewModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -62,6 +63,7 @@ namespace airlineApp.Model
                             FreePlaces = allPlaces,
                             Price = price
                         };
+                       // DataManageViewModel.FlightCollection.Add(newFlight);
                         db.Flights.Add(newFlight);
                         db.SaveChanges();
                         result = "Новый авиарейс успешно добавлен!";
@@ -161,15 +163,7 @@ namespace airlineApp.Model
                 return result;
             }
         }
-        //public static ObservableCollection<Flight> GetAllFlights()
-        //{
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-        //        //var result = db.Flights.ToList();
-        //         var result = db.Flights.To;
-        //        return result;
-        //    }
-        //}
+       
         public static List<Company> GetAllCompanies()
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -178,6 +172,7 @@ namespace airlineApp.Model
                 return result;
             }
         }
+
         public static List<Way> GetAllWays()
         {
             using (ApplicationContext db = new ApplicationContext())

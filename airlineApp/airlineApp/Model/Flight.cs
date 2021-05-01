@@ -13,6 +13,7 @@ namespace airlineApp.Model
         public int WayId { get; set; }
         public Way Way { get; set; }
         public int CompanyId { get; set; }
+        public string CompanyLogo { get; set; }
         public Company Company { get; set; }
         public decimal Price { get; set; }
         public int AllPlaces { get; set; }

@@ -26,7 +26,7 @@
             
             <ListView
                 x:Name="ViewAllFlights"
-                ItemsSource="{Binding AllFlights}"
+                ItemsSource="{Binding List}"
                 Foreground="black"
                 HorizontalContentAlignment="Center"
                 SelectedItem="{Binding SelectedFlight}"
@@ -39,13 +39,12 @@
                 </ListView.ContextMenu>
 
 
-                <ListView.View>
-                    <GridView>
+                <ListView.View >
+                    <GridView >
                         <GridViewColumn
                             DisplayMemberBinding="{Binding Path=Id}"
                             Header="Id" 
-                            Width="auto"
-                            />
+                            Width="auto"/>
                         <GridViewColumn
                             DisplayMemberBinding="{Binding Path=flightWay.Departure}"
                             Header="Departure" 
@@ -101,12 +100,12 @@
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="DELETE FLIGHT" Margin="0,10,0,0" Command="{Binding}"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding SearchCommand}"/>
                 <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
-                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" />
-                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of departure" Margin="0,5,0,0" />
-                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of arrival" Margin="0,5,0,0" />
-                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by price" Margin="0,5,0,0" />
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" Command="{Binding SortByCompanyCommand}"/>
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of departure" Margin="0,5,0,0" Command="{Binding SortByDepartureCommand}"/>
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of arrival" Margin="0,5,0,0" Command="{Binding SortByArrivalCommand}"/>
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by price" Margin="0,5,0,0" Command="{Binding SortByPriceCommand}"/>
                 </StackPanel>
             </StackPanel>
 
@@ -117,26 +116,19 @@
 
 
 
-        <Grid x:Name="ToolBarGrid" Grid.ColumnSpan="2" Background="#000080" >
+        <Grid x:Name="ToolBarGrid" Grid.ColumnSpan="2" Background="#000080">
             <!--MouseDown="ToolBarGrid_MouseDown"-->
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
                         Margin="0,0,15,0">
 
-                <TextBox Style="{DynamicResource FindTextBox}" Width="250"
+                <TextBox Style="{DynamicResource FindTextBox}" Width="200"
                          Height="25"
                          VerticalContentAlignment="Center"
                          HorizontalAlignment="Left"
-                         Margin="0,0,80,0"
+                         Margin="0,0,140,0"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                          />
-
-                <!--<Button x:Name="ChangeLanguageButton" Width="25" Height="25"  Background="{x:Null}" BorderBrush="{x:Null}" Click="ShutDownButton_Click">
-                    <iconPacks:PackIconMaterial 
-                    Kind="Earth" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke" Width="18"/>
-                </Button>-->
                 <StackPanel VerticalAlignment="Center"
                             Margin="0,0,30,0"
                             Orientation="Horizontal">

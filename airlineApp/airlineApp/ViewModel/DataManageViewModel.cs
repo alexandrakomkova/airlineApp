@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using airlineApp.Model;
+using airlineApp.Model.Data;
 using airlineApp.View;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 
 namespace airlineApp.ViewModel
 {
@@ -18,6 +23,7 @@ namespace airlineApp.ViewModel
         private List<Flight> allFlights = DataWorker.GetAllFlights();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
+        public ICollectionView FlightView { get; set; }
         public List<Flight> AllFlights
         {
             get { return allFlights; }
@@ -88,7 +94,23 @@ namespace airlineApp.ViewModel
         }
         private void LoadCompanyLogoWndMethod()
         {
-           
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Filter = "Фотографии|*.jpg;*.png;*.jpeg| All Files (*.*)|*.*";
+            if (ofd.ShowDialog() == true)
+            {
+                try
+                {
+                    
+                    CompanyLogo = ofd.FileName;
+                    //System.Windows.Forms.MessageBox.Show(airline.imagePath);
+                }
+                catch
+                {
+                    string resultStr = "Не удалось загрузить картинку.";
+                    ShowMessageToUser(resultStr);
+                }
+            }
         }
         private void CloseWndMethod()
         {
@@ -188,6 +210,7 @@ namespace airlineApp.ViewModel
                         }
                         else
                         {
+                            
                             resultStr = DataWorker.CreateCompany(CompanyName, CompanyLogo);
                             UpdateAllDataView();
                             ShowMessageToUser(resultStr);
@@ -386,5 +409,198 @@ namespace airlineApp.ViewModel
             FlightPrice = 0;
             FlightAllPlaces = 0;
         }
+
+
+        #region search bar and sorting
+        private string searchText { get; set; }
+        public static ObservableCollection<Flight> FlightCollection { get; set; }
+        //private List<DataManageViewModel> GetFlightsVM()
+        //{
+
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
+        //        var result = new List<DataManageViewModel>();
+        //       result = new ObservableCollection<RentObject>(dbContext.RentObjects.ToList());
+
+        //        return result;
+        //    }
+        //}
+        public ObservableCollection<Flight> FlightsCollection { get; set; }
+        public ICollectionView List { get; set; }
+        //public FlightListViewModel()//modified to public
+        //{
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
+        //        FlightCollection = new ObservableCollection<Flight>(db.Flights.ToList());
+        //    }
+        //    //List = CollectionViewSource.GetDefaultView(AllFlights);
+        //    this._view = new ListCollectionView(this.employeeList);
+        //}
+
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                //ShowMessageToUser("n");
+                searchText = value;
+                NotifyPropertyChanged("SearchText");
+                
+                   // List = CollectionViewSource.GetDefaultView(FlightCollection);
+
+                //string pattern = $"{value}";
+                // Regex regex = new Regex(pattern);
+                // var findFlight = from i in AllFlights
+                //                  where regex.IsMatch(i.Company.Name)
+                //                  select i;
+                // //AllFlights = findFlight.ToList();
+                // MainWindow.AllFlightsView.Items.Clear();
+                // MainWindow.AllFlightsView.ItemsSource = findFlight.ToList();
+                //// NotifyPropertyChanged("AllFlights");
+                // //MainWindow.AllFlightsView.ItemsSource = AllFlights;
+
+
+                //List.Filter = (obj) =>
+                //{
+                //    if (obj is Flight f)
+                //    {
+                //        return f.Company.Name.ToLower().Contains(SearchText.ToLower());
+                //    }
+
+                //return false;
+                //if (String.IsNullOrEmpty(value))
+                //    List.Filter = null;
+                //else
+                //    List.Filter = new Predicate<object>(o => ((Flight)o).Company.Name == value);
+                //List.Refresh();
+            }
+               
+
+
+
+            
+        }
+
+        private Command sortByCompanyCommand;
+        public Command SortByCompanyCommand
+        {
+            get
+            {
+                return sortByCompanyCommand ?? new Command(
+                    obj =>
+                    {
+
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                           //  UpdateAllDataView();
+                            var sortByCompany = db.Flights.OrderBy(f => f.Company.Name);
+
+                            AllFlights = sortByCompany.ToList();
+                            NotifyPropertyChanged("AllFlights");
+                        }
+                    }
+                    );
+            }
+        }
+        private Command sortByPriceCommand;
+        public Command SortByPriceCommand
+        {
+            get
+            {
+                return sortByPriceCommand ?? new Command(
+                    obj =>
+                    {
+
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                            
+                            var sortByPrice = db.Flights.OrderBy(f => f.Price);
+
+                            AllFlights = sortByPrice.ToList();
+                            NotifyPropertyChanged("AllFlights");
+                        }
+                    }
+                    );
+            }
+        }
+
+        private Command sortByArrivalCommand;
+        public Command SortByArrivalCommand
+        {
+            get
+            {
+                return sortByArrivalCommand ?? new Command(
+                    obj =>
+                    {
+
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+
+                            var sortByArrival = db.Flights.OrderBy(f => f.Way.Arrival);
+
+                            AllFlights = sortByArrival.ToList();
+                            NotifyPropertyChanged("AllFlights");
+                        }
+                    }
+                    );
+            }
+        }
+        private Command sortByDepartureCommand;
+        public Command SortByDepartureCommand
+        {
+            get
+            {
+                return sortByDepartureCommand ?? new Command(
+                    obj =>
+                    {
+
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+
+                            var sortByDeparture = db.Flights.OrderBy(f => f.Way.Departure);
+
+                            AllFlights = sortByDeparture.ToList();
+                            NotifyPropertyChanged("AllFlights");
+                        }
+                    }
+                    );
+            }
+        }
+        private Command searchCommand;
+        public Command SearchCommand
+        {
+            get
+            {
+                return searchCommand ?? new Command(
+                    obj =>
+                    {
+
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                            //  UpdateAllDataView();
+                            //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name.Any(p => p.Contains(SearchText)));
+
+                            //string pattern = $"{SearchText}";
+                            //Regex regex = new Regex(pattern);
+                            //var findFlight = (from i in db.Flights
+                            //                  where regex.IsMatch(i.Company.Name)
+                            //                  select i).ToList() ;
+                            //ShowMessageToUser($"{findFlight.ToList()}");
+
+                            // var findFlight = db.Flights.Where(p => p.Company.Name.Contains(SearchText));
+                            var findFlight = db.
+                            AllFlights = findFlight.ToList();
+                            //AllFlights = findFlight;
+                            NotifyPropertyChanged("AllFlights");
+
+                            //MainWindow.AllFlightsView.Items.Clear();
+                            //MainWindow.AllFlightsView.ItemsSource = users.ToList();
+                        }
+                    }
+                    );
+            }
+        }
+
+        #endregion
     }
 }

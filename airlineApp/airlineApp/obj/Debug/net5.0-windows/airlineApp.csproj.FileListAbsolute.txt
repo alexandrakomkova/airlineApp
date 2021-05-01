@@ -76,7 +76,6 @@ D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\FindTicke
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\LoginRegisterWindow.baml
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Message.baml
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserWindow.baml
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csprojAssemblyReference.cache
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\Styles\Styles.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddCompanyWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddFlightWindow.g.cs
