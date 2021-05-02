@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using airlineApp.ViewModel;
 
-namespace airlineApp.View
+namespace airlineApp.CustomControls
 {
     /// <summary>
-    /// Логика взаимодействия для FindTicketPage.xaml
+    /// Логика взаимодействия для SearchTicket.xaml
     /// </summary>
-    public partial class FindTicketPage : UserControl
+    public partial class SearchTicket : UserControl
     {
-        public FindTicketPage()
+        public SearchTicket()
         {
             InitializeComponent();
-           
         }
     }
 }

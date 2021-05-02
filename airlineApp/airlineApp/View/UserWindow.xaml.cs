@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using airlineApp.ViewModel;
 
 namespace airlineApp.View
 {
@@ -22,6 +23,7 @@ namespace airlineApp.View
         public UserWindow()
         {
             InitializeComponent();
+            DataContext = new UserWindowViewModel();
         }
     }
 }

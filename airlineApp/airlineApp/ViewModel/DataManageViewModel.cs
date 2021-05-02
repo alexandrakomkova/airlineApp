@@ -73,13 +73,15 @@ namespace airlineApp.ViewModel
         public static int FlightAllPlaces { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName) 
+        protected void NotifyPropertyChanged(String propertyName) 
         {
             if (PropertyChanged != null) 
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        
 
         //methods for open/close windows
         #region methods for open windows
@@ -141,7 +143,9 @@ namespace airlineApp.ViewModel
         }
         private void OpenUserWndMethod()
         {
+            
             UserWindow userWindow = new UserWindow();
+
             SetWindowPosition(userWindow);
         }
 
@@ -151,6 +155,7 @@ namespace airlineApp.ViewModel
             win.Hide();
         }
         #endregion
+
 
         //commands to open/close windows
         #region commands to open windows
@@ -771,5 +776,9 @@ namespace airlineApp.ViewModel
         }
 
         #endregion
+
+
+
+       
     }
 }

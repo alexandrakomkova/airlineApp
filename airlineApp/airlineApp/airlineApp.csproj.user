@@ -10,10 +10,16 @@
     <Compile Update="CustomControls\BindablePasswordBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="CustomControls\SearchTicket.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AddCompanyWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\AddFlightWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ChooseTicketPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\EditFlightWindow.xaml.cs">
@@ -42,6 +48,9 @@
     <Page Update="CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="CustomControls\SearchTicket.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Styles.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -49,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AddFlightWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ChooseTicketPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\EditFlightWindow.xaml">

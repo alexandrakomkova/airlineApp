@@ -155,9 +155,13 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineA
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.genruntimeconfig.cache
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EditFlightWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EditFlightWindow.baml
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csprojAssemblyReference.cache
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\RegisterWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\RegisterWindow.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\BindablePasswordBox.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\BindablePasswordBox.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\bin\Debug\net5.0-windows\Microsoft.AspNet.Identity.Core.dll
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\SearchTicket.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\SearchTicket.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csprojAssemblyReference.cache
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ChooseTicketPage.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ChooseTicketPage.baml

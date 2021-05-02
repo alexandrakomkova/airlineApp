@@ -17,11 +17,11 @@ using airlineApp.ViewModel;
 namespace airlineApp.View
 {
     /// <summary>
-    /// Логика взаимодействия для FindTicketPage.xaml
+    /// Логика взаимодействия для ChooseTicketPage.xaml
     /// </summary>
-    public partial class FindTicketPage : UserControl
+    public partial class ChooseTicketPage : UserControl
     {
-        public FindTicketPage()
+        public ChooseTicketPage()
         {
             InitializeComponent();
            
