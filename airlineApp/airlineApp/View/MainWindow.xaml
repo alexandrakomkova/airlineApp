@@ -60,10 +60,13 @@
                             DisplayMemberBinding="{Binding Path=Price}"
                             Header="Price" />
                         <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=AllPlaces}"
+                            DisplayMemberBinding="{Binding Path=flightPlane.Name}"
+                            Header="Plane" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightPlane.MaxOfPlaces}"
                             Header="Max of places" />
                         <GridViewColumn
-                            DisplayMemberBinding="{Binding FreePlaces}"
+                            DisplayMemberBinding="{Binding Path=FreePlaces}"
                             Header="Free places" />
 
 
@@ -192,12 +195,9 @@
                         Background="{x:Null}" 
                         BorderBrush="{x:Null}"
                         Padding="1"
-                         Margin="6,0,6,0">
-                    <!--<iconPacks:PackIconMaterial 
-                    Kind="Logout" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke" Width="18"/>-->
+                         Margin="6,0,6,0"
+                        Command="{Binding ChangeAccountWndCommand}" Cursor="Hand">
+                   
                     <materialDesign:PackIcon 
                         Kind="Logout" 
                         Width="22" Height="22"/>
@@ -208,12 +208,9 @@
                         BorderBrush="{x:Null}" 
                         Foreground="WhiteSmoke" 
                         Padding="1"
+                        Command="{Binding  ShutDownCommand}" Cursor="Hand"
                        >
-                    <!--<iconPacks:PackIconMaterial 
-                    Kind="Power" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke" Width="18"/>-->
+                   
                     <materialDesign:PackIcon 
                         Kind="power" 
                         Width="22" Height="22"/>

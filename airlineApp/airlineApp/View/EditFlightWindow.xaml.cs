@@ -30,7 +30,7 @@ namespace airlineApp.View
            // DataManageViewModel.FlightCompany = flightToEdit.Company;
             DataManageViewModel.FlightPrice = flightToEdit.Price;
            // DataManageViewModel.FlightWay = flightToEdit.Way;
-            DataManageViewModel.FlightAllPlaces = flightToEdit.AllPlaces;
+          //  DataManageViewModel.FlightAllPlaces = flightToEdit.AllPlaces;
 
         }
         private void PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)

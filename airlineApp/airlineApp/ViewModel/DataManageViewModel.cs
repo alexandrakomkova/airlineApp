@@ -22,9 +22,10 @@ namespace airlineApp.ViewModel
         //get all flight
         //private ObservableCollection<Flight> allFlights = DataWorker.GetAllFlights();
         private List<Flight> allFlights = DataWorker.GetAllFlights();
+        private List<Plane> allPlanes = DataWorker.GetAllPlanes();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
-        public ICollectionView FlightView { get; set; }
+       
         public List<Flight> AllFlights
         {
             get { return allFlights; }
@@ -43,6 +44,15 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllCompanies");
             }
         }
+        public List<Plane> AllPlanes
+        {
+            get { return allPlanes; }
+            set
+            {
+                allPlanes = value;
+                NotifyPropertyChanged("AllPlanes");
+            }
+        }
         public List<Way> AllWays
         {
             get { return allWays; }
@@ -58,6 +68,7 @@ namespace airlineApp.ViewModel
         public static string CompanyLogo { get; set; }
         public static Way FlightWay { get; set; }
         public static Company FlightCompany { get; set; }
+        public static Plane FlightPlane { get; set; }
         public static decimal FlightPrice { get; set; }
         public static int FlightAllPlaces { get; set; }
 
@@ -104,7 +115,7 @@ namespace airlineApp.ViewModel
                 {
                     
                     CompanyLogo = ofd.FileName;
-                    //System.Windows.Forms.MessageBox.Show(airline.imagePath);
+                    
                 }
                 catch
                 {
@@ -137,7 +148,7 @@ namespace airlineApp.ViewModel
         private void CloseWndMethod(object obj)
         {
             Window win = obj as Window;
-            win.Close();
+            win.Hide();
         }
         #endregion
 
@@ -149,9 +160,36 @@ namespace airlineApp.ViewModel
         private Command loadCompanyLogoWndCommand;
         private Command openLoginWndCommand;
         private Command openRegisterWndCommand;
-  
+        private Command shutDownCommand;
+        private Command changeAccountWndCommand;
+
         private Command closeWndCommand;
 
+        public Command ShutDownCommand
+        {
+            get
+            {
+                return shutDownCommand ?? new Command(
+                    obj =>
+                    {
+                        App.Current.Shutdown();
+                    }
+                    );
+            }
+        }
+        public Command ChangeAccountWndCommand
+        {
+            get
+            {
+                return changeAccountWndCommand ?? new Command(
+                    obj =>
+                    {
+                        App.Current.MainWindow.Hide();
+                        OpenLoginWndMethod();
+                    }
+                    );
+            }
+        }
         public Command OpenLoginWndCommand
         {
             get
@@ -298,15 +336,14 @@ namespace airlineApp.ViewModel
                             ShowMessageToUser(str);
                             SetRedBlockControll(window, "PriceTextBox");
                         }
-                        if (FlightAllPlaces == 0)
+                        if (FlightPlane == null)
                         {
-                            string str = "Пожалуйста, укажите макисмальное количество мест на борту саамолета для данного рейса.";
+                            string str = "Пожалуйста, выберите авиакомпанию для данного рейса.";
                             ShowMessageToUser(str);
-                            SetRedBlockControll(window, "AllPlacesTextBox");
                         }
                         else
                         {
-                            resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPrice, FlightAllPlaces);
+                            resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPlane, FlightPrice, FlightPlane.MaxOfPlaces);
                             UpdateAllDataView();
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
@@ -419,7 +456,7 @@ namespace airlineApp.ViewModel
                         {
                             if (FlightWay != null)
                             {
-                                resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPrice, FlightAllPlaces);
+                                resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, FlightPrice, FlightPlane.MaxOfPlaces);
 
                                 UpdateAllDataView();
                                 SetNullValuesToProperties();
@@ -584,7 +621,7 @@ namespace airlineApp.ViewModel
             FlightWay = null;
             FlightCompany = null;
             FlightPrice = 0;
-            FlightAllPlaces = 0;
+            FlightPlane = null;
             EmailText = null;
             PasswordText = null;
             LoginPassword = null;

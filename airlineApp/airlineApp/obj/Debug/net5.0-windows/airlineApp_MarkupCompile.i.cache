@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\uni\ооп\coursework\airlineApp\airlineApp\App.xaml
 12-2108054138
 
-28293598687
+31-1754486581
 2171728670340
 CustomControls\AnalogClock.xaml;CustomControls\BindablePasswordBox.xaml;Styles\Styles.xaml;View\AddCompanyWindow.xaml;View\AddFlightWindow.xaml;View\EditFlightWindow.xaml;View\FindTicketPage.xaml;View\LoginRegisterWindow.xaml;View\MainWindow.xaml;View\Message.xaml;View\RegisterWindow.xaml;View\UserWindow.xaml;
 
-True
+False
 

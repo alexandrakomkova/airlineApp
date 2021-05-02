@@ -14,8 +14,9 @@ namespace airlineApp.Model
         public Way Way { get; set; }
         public int CompanyId { get; set; }
         public Company Company { get; set; }
+        public int PlaneId { get; set; }
+        public Plane Plane { get; set; }
         public decimal Price { get; set; }
-        public int AllPlaces { get; set; }
         public int FreePlaces { get; set; }
         public List<Ticket> Tickets { get; set; }
         [NotMapped]
@@ -27,6 +28,11 @@ namespace airlineApp.Model
         public Way flightWay
         {
             get { return DataWorker.GetWayById(WayId); }
+        }
+        [NotMapped]
+        public Plane flightPlane
+        {
+            get { return DataWorker.GetPlaneById(PlaneId); }
         }
     }
 }

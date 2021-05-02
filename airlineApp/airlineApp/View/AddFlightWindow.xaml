@@ -53,44 +53,20 @@
                   Foreground="black"
                   materialDesign:HintAssist.Hint="Choose a way">
             </ComboBox>
-            <TextBox x:Name="AllPlacesTextBox"
-                         FontWeight="Light"
-                         FontFamily="helvetica"
-                         FontSize="12"
-                         Foreground="WhiteSmoke"
-                         Background="Transparent"
-                         BorderBrush="Transparent"
-                         BorderThickness="1"
-                         Width="200"
-                         Height="25"
-                         HorizontalContentAlignment="Left"
-                         Opacity="0.7"
-                         Text="{Binding FlightAllPlaces}"
-                         PreviewTextInput="PreviewTextInput"/>
-            <TextBlock  IsHitTestVisible="False" 
-                                Text="Max of Places"
-                                FontWeight="Light"
-                         HorizontalAlignment="Left"
-                         FontFamily="helvetica"
-                         FontSize="12"
-                         Foreground="WhiteSmoke"
-                         Background="Transparent"
-                         Width="120"
-                         Height="20"
-                         Opacity="0.7"
-                        Margin="15,-20,0,0"
-                         >
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=AllPlacesTextBox}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <ComboBox 
+                ItemsSource="{Binding AllPlanes}"
+                SelectedItem="{Binding FlightPlane}"
+                DisplayMemberPath="Name"
+                  Width="200" 
+                  Height="30"
+                  Padding="4"
+                  Margin="0,0,0,0"
+                  Background="WhiteSmoke"
+                  Foreground="black"
+                  materialDesign:HintAssist.Hint="Choose a plane">
+            </ComboBox>
+            
+                
             <TextBox x:Name="PriceTextBox"
                          FontWeight="Light"
                          FontFamily="helvetica"

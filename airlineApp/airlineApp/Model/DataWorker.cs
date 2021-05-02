@@ -35,24 +35,21 @@ namespace airlineApp.Model
             }
         }
         //create flight
-        public static string CreateFlight(Way way, Company company, decimal price, int allPlaces)
+        public static string CreateFlight(Way way, Company company, Plane plane, decimal price, int freePlaces)
         {
             string result = "Авиарейс с такими данными уже есть.";
             using (ApplicationContext db = new ApplicationContext())
             {
                 //check existence
-                bool IsExist = db.Flights.Any(el => el.Way == way 
-                && el.Company==company 
-                && el.AllPlaces == allPlaces );
+                bool IsExist = db.Flights.Any(el => el.Way == way
+                && el.Company == company
+                && el.Plane == plane);
+                
                 if (!IsExist)
                 {
-                    if (price <0)
+                    if (price <= 0)
                     {
                         price = 1000;
-                    }
-                    if (allPlaces<0) 
-                    {
-                        allPlaces = 100;
                     }
                     else
                     {
@@ -60,9 +57,9 @@ namespace airlineApp.Model
                         {
                             WayId = way.Id,
                             CompanyId = company.Id,
-                            AllPlaces = allPlaces,
-                            FreePlaces = allPlaces,
-                            Price = price
+                            PlaneId = plane.Id,
+                            Price = price,
+                            FreePlaces = plane.MaxOfPlaces
                         };
                        // DataManageViewModel.FlightCollection.Add(newFlight);
                         db.Flights.Add(newFlight);
@@ -122,7 +119,7 @@ namespace airlineApp.Model
             return result;
         }
         //edit flight
-        public static string EditFlight(Flight oldFlight, Way newWay, Company newCompany, decimal newPrice, int newAllPlaces)
+        public static string EditFlight(Flight oldFlight, Way newWay, Company newCompany, Plane newPlane, decimal newPrice, int newFreePlaces)
         {
             string result = "Авиарейса с такими данными не существует.";
             using (ApplicationContext db = new ApplicationContext())
@@ -133,11 +130,13 @@ namespace airlineApp.Model
                     flight.Price = newPrice;
                     flight.WayId = newWay.Id;
                     flight.CompanyId = newCompany.Id;
-                    flight.AllPlaces = newAllPlaces;
-                    int diff = flight.AllPlaces - (oldFlight.AllPlaces - oldFlight.FreePlaces);
+                    
+                  
+                    int diff  = newPlane.MaxOfPlaces - (oldFlight.Plane.MaxOfPlaces - oldFlight.FreePlaces);
                     if (diff > 0)
                     {
-                        flight.FreePlaces = flight.AllPlaces - (oldFlight.AllPlaces - oldFlight.FreePlaces);
+                        flight.PlaneId = newPlane.Id;
+                        flight.FreePlaces = diff;
                         result = "Авиарейс " + flight.Id + "\r"
                         + flight.Company + "\n"
                         + flight.Way + "\n"
@@ -164,7 +163,17 @@ namespace airlineApp.Model
                 return result;
             }
         }
-       
+
+        public static List<Plane> GetAllPlanes()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Planes.ToList();
+
+                return result;
+            }
+        }
+
         public static List<Company> GetAllCompanies()
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -199,6 +208,15 @@ namespace airlineApp.Model
             {
                 Way way  = db.Ways.FirstOrDefault(p => p.Id == id);
                 return way;
+            }
+        }
+        //get plane by id
+        public static Plane GetPlaneById(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Plane plane = db.Planes.FirstOrDefault(p => p.Id == id);
+                return plane;
             }
         }
 
