@@ -22,6 +22,7 @@ namespace airlineApp.ViewModel
         //get all flight
         //private ObservableCollection<Flight> allFlights = DataWorker.GetAllFlights();
         private List<Flight> allFlights = DataWorker.GetAllFlights();
+        //private List<string> selectedWays = DataWorker.GetSelectedWays();
         private List<Plane> allPlanes = DataWorker.GetAllPlanes();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
@@ -62,11 +63,21 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllWays");
             }
         }
+        //public List<string> SelectedWays
+        //{
+        //    get { return selectedWays; }
+        //    set
+        //    {
+        //        selectedWays = value;
+        //        NotifyPropertyChanged("SelectedlWays");
+        //    }
+        //}
         public ListView SelectedList { get; set; }
         public static Flight SelectedFlight { get; set; }
         public static string CompanyName { get; set; }
         public static string CompanyLogo { get; set; }
         public static Way FlightWay { get; set; }
+        public static string FlightWayStr { get; set; }
         public static Company FlightCompany { get; set; }
         public static Plane FlightPlane { get; set; }
         public static decimal FlightPrice { get; set; }

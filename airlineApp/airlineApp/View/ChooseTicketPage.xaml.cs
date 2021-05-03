@@ -21,10 +21,14 @@ namespace airlineApp.View
     /// </summary>
     public partial class ChooseTicketPage : UserControl
     {
+        public static ListView UserFlightsView;
         public ChooseTicketPage()
         {
             InitializeComponent();
-           
+            DataContext = new UserWindowViewModel();
+            UserFlightsView = ViewUserFlights ;
         }
+
+       
     }
 }

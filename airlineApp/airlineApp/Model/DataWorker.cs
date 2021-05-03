@@ -191,6 +191,15 @@ namespace airlineApp.Model
                 return result;
             }
         }
+        // public static List<string> GetSelectedWays()
+        //{
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
+        //        var result = (from c in db.Ways
+        //                     select c.Departure + " - " + c.Arrival).ToList();
+        //        return result;
+        //    }
+        //}
 
         //get company by id
         public static Company GetCompanyById(int id)

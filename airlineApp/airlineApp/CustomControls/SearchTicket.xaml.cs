@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using airlineApp.ViewModel;
 
 namespace airlineApp.CustomControls
 {
@@ -23,6 +24,7 @@ namespace airlineApp.CustomControls
         public SearchTicket()
         {
             InitializeComponent();
+            DataContext = new UserWindowViewModel();
         }
     }
 }

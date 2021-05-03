@@ -41,10 +41,21 @@
                   Margin="0,10,0,0"
                   materialDesign:HintAssist.Hint="Choose a company">
             </ComboBox>
-            <ComboBox 
+            <!--<ComboBox 
                 ItemsSource="{Binding AllWays}"
                 SelectedItem="{Binding FlightWay}"
                 DisplayMemberPath="Departure"
+                  Width="200" 
+                  Height="30"
+                  Padding="4"
+                  Margin="0,15,0,15"
+                  Background="WhiteSmoke"
+                  Foreground="black"
+                  materialDesign:HintAssist.Hint="Choose a way">
+            </ComboBox>-->
+            <ComboBox 
+                ItemsSource="{Binding AllWays}"
+                SelectedItem="{Binding FlightWay}"
                   Width="200" 
                   Height="30"
                   Padding="4"
