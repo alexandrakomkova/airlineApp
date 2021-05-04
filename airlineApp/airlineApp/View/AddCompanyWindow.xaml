@@ -37,7 +37,7 @@
                          FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="18"
-                    
+                         PreviewTextInput="PreviewTextInputOnlyLetters"
                          HorizontalAlignment="Center"
                          Foreground="WhiteSmoke"
                          Background="Transparent"
@@ -48,7 +48,7 @@
                          HorizontalContentAlignment="Left"
                          Opacity="0.7"
                          Margin="-15,30,0,0"
-                         Text="{Binding CompanyName}" Cursor="IBeam"/>
+                         Text="{Binding CompanyName}" Cursor="IBeam" />
             <TextBlock  IsHitTestVisible="False" 
                                 Text="Company name"
                                 FontWeight="Light"

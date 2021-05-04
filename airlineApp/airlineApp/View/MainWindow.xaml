@@ -90,10 +90,10 @@
 
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center">
-                    <custom:AnalogClock Margin="0,0,30,0"/>
-                    <custom:AnalogClock/>
+                    <custom:AnalogClock Margin="20,0,0,0"/>
+                    
                 </StackPanel>
             </Grid>
 
@@ -103,7 +103,7 @@
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="DELETE FLIGHT" Margin="0,10,0,0" Command="{Binding DeleteFlightCommand}"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding SearchCommand}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding EditFlightWndCommand}"/>
                 <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" Command="{Binding SortByCompanyCommand}"/>
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of departure" Margin="0,5,0,0" Command="{Binding SortByDepartureCommand}"/>
@@ -125,14 +125,33 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
                         Margin="0,0,15,0">
 
-                <TextBox Style="{DynamicResource FindTextBox}" Width="200"
+                <!--<TextBox Style="{DynamicResource FindTextBox}" Width="200"
                          Height="25"
                          VerticalContentAlignment="Center"
                          HorizontalAlignment="Left"
                          Margin="0,0,140,0"
                          x:Name="Txt"
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                         />
+                         />-->
+                <materialDesign:PackIcon 
+                        Kind="Search" 
+                        Width="25" Height="25"
+                        Foreground="WhiteSmoke"
+                        Margin="0,10,5,0"
+                        VerticalContentAlignment="Center"
+                        HorizontalAlignment="Left"/>
+                <TextBox
+                    x:Name="PhoneTextBox"
+                           Padding="4"
+                            Height="25"
+                            Background="WhiteSmoke"
+                            Width="150"
+                            Foreground="Black"
+                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,140,0"
+                            materialDesign:TransitionAssist.DisableTransitions="True" Cursor="IBeam" />
                 <StackPanel VerticalAlignment="Center"
                             Margin="0,0,30,0"
                             Orientation="Horizontal">

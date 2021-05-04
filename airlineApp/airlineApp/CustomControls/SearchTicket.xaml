@@ -33,9 +33,11 @@
                         BorderBrush="{x:Null}" 
                         Foreground="WhiteSmoke" 
                         Padding="1" 
-                        Margin="0,0,0,0">
+                        Margin="0,0,0,0"
+                    Command="{Binding SwitchDapartureArrivalCommand}">
                 <materialDesign:PackIcon 
-                        Kind="ArrowLeftRight" Width="25" Height="25"/>
+                        Kind="ArrowLeftRight" Width="25" Height="25"
+                   />
             </Button>
             <ComboBox 
                   Width="130" 

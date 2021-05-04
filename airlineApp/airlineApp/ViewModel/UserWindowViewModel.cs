@@ -73,6 +73,27 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+        private Command switchDapartureArrivalCommand;
+        public Command SwitchDapartureArrivalCommand
+        {
+            get
+            {
+                return switchDapartureArrivalCommand ?? new Command(
+                    obj =>
+                    {
+                        Way middleD = UserFlightDeparture;
+                        Way middleA = UserFlightArrival;
+                        UserFlightDeparture = middleA;
+                        UserFlightArrival = middleD;
+
+                        NotifyPropertyChanged("UserFlightDeparture");
+                        NotifyPropertyChanged("UserFlightArrival");
+                        ShowMessageToUser($"{UserFlightDeparture.Departure} - {UserFlightArrival.Arrival}");
+
+                    }
+                    );
+            }
+        }
         private void ShowMessageToUser(string text)
         {
             Message message = new Message(text);

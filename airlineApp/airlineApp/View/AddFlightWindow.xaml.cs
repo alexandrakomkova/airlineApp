@@ -15,7 +15,7 @@ namespace airlineApp.View
             InitializeComponent();
             DataContext= new DataManageViewModel();
         }
-        private void PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void PreviewTextInputOnlyNumbers(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);

@@ -92,7 +92,7 @@
                          Opacity="0.7"
                          Text="{Binding FlightPrice}"
                          Margin="0,15,0,0" 
-                       PreviewTextInput="PreviewTextInput"/>
+                       PreviewTextInput="PreviewTextInputOnlyNumbers" Cursor="IBeam"/>
             <TextBlock  IsHitTestVisible="False" 
                                 Text="Price"
                                 FontWeight="Light"

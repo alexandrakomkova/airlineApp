@@ -661,60 +661,60 @@ namespace airlineApp.ViewModel
 
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == "белавия");
-                    //AllFlights = findFlight.ToList();
-
                     MainWindow.AllFlightsView.ItemsSource = null;
                     MainWindow.AllFlightsView.Items.Clear();
-                    MainWindow.AllFlightsView.ItemsSource = db.Flights.Select(f => f).Where(f => f.Company.Name == value).ToList();
+                    var result = db.Flights.Select(f => f).Where(f => f.Company.Name == value || f.Way.Departure== value || f.Way.Arrival == value).ToList();
+                    if (result != null)
+                    {
+                        MainWindow.AllFlightsView.ItemsSource = result;
+                    }
+                    
                     MainWindow.AllFlightsView.Items.Refresh();
 
-                    //ShowMessageToUser($"{SearchText}");
+                   
                 }
 
-                //UpdateAllDataView();
-                //NotifyPropertyChanged("AllFlights");
 
             } 
         }
-        private Command searchCommand;
-        public Command SearchCommand
-        {
-            get
-            {
-                return searchCommand ?? new Command(
-                    obj =>
-                    {
+        //private Command searchCommand;
+        //public Command SearchCommand
+        //{
+        //    get
+        //    {
+        //        return searchCommand ?? new Command(
+        //            obj =>
+        //            {
 
-                        using (ApplicationContext db = new ApplicationContext())
-                        {
-                            //  UpdateAllDataView();
-                            //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name.Contains(SearchText));
-                            //var findFlight = db.Flights.Where(p => p.Id == Convert.ToInt32(SearchText));
-                            ////// var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == value);
-                            //AllFlights = findFlight.ToList();
-                            //// NotifyPropertyChanged("AllFlights");
-                            //MainWindow.AllFlightsView.ItemsSource = null;
-                            //MainWindow.AllFlightsView.Items.Clear();
-                            //MainWindow.AllFlightsView.ItemsSource = AllFlights;
-                            //MainWindow.AllFlightsView.Items.Refresh();
-
-
-
-                            MainWindow.AllFlightsView.ItemsSource = null;
-                            MainWindow.AllFlightsView.Items.Clear();
-                            MainWindow.AllFlightsView.ItemsSource = db.Flights.Select(f => f).Where(f => f.Company.Name == SearchText).ToList();
-                            MainWindow.AllFlightsView.Items.Refresh();
-
-                            ShowMessageToUser($"{SearchText}");
+        //                using (ApplicationContext db = new ApplicationContext())
+        //                {
+        //                    //  UpdateAllDataView();
+        //                    //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name.Contains(SearchText));
+        //                    //var findFlight = db.Flights.Where(p => p.Id == Convert.ToInt32(SearchText));
+        //                    ////// var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == value);
+        //                    //AllFlights = findFlight.ToList();
+        //                    //// NotifyPropertyChanged("AllFlights");
+        //                    //MainWindow.AllFlightsView.ItemsSource = null;
+        //                    //MainWindow.AllFlightsView.Items.Clear();
+        //                    //MainWindow.AllFlightsView.ItemsSource = AllFlights;
+        //                    //MainWindow.AllFlightsView.Items.Refresh();
 
 
 
-                        }
-                    }
-                    );
-            }
-        }
+        //                    MainWindow.AllFlightsView.ItemsSource = null;
+        //                    MainWindow.AllFlightsView.Items.Clear();
+        //                    MainWindow.AllFlightsView.ItemsSource = db.Flights.Select(f => f).Where(f => f.Company.Name == SearchText).ToList();
+        //                    MainWindow.AllFlightsView.Items.Refresh();
+
+        //                    ShowMessageToUser($"{SearchText}");
+
+
+
+        //                }
+        //            }
+        //            );
+        //    }
+        //}
 
         private Command sortByCompanyCommand;
         public Command SortByCompanyCommand
