@@ -41,7 +41,7 @@
                   Margin="0,10,0,0"
                   materialDesign:HintAssist.Hint="Choose a company">
             </ComboBox>
-            <!--<ComboBox 
+            <ComboBox 
                 ItemsSource="{Binding AllWays}"
                 SelectedItem="{Binding FlightWay}"
                 DisplayMemberPath="Departure"
@@ -52,8 +52,8 @@
                   Background="WhiteSmoke"
                   Foreground="black"
                   materialDesign:HintAssist.Hint="Choose a way">
-            </ComboBox>-->
-            <ComboBox 
+            </ComboBox>
+            <!--<ComboBox 
                 ItemsSource="{Binding AllWays}"
                 SelectedItem="{Binding FlightWay}"
                   Width="200" 
@@ -63,7 +63,7 @@
                   Background="WhiteSmoke"
                   Foreground="black"
                   materialDesign:HintAssist.Hint="Choose a way">
-            </ComboBox>
+            </ComboBox>-->
             <ComboBox 
                 ItemsSource="{Binding AllPlanes}"
                 SelectedItem="{Binding FlightPlane}"

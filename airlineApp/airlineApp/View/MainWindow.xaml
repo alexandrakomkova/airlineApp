@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="600" MinWidth="1040"
-        Height="600" Width="1024"
+        Height="600" Width="1040"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -102,7 +102,7 @@
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="VIEW ALL" Margin="0,0,0,0" Command="{Binding UpdateAllFlightsCommand }"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="DELETE FLIGHT" Margin="0,10,0,0" Command="{Binding}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="DELETE FLIGHT" Margin="0,10,0,0" Command="{Binding DeleteFlightCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding SearchCommand}"/>
                 <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" Command="{Binding SortByCompanyCommand}"/>
@@ -130,6 +130,7 @@
                          VerticalContentAlignment="Center"
                          HorizontalAlignment="Left"
                          Margin="0,0,140,0"
+                         x:Name="Txt"
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                          />
                 <StackPanel VerticalAlignment="Center"
