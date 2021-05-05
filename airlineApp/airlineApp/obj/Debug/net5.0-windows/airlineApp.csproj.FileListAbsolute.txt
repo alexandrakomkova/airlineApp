@@ -162,6 +162,10 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomCo
 D:\uni\ооп\coursework\airlineApp\airlineApp\bin\Debug\net5.0-windows\Microsoft.AspNet.Identity.Core.dll
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\SearchTicket.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\SearchTicket.baml
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csprojAssemblyReference.cache
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ChooseTicketPage.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ChooseTicketPage.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllFlightsPage.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllFlightsPage.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllCompaniesPage.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllCompaniesPage.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csprojAssemblyReference.cache

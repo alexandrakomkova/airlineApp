@@ -22,7 +22,7 @@ namespace airlineApp.Model
                 {
                     if (logo == null)
                     {
-                        logo = @"Styles/no_image.png";
+                        logo = @"/Styles/no_image.png";
                     }
                     
                         Company newCompany = new Company { Name = name, Logo = logo };

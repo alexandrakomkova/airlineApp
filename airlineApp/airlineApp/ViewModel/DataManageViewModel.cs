@@ -19,6 +19,7 @@ namespace airlineApp.ViewModel
 {
    public class DataManageViewModel : INotifyPropertyChanged
    {
+        
         //get all flight
         //private ObservableCollection<Flight> allFlights = DataWorker.GetAllFlights();
         private List<Flight> allFlights = DataWorker.GetAllFlights();
@@ -74,6 +75,7 @@ namespace airlineApp.ViewModel
         //}
         public ListView SelectedList { get; set; }
         public static Flight SelectedFlight { get; set; }
+        public static Company SelectedCompany { get; set; }
         public static string CompanyName { get; set; }
         public static string CompanyLogo { get; set; }
         public static Way FlightWay { get; set; }
@@ -376,37 +378,34 @@ namespace airlineApp.ViewModel
         //updates
         #region update views and commands
         private Command updateAllFlightsCommand;
+        //private Command updateAllCompaniesCommand;
         private void UpdateAllDataView()
         {
             UpdateCompanies();
             UpdateFlights();
         }
-        private void UpdateCompanies()
-        {
-            AllCompanies = DataWorker.GetAllCompanies();
-        }
-        public Command UpdateAllFlightsCommand
-        {
-            get
-            {
-                return updateAllFlightsCommand ?? new Command(
-                    obj =>
-                    {
-                        UpdateAllDataView();
-                    }
-                    );
-            }
-        }
+
+ 
 
         private void UpdateFlights()
         {
             AllFlights = DataWorker.GetAllFlights();
-            MainWindow.AllFlightsView.ItemsSource = null;
-            MainWindow.AllFlightsView.Items.Clear();
-            MainWindow.AllFlightsView.ItemsSource = AllFlights;
-            MainWindow.AllFlightsView.Items.Refresh();
+            ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
+            ViewAllFlightsPage.AllFlightsView.Items.Clear();
+            ViewAllFlightsPage.AllFlightsView.ItemsSource = AllFlights;
+            ViewAllFlightsPage.AllFlightsView.Items.Refresh();
             //это грязно
             //придумать что-нибудь
+        }
+        private void UpdateCompanies()
+        {
+
+            AllCompanies = DataWorker.GetAllCompanies();
+            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
+            ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
+            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = AllCompanies;
+            ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
+
         }
         #endregion
 
@@ -432,6 +431,28 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+
+        private Command deleteCompany { get; set; }
+        public Command DeleteCompanyCommand
+        {
+            get
+            {
+                return deleteCompany ?? new Command(obj =>
+                {
+                    string resultStr = "Пожалуйста, выберите объект для удаления.";
+
+                    if (SelectedCompany != null)
+                    {
+                        resultStr = DataWorker.DeleteCompany(SelectedCompany);
+                        UpdateAllDataView();
+                    }
+                    SetNullValuesToProperties();
+                    ShowMessageToUser(resultStr);
+                }
+                    );
+            }
+        }
+
         #endregion
 
         //edit data
@@ -452,6 +473,24 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+
+        private Command editCompany { get; set; }
+        public Command EditCompanyWndCommand
+        {
+            get
+            {
+                return editCompany ?? new Command(obj =>
+                {
+                    if (SelectedCompany != null)
+                    {
+                        //OpenEditCompanyWndMethod(SelectedCompany);
+                    }
+
+                }
+                    );
+            }
+        }
+
         #endregion
 
         #region edit command
@@ -661,15 +700,15 @@ namespace airlineApp.ViewModel
 
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    MainWindow.AllFlightsView.ItemsSource = null;
-                    MainWindow.AllFlightsView.Items.Clear();
-                    var result = db.Flights.Select(f => f).Where(f => f.Company.Name == value || f.Way.Departure== value || f.Way.Arrival == value).ToList();
+                    ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
+                    ViewAllFlightsPage.AllFlightsView.Items.Clear();
+                    var result = db.Flights.Select(f => f).Where(f => f.Company.Name.Contains(value) || f.Way.Departure== value || f.Way.Arrival == value).ToList();
                     if (result != null)
                     {
-                        MainWindow.AllFlightsView.ItemsSource = result;
+                        ViewAllFlightsPage.AllFlightsView.ItemsSource = result;
                     }
-                    
-                    MainWindow.AllFlightsView.Items.Refresh();
+
+                    ViewAllFlightsPage.AllFlightsView.Items.Refresh();
 
                    
                 }
@@ -677,44 +716,7 @@ namespace airlineApp.ViewModel
 
             } 
         }
-        //private Command searchCommand;
-        //public Command SearchCommand
-        //{
-        //    get
-        //    {
-        //        return searchCommand ?? new Command(
-        //            obj =>
-        //            {
-
-        //                using (ApplicationContext db = new ApplicationContext())
-        //                {
-        //                    //  UpdateAllDataView();
-        //                    //var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name.Contains(SearchText));
-        //                    //var findFlight = db.Flights.Where(p => p.Id == Convert.ToInt32(SearchText));
-        //                    ////// var findFlight = db.Flights.Include("Company").Where(p => p.Company.Name == value);
-        //                    //AllFlights = findFlight.ToList();
-        //                    //// NotifyPropertyChanged("AllFlights");
-        //                    //MainWindow.AllFlightsView.ItemsSource = null;
-        //                    //MainWindow.AllFlightsView.Items.Clear();
-        //                    //MainWindow.AllFlightsView.ItemsSource = AllFlights;
-        //                    //MainWindow.AllFlightsView.Items.Refresh();
-
-
-
-        //                    MainWindow.AllFlightsView.ItemsSource = null;
-        //                    MainWindow.AllFlightsView.Items.Clear();
-        //                    MainWindow.AllFlightsView.ItemsSource = db.Flights.Select(f => f).Where(f => f.Company.Name == SearchText).ToList();
-        //                    MainWindow.AllFlightsView.Items.Refresh();
-
-        //                    ShowMessageToUser($"{SearchText}");
-
-
-
-        //                }
-        //            }
-        //            );
-        //    }
-        //}
+        
 
         private Command sortByCompanyCommand;
         public Command SortByCompanyCommand
@@ -727,11 +729,12 @@ namespace airlineApp.ViewModel
 
                         using (ApplicationContext db = new ApplicationContext())
                         {
-                           //  UpdateAllDataView();
+                           
                             var sortByCompany = db.Flights.OrderBy(f => f.Company.Name);
 
                             AllFlights = sortByCompany.ToList();
                             NotifyPropertyChanged("AllFlights");
+                           
                         }
                     }
                     );
@@ -748,7 +751,7 @@ namespace airlineApp.ViewModel
 
                         using (ApplicationContext db = new ApplicationContext())
                         {
-                            
+
                             var sortByPrice = db.Flights.OrderBy(f => f.Price);
 
                             AllFlights = sortByPrice.ToList();

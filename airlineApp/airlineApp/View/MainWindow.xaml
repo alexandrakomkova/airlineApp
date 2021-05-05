@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="210"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,9 +22,9 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
 
-           
-            
-            <ListView
+            <ContentControl Content="{Binding CurrentList}"/>
+
+            <!--<ListView
                 x:Name="ViewAllFlights"
                 ItemsSource="{Binding AllFlights}"
                 Foreground="black"
@@ -46,6 +46,18 @@
                             Header="Id" 
                             Width="auto"/>
                         <GridViewColumn
+                            Header="Logo" 
+                            Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=flightCompany.Logo}" Stretch="Fill"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightCompany.Name}"
+                            Header="Company" />
+                        <GridViewColumn
                             DisplayMemberBinding="{Binding Path=flightWay.Departure}"
                             Header="Departure" 
                             Width="auto"/>
@@ -53,9 +65,7 @@
                             DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
                             Header="Arrival" 
                             Width="auto"/>
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightCompany.Name}"
-                            Header="Company" />
+                        
                         <GridViewColumn
                             DisplayMemberBinding="{Binding Path=Price}"
                             Header="Price" />
@@ -72,7 +82,7 @@
 
                     </GridView>
                 </ListView.View>
-            </ListView>
+            </ListView>-->
         </Grid>
 
 
@@ -99,11 +109,12 @@
 
             <StackPanel Grid.Row="1"
                         Margin="0,30,0,0">
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="VIEW ALL" Margin="0,0,0,0" Command="{Binding UpdateAllFlightsCommand }"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="DELETE FLIGHT" Margin="0,10,0,0" Command="{Binding DeleteFlightCommand}"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="110" Height="40" Content="EDIT FLIGHT" Margin="0,10,0,0" Command="{Binding EditFlightWndCommand}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL FLIGHTS" Margin="0,0,0,0" Command="{Binding UpdateViewCommand }" CommandParameter="Flight"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL COMPANIES" Margin="0,10,0,0" Command="{Binding UpdateViewCommand}" CommandParameter="Company"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
+                
+                
                 <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" Command="{Binding SortByCompanyCommand}"/>
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of departure" Margin="0,5,0,0" Command="{Binding SortByDepartureCommand}"/>
