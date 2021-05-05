@@ -28,7 +28,7 @@ namespace airlineApp.View
             DataContext = new DataManageViewModel();
             DataManageViewModel.SelectedFlight = flightToEdit;
            // DataManageViewModel.FlightCompany = flightToEdit.Company;
-            DataManageViewModel.FlightPrice = flightToEdit.Price;
+           DataManageViewModel.FlightPrice = flightToEdit.Price;
            // DataManageViewModel.FlightWay = flightToEdit.Way;
           //  DataManageViewModel.FlightAllPlaces = flightToEdit.AllPlaces;
 

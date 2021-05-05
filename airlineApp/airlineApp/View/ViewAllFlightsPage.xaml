@@ -33,7 +33,7 @@
                             Width="auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Path=flightCompany.Logo}" Stretch="Fill"/>
+                                <Image Source="{Binding Path=flightCompany.Logo}"  Width="40" Height="40" Stretch="Fill"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -51,16 +51,20 @@
 
                     <GridViewColumn
                             DisplayMemberBinding="{Binding Path=Price}"
-                            Header="Price" />
+                            Header="Price" 
+                         Width="auto"/>
                     <GridViewColumn
                             DisplayMemberBinding="{Binding Path=flightPlane.Name}"
-                            Header="Plane" />
+                            Header="Plane" 
+                         Width="auto"/>
                     <GridViewColumn
                             DisplayMemberBinding="{Binding Path=flightPlane.MaxOfPlaces}"
-                            Header="Max of places" />
+                            Header="Max of places" 
+                         Width="auto"/>
                     <GridViewColumn
                             DisplayMemberBinding="{Binding Path=FreePlaces}"
-                            Header="Free places" />
+                            Header="Free places" 
+                         Width="auto"/>
 
 
                 </GridView>

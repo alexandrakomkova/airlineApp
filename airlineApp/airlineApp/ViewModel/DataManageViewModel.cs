@@ -114,11 +114,17 @@ namespace airlineApp.ViewModel
             EditFlightWindow editFlightWindow = new EditFlightWindow(flight);
             SetWindowPosition(editFlightWindow);
         }
+        private void OpenEditCompanyWndMethod(Company selectedCompany)
+        {
+            EditCompanyWindow editCompanyWindow = new EditCompanyWindow(selectedCompany);
+            SetWindowPosition(editCompanyWindow);
+        }
         private void OpenAddCompanyWndMethod()
         {
             AddCompanyWindow addCompanyWindow = new AddCompanyWindow();
             SetWindowPosition(addCompanyWindow);
         }
+
         private void LoadCompanyLogoWndMethod()
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -483,7 +489,7 @@ namespace airlineApp.ViewModel
                 {
                     if (SelectedCompany != null)
                     {
-                        //OpenEditCompanyWndMethod(SelectedCompany);
+                        OpenEditCompanyWndMethod(SelectedCompany);
                     }
 
                 }
@@ -527,9 +533,34 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+
+        private Command editCompanyCommand { get; set; }
+        public Command EditCompany
+        {
+            get
+            {
+                return editCompanyCommand ?? new Command(obj =>
+                {
+                    Window window = obj as Window;
+                    string resultStr = "Пожалуйста, выберите компанию для редактирования.";
+                    
+                    if (SelectedCompany != null)
+                    {
+                        resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, CompanyLogo);
+
+                        UpdateAllDataView();
+                        SetNullValuesToProperties();
+                        ShowMessageToUser(resultStr);
+                        window.Close();
+                    }
+                    else ShowMessageToUser(resultStr);
+                }
+                    );
+            }
+        }
         #endregion
 
-        
+
 
 
         #region login and register command

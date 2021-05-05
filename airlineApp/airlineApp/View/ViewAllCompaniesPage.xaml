@@ -33,7 +33,7 @@
                             Width="auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Path=Logo}" Stretch="Fill"/>
+                                <Image Source="{Binding Path=Logo}" Width="40" Height="40" Stretch="Fill"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
