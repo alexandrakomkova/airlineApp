@@ -19,6 +19,7 @@ namespace airlineApp.ViewModel
         public UserWindowViewModel()
         {
             UpdateViewCommand = new UpdateViewCommand(this);
+            currentPage = new ChooseTicketViewModel(this);
         }
         public static Way UserFlightDeparture { get; set; }
         public static Way UserFlightArrival { get; set; }
@@ -28,7 +29,7 @@ namespace airlineApp.ViewModel
         public static Flight UserSelectedFlight { get; set; }
         public static Flight UserSelectedBackFlight { get; set; }
 
-        private DataManageViewModel currentPage = new ChooseTicketViewModel();
+        private DataManageViewModel currentPage; //= new ChooseTicketViewModel();
         public DataManageViewModel CurrentPage
         {
             get { return currentPage; }
@@ -100,41 +101,33 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-        //private Command switchDapartureArrivalCommand;
-        //public Command SwitchDapartureArrivalCommand
-        //{
-        //    get
-        //    {
-        //        return switchDapartureArrivalCommand ?? new Command(
-        //            obj =>
-        //            {
-        //                Way middleD = UserFlightDeparture;
-        //                Way middleA = UserFlightArrival;
-        //                UserFlightDeparture = middleA;
-        //                UserFlightArrival = middleD;
+        private Command switchDapartureArrivalCommand;
+        public Command SwitchDapartureArrivalCommand
+        {
+            get
+            {
+                return switchDapartureArrivalCommand ?? new Command(
+                    obj =>
+                    {
+                        //Way middleD = UserFlightDeparture;
+                        //Way middleA = UserFlightArrival;
+                        //UserFlightDeparture = middleA;
+                        //UserFlightArrival = middleD;
+                        Way middle = UserFlightDeparture;
+                        UserFlightDeparture = null;
+                        UserFlightDeparture = UserFlightArrival;
+                        UserFlightArrival = null;
+                         UserFlightArrival = middle;
 
-        //                NotifyPropertyChanged("UserFlightDeparture");
-        //                NotifyPropertyChanged("UserFlightArrival");
-        //                ShowMessageToUser($"{UserFlightDeparture.Departure} - {UserFlightArrival.Arrival}");
+                        NotifyPropertyChanged("UserFlightDeparture");
+                        NotifyPropertyChanged("UserFlightArrival");
+                        ShowMessageToUser($"{UserFlightDeparture.Departure} - {UserFlightArrival.Arrival}");
 
-        //            }
-        //            );
-        //    }
-        //}
-        //private Command choosePlaceCommand;
-        //public Command ChoosePlaceCommand
-        //{
-        //    get
-        //    {
-        //        return choosePlaceCommand ?? new Command(
-        //            obj =>
-        //            {
-        //                CurrentPage = new GetPlaceViewModel();
-        //                NotifyPropertyChanged("CurrentPage");
-        //            }
-        //            );
-        //    }
-        //}
+                    }
+                    );
+            }
+        }
+       
         private void ShowMessageToUser(string text)
         {
             Message message = new Message(text);
@@ -168,7 +161,7 @@ namespace airlineApp.ViewModel
             window.ShowDialog();
         }
         private void UpdateUserFlights()
-        {
+        { //возможно надо будет в другой вьюмодел
             UserListOneWay = UserSearch(UserFlightDeparture, UserFlightArrival, SelectedDepartureDate, SelectedArrivalDate);
             ChooseTicketPage.UserFlightsView.ItemsSource = null;
             ChooseTicketPage.UserFlightsView.Items.Clear();

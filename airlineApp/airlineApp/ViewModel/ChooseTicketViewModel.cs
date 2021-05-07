@@ -10,6 +10,11 @@ namespace airlineApp.ViewModel
 {
     public class ChooseTicketViewModel : DataManageViewModel
     {
-        
+        public ICommand UpdateViewCommand { get; set; }
+
+        public ChooseTicketViewModel(UserWindowViewModel parentVM)
+        {
+            UpdateViewCommand = new UpdateViewCommand(parentVM);
+        }
     }
 }

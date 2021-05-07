@@ -24,7 +24,7 @@ namespace airlineApp.View
         public GetPlace()
         {
             InitializeComponent();
-            DataContext = new UserWindowViewModel();
+           // DataContext = new UserWindowViewModel();
         }
     }
 }

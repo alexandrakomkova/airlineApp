@@ -25,7 +25,7 @@ namespace airlineApp.View
         public ChooseTicketPage()
         {
             InitializeComponent();
-            DataContext = new UserWindowViewModel();
+            //DataContext = new UserWindowViewModel();
             UserFlightsView = ViewUserFlights ;
         }
 
