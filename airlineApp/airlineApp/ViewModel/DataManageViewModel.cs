@@ -718,7 +718,7 @@ namespace airlineApp.ViewModel
 
 
         #region search bar and sorting
-        private string searchText { get; set; }
+        private string searchText;
     
         public string SearchText
         {

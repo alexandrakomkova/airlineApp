@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:airlineApp"
              xmlns:views="clr-namespace:airlineApp.View"
              xmlns:vm="clr-namespace:airlineApp.ViewModel"
-             StartupUri="/View/MainWindow.xaml">
+             StartupUri="/View/UserWindow.xaml">
     <Application.Resources>
         
 
@@ -20,17 +20,18 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
-            <DataTemplate  DataType="{x:Type vm:ChooseTicketViewModel}">
+            <DataTemplate DataType="{x:Type vm:ChooseTicketViewModel}">
                 <views:ChooseTicketPage />
             </DataTemplate>
-            <DataTemplate  DataType="{x:Type vm:ViewAllFlightsPageViewModel}">
+            <DataTemplate DataType="{x:Type vm:ViewAllFlightsPageViewModel}">
                 <views:ViewAllFlightsPage/>
             </DataTemplate>
-            <DataTemplate  DataType="{x:Type vm:ViewAllCompaniesPageViewModel}">
+            <DataTemplate DataType="{x:Type vm:ViewAllCompaniesPageViewModel}">
                 <views:ViewAllCompaniesPage/>
             </DataTemplate>
-
-
+            <DataTemplate DataType="{x:Type vm:GetPlaceViewModel}">
+                <views:GetPlace/>
+            </DataTemplate>
         </ResourceDictionary>
        
     </Application.Resources>

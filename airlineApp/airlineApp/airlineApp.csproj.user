@@ -31,6 +31,9 @@
     <Compile Update="View\FindTicketPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\GetPlace.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\LoginRegisterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\FindTicketPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\GetPlace.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\LoginRegisterWindow.xaml">

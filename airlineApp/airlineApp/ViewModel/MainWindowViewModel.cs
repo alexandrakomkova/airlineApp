@@ -31,7 +31,7 @@ namespace airlineApp.ViewModel
 
             }
         }
-        private Command updateAllCompaniesCommand;
+       
         public void UpdateCompanies()
         {
 

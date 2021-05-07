@@ -171,3 +171,5 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Vie
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csprojAssemblyReference.cache
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EditCompanyWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EditCompanyWindow.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\GetPlace.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\GetPlace.baml

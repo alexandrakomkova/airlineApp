@@ -68,11 +68,13 @@
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     Foreground="Gray"
                     BorderBrush="WhiteSmoke"
-                
+                    SelectedDate="{Binding SelectedDepartureDate}"
                     Margin="0,0,20,0"
-                    DisplayDate="{Binding ThisDate}"
-                    Text="{Binding SelectedDepartureDate}" 
-                FirstDayOfWeek="Monday"  DisplayDateStart="2021-01-12" DisplayDateEnd="2021-12-12"/>
+                    Text="{Binding ThisDate, Mode=OneWay}" 
+                FirstDayOfWeek="Monday"  
+                DisplayDateStart="{Binding ThisDate}" 
+                DisplayDateEnd="2021-12-12"
+                DisplayDate="{Binding ThisDate}"/>
             <DatePicker
                 VerticalAlignment="Top"
                     Width="135"
@@ -80,8 +82,12 @@
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     Foreground="WhiteSmoke"
                     BorderBrush="WhiteSmoke"
-                    DisplayDateStart="{Binding ThisDate}"
-                    Text="{Binding SelectedArrivalDate}"/>
+                 SelectedDate="{Binding SelectedArrivalDate}"
+                     Text="{Binding ThisDate, Mode=OneWay}" 
+                FirstDayOfWeek="Monday"  
+                DisplayDateStart="{Binding ThisDate}" 
+                DisplayDateEnd="2021-12-12"
+                DisplayDate="{Binding ThisDate}"/>
             <StackPanel Orientation="Vertical"
                          Margin="60,0,0,0">
                 <StackPanel 
