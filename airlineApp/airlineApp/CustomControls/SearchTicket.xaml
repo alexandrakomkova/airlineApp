@@ -78,16 +78,17 @@
             <DatePicker
                 VerticalAlignment="Top"
                     Width="135"
-                    materialDesign:HintAssist.Hint="Arrival date"
+                    IsEnabled="{Binding IsBackEnable}"
+                    materialDesign:HintAssist.Hint="Back date"
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                    Foreground="WhiteSmoke"
+                    Foreground="Gray"
                     BorderBrush="WhiteSmoke"
-                 SelectedDate="{Binding SelectedArrivalDate}"
-                     Text="{Binding ThisDate, Mode=OneWay}" 
-                FirstDayOfWeek="Monday"  
-                DisplayDateStart="{Binding ThisDate}" 
-                DisplayDateEnd="2021-12-12"
-                DisplayDate="{Binding ThisDate}"/>
+                    SelectedDate="{Binding SelectedBackDate}"
+                    Text="{Binding ThisDate, Mode=OneWay}" 
+                    FirstDayOfWeek="Monday"  
+                    DisplayDateStart="{Binding ThisDate}" 
+                    DisplayDateEnd="2021-12-12"
+                    DisplayDate="{Binding ThisDate}"/>
             <StackPanel Orientation="Vertical"
                          Margin="60,0,0,0">
                 <StackPanel 
@@ -95,7 +96,7 @@
                 Margin="0,0,0,0"
                 Orientation="Vertical">
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="One-way" Margin="0,0,20,0" IsChecked="true"/>
-                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Return" Margin="0,0,0,0" />
+                    <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Return" Margin="0,0,0,0" IsChecked="{Binding IsBackEnable}" />
                 </StackPanel>
                 <Button Style="{DynamicResource InstrumentsButton}" 
                     Width="110" Height="40" 

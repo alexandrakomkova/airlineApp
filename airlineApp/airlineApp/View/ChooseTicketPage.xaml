@@ -59,7 +59,8 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Width="800"
+            <ListView x:Name="ViewUserBackFlights"
+                      Width="800"
                       Height="140"
                       HorizontalAlignment="Left"
                       ItemsSource="{Binding UserListBackWay}"

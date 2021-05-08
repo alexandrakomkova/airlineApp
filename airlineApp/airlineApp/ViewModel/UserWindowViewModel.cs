@@ -24,7 +24,7 @@ namespace airlineApp.ViewModel
         public static Way UserFlightDeparture { get; set; }
         public static Way UserFlightArrival { get; set; }
         public DateTime ThisDate { get; set; } = DateTime.Now;
-        public static DateTime SelectedArrivalDate { get; set; } 
+        public static DateTime SelectedBackDate { get; set; } 
         public static DateTime SelectedDepartureDate { get; set; }
         public static Flight UserSelectedFlight { get; set; }
         public static Flight UserSelectedBackFlight { get; set; }
@@ -40,7 +40,26 @@ namespace airlineApp.ViewModel
                 ThisDate = DateTime.Now;
             }
         }
-       
+       // public static bool IsBackEnable { get; set; } = false;
+        private bool isBackEnable = false; //= new ChooseTicketViewModel();
+        public bool IsBackEnable
+        {
+            get { return isBackEnable; }
+            set
+            {
+                isBackEnable = value;
+                NotifyPropertyChanged(nameof(IsBackEnable));
+                if (IsBackEnable == true && SelectedBackDate != ThisDate)
+                {
+                    UserListBackWay = UserBackWaySearch(UserFlightDeparture, UserFlightArrival, SelectedBackDate);
+                    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
+                    ChooseTicketPage.UserBackFlightsView.Items.Clear();
+                    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
+                    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
+                }
+                //вызвать тут поиск билета обратно + обновление списка для обратных рейсов
+            }
+        }
 
         private List<Flight> userListOneWay { get; set; }//= DataWorker.GetAllFlights();
         private List<Flight> userListBackWay { get; set; }//= DataWorker.GetAllFlights();
@@ -64,7 +83,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        public static List<Flight> UserSearch(Way d, Way a, DateTime dt, DateTime da)
+        public static List<Flight> UserSearch(Way d, Way a, DateTime dt)
         {
            
             using (ApplicationContext db = new ApplicationContext())
@@ -72,12 +91,24 @@ namespace airlineApp.ViewModel
                
                 var result = db.Flights.Where(f=> f.Way.Departure == d.Departure 
                 && f.Way.Arrival == a.Arrival 
-                && f.Way.ArrivalTime.Date == da.Date
                 && f.Way.DepartureTime.Date == dt.Date).ToList();
                 return result;
                 
             }
             
+        }
+        public static List<Flight> UserBackWaySearch(Way d, Way a, DateTime dt)
+        {
+            //MessageBox.Show($"{a.Arrival} - {d.Departure}");
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //придумать когда вытаскивать дату из back date для сравнения
+                var result = db.Flights.Where(f => f.Way.Departure == d.Arrival
+                && f.Way.Arrival == a.Departure
+                /*&& f.Way.DepartureTime.Date == dt.Date*/).ToList();
+                return result;
+            }
+
         }
         private Command userSearchCommand;
         public Command UserSearchCommand
@@ -88,15 +119,14 @@ namespace airlineApp.ViewModel
                     obj =>
                     {
                         UpdateUserFlights();
-                        
-                        //if (UserListOneWay.Count == 0)
-                        //{
-                        //    ShowMessageToUser("К сожалению таких маршрутов нет..");
-                        //}
-                        //else
-                        //{
-                        //    ShowMessageToUser(UserFlightDeparture.Departure);
-                        //}
+                        if (IsBackEnable == true && SelectedBackDate != ThisDate)
+                        {
+                            UserListBackWay = UserBackWaySearch(UserFlightDeparture, UserFlightArrival, SelectedBackDate);
+                            ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
+                            ChooseTicketPage.UserBackFlightsView.Items.Clear();
+                            ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
+                            ChooseTicketPage.UserBackFlightsView.Items.Refresh();
+                        }
                     }
                     );
             }
@@ -117,7 +147,7 @@ namespace airlineApp.ViewModel
                         UserFlightDeparture = null;
                         UserFlightDeparture = UserFlightArrival;
                         UserFlightArrival = null;
-                         UserFlightArrival = middle;
+                        UserFlightArrival = middle;
 
                         NotifyPropertyChanged("UserFlightDeparture");
                         NotifyPropertyChanged("UserFlightArrival");
@@ -127,7 +157,20 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-       
+        private Command needBackTicketCommand;
+        public Command NeedBackTicketCommand
+        {
+            get
+            {
+                return needBackTicketCommand ?? new Command(
+                    obj =>
+                    {
+                        IsBackEnable = true;
+                        NotifyPropertyChanged("IsBackEnable");
+                    }
+                    );
+            }
+        }
         private void ShowMessageToUser(string text)
         {
             Message message = new Message(text);
@@ -162,11 +205,12 @@ namespace airlineApp.ViewModel
         }
         private void UpdateUserFlights()
         { //возможно надо будет в другой вьюмодел
-            UserListOneWay = UserSearch(UserFlightDeparture, UserFlightArrival, SelectedDepartureDate, SelectedArrivalDate);
+            UserListOneWay = UserSearch(UserFlightDeparture, UserFlightArrival, SelectedDepartureDate);
             ChooseTicketPage.UserFlightsView.ItemsSource = null;
             ChooseTicketPage.UserFlightsView.Items.Clear();
             ChooseTicketPage.UserFlightsView.ItemsSource = UserListOneWay;
             ChooseTicketPage.UserFlightsView.Items.Refresh();
+            
             //это грязно
             //придумать что-нибудь
         }

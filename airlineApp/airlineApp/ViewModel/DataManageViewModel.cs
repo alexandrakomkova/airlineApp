@@ -407,6 +407,8 @@ namespace airlineApp.ViewModel
         {
 
             AllCompanies = DataWorker.GetAllCompanies();
+            //вынести ручное обновление в отдельный метод
+            //так же сделать и у апдейтфлайс
             ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
             ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
             ViewAllCompaniesPage.AllCompaniesView.ItemsSource = AllCompanies;
