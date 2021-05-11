@@ -14,6 +14,7 @@ namespace airlineApp.ViewModel
 {
     public class UserWindowViewModel : DataManageViewModel
     {
+
         public ICommand UpdateViewCommand { get; set; }
 
         public UserWindowViewModel()
@@ -51,11 +52,11 @@ namespace airlineApp.ViewModel
         //}
         //public static Flight UserSelectedFlight { get; set; }
         public static Flight UserSelectedBackFlight { get; set; }
-     
 
 
-      
-        private bool isBackEnable = false; 
+
+
+        private bool isBackEnable = false;
         public bool IsBackEnable
         {
             get { return isBackEnable; }
@@ -76,7 +77,7 @@ namespace airlineApp.ViewModel
             {
                 userListOneWay = value;
                 NotifyPropertyChanged("UserListOneWay");
-               
+
             }
         }
         public List<Flight> UserListBackWay
@@ -91,21 +92,21 @@ namespace airlineApp.ViewModel
 
         public static List<Flight> UserSearch(Way d, Way a, DateTime dt)
         {
-           
+
             using (ApplicationContext db = new ApplicationContext())
             {
-               
-                var result = db.Flights.Where(f=> f.Way.Departure == d.Departure 
-                && f.Way.Arrival == a.Arrival 
+
+                var result = db.Flights.Where(f => f.Way.Departure == d.Departure
+                && f.Way.Arrival == a.Arrival
                 && f.Way.DepartureTime.Date == dt.Date).ToList();
                 return result;
-                
+
             }
-            
+
         }
         public static List<Flight> UserBackWaySearch(Way d, Way a, DateTime dt)
         {
-            
+
             using (ApplicationContext db = new ApplicationContext())
             {
                 var result = db.Flights.Where(f => f.Way.Departure == d.Arrival
@@ -132,7 +133,7 @@ namespace airlineApp.ViewModel
                             ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
                             ChooseTicketPage.UserBackFlightsView.Items.Refresh();
                         }
-                        
+
                     }
                     );
             }
@@ -182,37 +183,7 @@ namespace airlineApp.ViewModel
             Message message = new Message(text);
             SetWindowPosition(message);
         }
-        //private static List<int> MakeSchemaOfPlaces(Flight f)
-        //{
-        //    List<int> places = new List<int>();
-        //    using (ApplicationContext db = new ApplicationContext()) 
-        //    {
-        //        var result = db.Planes.Where(p=> p.Id == f.PlaneId).FirstOrDefault();
-        //        for (int i =0; i<result.MaxOfPlaces;i++) 
-        //        {
-        //            places.Add(i);
-        //        }
-        //    }
-        //    return places;
-        //}
-        //private List<int> placesList { get; set; }//= MakeSchemaOfPlaces(UserSelectedFlight);
-
-        //public List<int> PlacesList //= MakeSchemaOfPlaces(UserSelectedFlight);
-        //{
-        //    get { return placesList; }
-        //    set
-        //    {
-        //        placesList = value;
-        //        NotifyPropertyChanged("PlacesList");
-        //    }
-        //}
-        //public List<int> PlacesList
-        //{
-        //    get => MakeSchemaOfPlaces();
-        //}
-
-
-
+       
         private void SetWindowPosition(Window window)
         {
             window.Owner = Application.Current.MainWindow;
@@ -226,50 +197,12 @@ namespace airlineApp.ViewModel
             ChooseTicketPage.UserFlightsView.Items.Clear();
             ChooseTicketPage.UserFlightsView.ItemsSource = UserListOneWay;
             ChooseTicketPage.UserFlightsView.Items.Refresh();
-            
+
             //это грязно
             //придумать что-нибудь
         }
 
-        private string passengerSurname { get; set; }
-        public string PassengerSurname 
-        {
-            get { return passengerSurname; }
-            set 
-            {
-                passengerSurname = value;
-                NotifyPropertyChanged("PassengerSurname");
-            }
-        }
-        private string passengerName { get; set; }
-        public string PassengerName
-        {
-            get { return passengerName; }
-            set
-            {
-                passengerName = value;
-                NotifyPropertyChanged("PassengerName");
-            }
-        }
-        private string passengerMiddleName { get; set; }
-        public string PassengerMiddleName
-        {
-            get { return passengerMiddleName; }
-            set
-            {
-                passengerMiddleName = value;
-                NotifyPropertyChanged("PassengerMiddleName");
-            }
-        }
-        private string passengerPassport { get; set; }
-        public string PassengerPassport
-        {
-            get { return passengerPassport; }
-            set
-            {
-                passengerPassport = value;
-                NotifyPropertyChanged("PassengerPassport");
-            }
-        }
+        
     }
 }
+

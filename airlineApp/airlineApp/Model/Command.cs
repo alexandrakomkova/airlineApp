@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
+using airlineApp.ViewModel;
 
 namespace airlineApp.Model
 {
     public class Command : ICommand
     {
+        private MainWindowViewModel viewModel;
+        private UserWindowViewModel userViewModel;
+        private DataManageViewModel model;
+        private List<string> list;
+        private Flight f;
+        private string str;
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
         public event EventHandler CanExecuteChanged
@@ -17,7 +25,7 @@ namespace airlineApp.Model
             _execute = execute;
             _canExecute = canExecute;
         }
-
+        
         public bool CanExecute(object parameter)
         {
             return _canExecute == null || _canExecute(parameter);
@@ -26,6 +34,7 @@ namespace airlineApp.Model
         public void Execute(object parameter)
         {
             _execute(parameter);
+           
         }
     }
 }

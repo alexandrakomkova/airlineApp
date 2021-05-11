@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +17,11 @@ namespace airlineApp.Model
         public bool IsPaid { get; set; }
         public string Passport { get; set; }
         public string Fullname { get; set; }
+
+        [NotMapped]
+        public Flight flightId
+        {
+            get { return DataWorker.GetFlightById(FlightId); }
+        }
     }
 }

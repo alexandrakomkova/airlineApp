@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using airlineApp.Model;
 using airlineApp.ViewModel;
 
 namespace airlineApp.Commands
@@ -15,7 +16,9 @@ namespace airlineApp.Commands
         private UserWindowViewModel userViewModel;
         private DataManageViewModel model;
         private List<string> list;
-        
+        private Flight f;
+        private string str;
+
 
         public UpdateViewCommand(MainWindowViewModel viewModel)
         {
@@ -35,6 +38,18 @@ namespace airlineApp.Commands
         {
             this.userViewModel = userViewModel;
             this.list = list;
+
+        }
+        public UpdateViewCommand(UserWindowViewModel userViewModel, Flight f)
+        {
+            this.userViewModel = userViewModel;
+            this.f = f;
+
+        }
+        public UpdateViewCommand(UserWindowViewModel userViewModel, string str)
+        {
+            this.userViewModel = userViewModel;
+            this.str = str;
 
         }
         public event EventHandler CanExecuteChanged;
@@ -64,16 +79,16 @@ namespace airlineApp.Commands
             }
             else if (parameter.ToString() == "Place")
             {
-                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, list);
+                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f);
             }
             else if (parameter.ToString() == "Passenger")
             {
                 
-                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel);
+                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str);
             }
             else if (parameter.ToString() == "BookATicket")
             {
-                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel);
+                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str);
             }
             else if (parameter.ToString() == "BookATicket" && userViewModel.IsBackEnable==true)
             {

@@ -749,7 +749,6 @@ namespace airlineApp.ViewModel
             LoginPassword = null;
             LoginEmail = null;
             ConfirmPasswordText = null;
-
         }
 
 
@@ -873,44 +872,6 @@ namespace airlineApp.ViewModel
         }
 
         #endregion
-        private Flight userSelectedFlight { get; set; }
-        public Flight UserSelectedFlight
-        {
-            get { return userSelectedFlight; }
-            set
-            {
-                    userSelectedFlight = value;
-                    NotifyPropertyChanged("UserSelectedFlight");
-                //MessageBox.Show($"{UserSelectedFlight.FreePlaces}");
-                PlacesList = MakeSchemaOfPlaces(UserSelectedFlight);
-                NotifyPropertyChanged("PlacesList");
-                MessageBox.Show($"{PlacesList.Count}");
-            }
-        }
-        private static List<string> MakeSchemaOfPlaces(Flight f)
-        {
-            List<string> places = new List<string>();
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Flights.Where(p => p.Id == f.Id).FirstOrDefault();
-                for (int i = 0; i < result.FreePlaces; i++)
-                {
-                    places.Add(i.ToString());
-                }
-            }
-            return places;
-        }
-        public static string ChosenPlace { get; set; }
-        private List<string> placesList { get; set; }//= MakeSchemaOfPlaces(UserSelectedFlight);
-
-        public List<string> PlacesList //= MakeSchemaOfPlaces(UserSelectedFlight);
-        {
-            get { return placesList; }
-            set
-            {
-                placesList = value;
-                NotifyPropertyChanged("PlacesList");
-            }
-        }
+       
     }
 }

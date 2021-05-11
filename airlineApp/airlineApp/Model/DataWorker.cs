@@ -228,7 +228,14 @@ namespace airlineApp.Model
                 return plane;
             }
         }
-
+        public static Flight GetFlightById(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Flight flight = db.Flights.FirstOrDefault(f => f.Id == id);
+                return flight;
+            }
+        }
         //create user
         public static string CreateUser(string email, string password)
         {

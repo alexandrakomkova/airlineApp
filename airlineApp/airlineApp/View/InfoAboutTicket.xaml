@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:airlineApp.View"
+             xmlns:local="clr-namespace:airlineApp.View" xmlns:viewmodel="clr-namespace:airlineApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:InfoAboutTicketViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900">
     <Grid Background="Transparent">
@@ -16,14 +16,14 @@
                 Width="80" Height="40" 
                 Content="Back" 
                 Margin="0,0,710,20" 
-                Command="{Binding UpdateViewCommand }" 
+                Command="{Binding UpdateBackViewCommand}" 
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
             CommandParameter="Passenger"
                 />
         <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Width="300"
+                    VerticalAlignment="Top"
+                    Width="600"
                     Height="400"
                     Margin="40,0,0,0"
                     Background="WhiteSmoke"
@@ -34,9 +34,11 @@
             <StackPanel Orientation="Horizontal"
                         Margin="10,20,0,0">
                 <TextBlock Text="Flight number : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400" 
+                           Text="{Binding Path=UserSelectedFlight.Id}"
+                           />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"
@@ -44,69 +46,82 @@
                 <TextBlock Text="Full passenger name : " 
                     Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100" Text="{Binding passengerSurname}"/>
+                <TextBlock Width="400" 
+                           Text="{Binding PassengerFullName}"
+                           Foreground="Black"
+                           Background="LightBlue"
+                           FontSize="16"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Company : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding Path=UserSelectedFlight.flightCompany.Name}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Place of departure : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding Path=UserSelectedFlight.flightWay.Departure}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Place of arrival : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding Path=UserSelectedFlight.flightWay.Arrival}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Departure Date : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding Path=UserSelectedFlight.flightWay.DepartureTime}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Arrival Date : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding Path=UserSelectedFlight.flightWay.ArrivalTime}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Seat : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding PassengerSeat}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Price : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding Path=UserSelectedFlight.Price}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Passport : " 
-                    Width="100"
+                    Width="130"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="100"/>
+                <TextBlock Width="400"
+                           Text="{Binding PassengerPassport}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,20,0,0">
                 <CheckBox Content="Accept" 
                           FontWeight="DemiBold"
-                          IsChecked="{Binding IsAccept}"/>
+                          IsChecked="{Binding IsAccept}"
+                          Command="{Binding IsAcceptCommand}"/>
             </StackPanel>
         </StackPanel>
         <Button  Grid.Column="1"

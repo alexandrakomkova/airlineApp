@@ -3,19 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using airlineApp.Commands;
+using airlineApp.Model;
+using airlineApp.Model.Data;
 
 namespace airlineApp.ViewModel
 {
     public class GetPlaceViewModel : DataManageViewModel
     {
-        public ICommand UpdateViewCommand { get; set; }
+        private UserWindowViewModel parentVM;
+        public static Flight UserSelectedFlight;
 
-        //  private static DataManageViewModel model;
-        private List<string> placesList { get; set; }//= MakeSchemaOfPlaces(UserSelectedFlight);
 
-        public List<string> List //= MakeSchemaOfPlaces(UserSelectedFlight);
+        public GetPlaceViewModel(UserWindowViewModel parentVM, Flight f)
+        {
+            
+            UserSelectedFlight = f;
+            List<string> places = new List<string>();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Flights.Where(p => p.Id == f.Id).FirstOrDefault();
+                for (int i = 1; i < result.FreePlaces+1; i++)
+                {
+                    places.Add(i.ToString());
+                }
+            }
+            PlacesList = places;
+            NotifyPropertyChanged("PlacesList");
+
+
+            this.parentVM = parentVM;
+            UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
+        }
+        public static string ChosenPlace { get; set; }
+        private List<string> placesList { get; set; }
+
+        public List<string> PlacesList 
         {
             get { return placesList; }
             set
@@ -24,22 +49,11 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("PlacesList");
             }
         }
-        public GetPlaceViewModel(UserWindowViewModel parentVM, List<string> list)
+        public ICommand UpdateViewCommand { get; }
+        private void OnUpdateViewCommandExecuted(object p)
         {
-            UpdateViewCommand = new UpdateViewCommand(parentVM, list);
-            List = list;
-            NotifyPropertyChanged("List");
-            //model = dataManageViewModel;
+            parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace);
         }
-        //public static DataManageViewModel Model
-        //{
-        //    get { return model; }
-        //    set
-        //    {
-        //        model = value;
-        //       // NotifyPropertyChanged(nameof(Model));
-        //    }
-        //}
-        //public new List<string> PlacesList = Model.PlacesList;
+
     }
 }
