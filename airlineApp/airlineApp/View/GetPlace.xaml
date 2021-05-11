@@ -3,10 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900">
-    <Grid Background="Black">
-
-        <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL FLIGHTS" Margin="0,0,0,0" Command="{Binding UpdateViewCommand }" CommandParameter="Place"/>
+    <Grid Background="Transparent"> 
+        <Image Source="{Binding SchemaOfPlaces}" Width="900"
+               Height="340"
+               VerticalAlignment="top"/>
+        <Button Style="{DynamicResource InstrumentsButton}"  
+                Width="80" Height="40" 
+                Content="Back" 
+                Margin="20,0,0,20" 
+                Command="{Binding UpdateViewCommand}" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                CommandParameter="GetTicket"/>
+       
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,10,10">
+            
+            <ComboBox 
+                x:Name="c"
+                ItemsSource="{Binding List}"
+                SelectedItem="{Binding ChosenPlace}"
+                  Width="120" 
+                  Height="30"
+                  Padding="4"
+                  Background="WhiteSmoke"
+                  Foreground="black"
+                  Margin="0,0,100,20"
+                  HorizontalAlignment="Right"
+                  materialDesign:HintAssist.Hint="Choose a place">
+                
+            </ComboBox>
+            <Button Style="{DynamicResource InstrumentsButton}"  
+                Width="80" Height="40" 
+                Content="Next" 
+                Margin="0,0,20,20" 
+                Command="{Binding UpdateViewCommand}" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                CommandParameter="Passenger"/>
+        </StackPanel>
     </Grid>
+    
 </UserControl>

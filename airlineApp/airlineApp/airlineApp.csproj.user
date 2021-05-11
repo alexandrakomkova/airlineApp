@@ -28,10 +28,19 @@
     <Compile Update="View\EditFlightWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\EnterUserInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\FindTicketPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\GetPlace.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\InfoAboutReturnTickets.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\InfoAboutTicket.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\LoginRegisterWindow.xaml.cs">
@@ -81,10 +90,19 @@
     <Page Update="View\EditFlightWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\EnterUserInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\FindTicketPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\GetPlace.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\InfoAboutReturnTickets.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\InfoAboutTicket.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\LoginRegisterWindow.xaml">

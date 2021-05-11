@@ -13,14 +13,29 @@ namespace airlineApp.Commands
     {
         private MainWindowViewModel viewModel;
         private UserWindowViewModel userViewModel;
+        private DataManageViewModel model;
+        private List<string> list;
+        
 
         public UpdateViewCommand(MainWindowViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
+        public UpdateViewCommand(UserWindowViewModel userViewModel, DataManageViewModel model)
+        {
+            this.userViewModel = userViewModel;
+            this.model = model;
+        }
         public UpdateViewCommand(UserWindowViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
+            
+        }
+        public UpdateViewCommand(UserWindowViewModel userViewModel, List<string> list)
+        {
+            this.userViewModel = userViewModel;
+            this.list = list;
+
         }
         public event EventHandler CanExecuteChanged;
 
@@ -35,20 +50,34 @@ namespace airlineApp.Commands
             {
                 viewModel.UpdateFlights();
                 viewModel.CurrentList = new ViewAllFlightsPageViewModel();
-               
+
             }
             else if (parameter.ToString() == "Company")
             {
                 viewModel.UpdateCompanies();
                 viewModel.CurrentList = new ViewAllCompaniesPageViewModel();
-                
+
+            }
+            else if (parameter.ToString() == "GetTicket")
+            {
+                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel);
             }
             else if (parameter.ToString() == "Place")
             {
-                //new GetPlaceViewModel()
-                userViewModel.CurrentPage = new GetPlaceViewModel();
-                MessageBox.Show("test");
-
+                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, list);
+            }
+            else if (parameter.ToString() == "Passenger")
+            {
+                
+                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel);
+            }
+            else if (parameter.ToString() == "BookATicket")
+            {
+                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel);
+            }
+            else if (parameter.ToString() == "BookATicket" && userViewModel.IsBackEnable==true)
+            {
+                userViewModel.CurrentPage = new InfoAboutReturnTicketsViewModel(userViewModel);
             }
         }
     }

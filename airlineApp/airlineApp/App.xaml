@@ -32,6 +32,15 @@
             <DataTemplate DataType="{x:Type vm:GetPlaceViewModel}">
                 <views:GetPlace/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:EnterUserInfoViewModel}">
+                <views:EnterUserInfo/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:InfoAboutTicketViewModel}">
+                <views:InfoAboutTicket/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:InfoAboutReturnTicketsViewModel}">
+                <views:InfoAboutReturnTickets/>
+            </DataTemplate>
         </ResourceDictionary>
        
     </Application.Resources>

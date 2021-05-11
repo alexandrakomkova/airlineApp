@@ -21,13 +21,12 @@ namespace airlineApp.ViewModel
    {
         
         //get all flight
-        //private ObservableCollection<Flight> allFlights = DataWorker.GetAllFlights();
         private List<Flight> allFlights = DataWorker.GetAllFlights();
         //private List<string> selectedWays = DataWorker.GetSelectedWays();
         private List<Plane> allPlanes = DataWorker.GetAllPlanes();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
-       
+        
         public List<Flight> AllFlights
         {
             get { return allFlights; }
@@ -37,6 +36,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllFlights");
             }
         }
+        
         public List<Company> AllCompanies
         {
             get { return allCompanies; }
@@ -64,22 +64,38 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllWays");
             }
         }
-        //public List<string> SelectedWays
-        //{
-        //    get { return selectedWays; }
-        //    set
-        //    {
-        //        selectedWays = value;
-        //        NotifyPropertyChanged("SelectedlWays");
-        //    }
-        //}
         public ListView SelectedList { get; set; }
         public static Flight SelectedFlight { get; set; }
         public static Company SelectedCompany { get; set; }
         public static string CompanyName { get; set; }
         public static string CompanyLogo { get; set; }
-        public static Way FlightWay { get; set; }
-        public static string FlightWayStr { get; set; }
+        // public static Way FlightWayDeparture { get; set; }
+        //private Way flightWayDeparture { get; set; } //= OnlyAvailableArrivals(FlightWay); //поле то самое
+        //public Way FlightWayDeparture
+        //{
+        //    get { return flightWayDeparture; }
+        //    set
+        //    {
+        //        flightWayDeparture = value;
+        //        NotifyPropertyChanged("FlightWayDeparture");
+        //        ArrivalWays = OnlyAvailableArrivals(FlightWayDeparture);
+        //        NotifyPropertyChanged("ArrivalWays");
+        //    }
+        //}
+        private Way flightWay { get; set; } //= OnlyAvailableArrivals(FlightWay); //поле то самое
+        public Way FlightWay
+        {
+            get { return flightWay; }
+            set
+            {
+                flightWay = value;
+                NotifyPropertyChanged("FlightWay");
+                ArrivalWays = OnlyAvailableArrivals(FlightWay);
+                NotifyPropertyChanged("ArrivalWays");
+            }
+        }
+        public static Way FlightWayArrival { get; set; }
+       // public static Way FlightWay { get; set; }
         public static Company FlightCompany { get; set; }
         public static Plane FlightPlane { get; set; }
         public static decimal FlightPrice { get; set; }
@@ -93,8 +109,17 @@ namespace airlineApp.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        private List<Way> arrivalWays { get; set; } 
+        public List<Way> ArrivalWays
+        {
+            get { return arrivalWays; }
+            set
+            {
+                arrivalWays = value;
+                NotifyPropertyChanged("ArrivalWays");
+            }
+        }
 
-        
 
         //methods for open/close windows
         #region methods for open windows
@@ -697,6 +722,15 @@ namespace airlineApp.ViewModel
             Control block = wnd.FindName(blockName) as Control;
             block.BorderBrush = Brushes.Red;
         }
+        private static List<Way> OnlyAvailableArrivals(Way d)
+        {
+            MessageBox.Show($"{d.Arrival}");
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                var result = db.Ways.Where(w=> w.Departure == d.Departure).ToList();
+                return result;
+            }
+        }
         private void ShowMessageToUser(string text)
         {
             Message message = new Message(text);
@@ -837,12 +871,46 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-        
 
         #endregion
+        private Flight userSelectedFlight { get; set; }
+        public Flight UserSelectedFlight
+        {
+            get { return userSelectedFlight; }
+            set
+            {
+                    userSelectedFlight = value;
+                    NotifyPropertyChanged("UserSelectedFlight");
+                //MessageBox.Show($"{UserSelectedFlight.FreePlaces}");
+                PlacesList = MakeSchemaOfPlaces(UserSelectedFlight);
+                NotifyPropertyChanged("PlacesList");
+                MessageBox.Show($"{PlacesList.Count}");
+            }
+        }
+        private static List<string> MakeSchemaOfPlaces(Flight f)
+        {
+            List<string> places = new List<string>();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Flights.Where(p => p.Id == f.Id).FirstOrDefault();
+                for (int i = 0; i < result.FreePlaces; i++)
+                {
+                    places.Add(i.ToString());
+                }
+            }
+            return places;
+        }
+        public static string ChosenPlace { get; set; }
+        private List<string> placesList { get; set; }//= MakeSchemaOfPlaces(UserSelectedFlight);
 
-
-
-       
+        public List<string> PlacesList //= MakeSchemaOfPlaces(UserSelectedFlight);
+        {
+            get { return placesList; }
+            set
+            {
+                placesList = value;
+                NotifyPropertyChanged("PlacesList");
+            }
+        }
     }
 }

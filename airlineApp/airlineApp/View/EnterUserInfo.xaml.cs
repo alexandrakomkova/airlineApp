@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using airlineApp.ViewModel;
 
 namespace airlineApp.View
 {
     /// <summary>
-    /// Логика взаимодействия для GetPlaceA320.xaml
+    /// Логика взаимодействия для EnterUserInfo.xaml
     /// </summary>
-    public partial class GetPlace : UserControl
+    public partial class EnterUserInfo : UserControl
     {
-        public GetPlace()
+        public EnterUserInfo()
         {
             InitializeComponent();
-           
         }
     }
 }

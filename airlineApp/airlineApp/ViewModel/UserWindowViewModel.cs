@@ -21,14 +21,6 @@ namespace airlineApp.ViewModel
             UpdateViewCommand = new UpdateViewCommand(this);
             currentPage = new ChooseTicketViewModel(this);
         }
-        public static Way UserFlightDeparture { get; set; }
-        public static Way UserFlightArrival { get; set; }
-        public DateTime ThisDate { get; set; } = DateTime.Now;
-        public static DateTime SelectedBackDate { get; set; } 
-        public static DateTime SelectedDepartureDate { get; set; }
-        public static Flight UserSelectedFlight { get; set; }
-        public static Flight UserSelectedBackFlight { get; set; }
-
         private DataManageViewModel currentPage; //= new ChooseTicketViewModel();
         public DataManageViewModel CurrentPage
         {
@@ -40,8 +32,30 @@ namespace airlineApp.ViewModel
                 ThisDate = DateTime.Now;
             }
         }
-       // public static bool IsBackEnable { get; set; } = false;
-        private bool isBackEnable = false; //= new ChooseTicketViewModel();
+        public static Way UserFlightDeparture { get; set; }
+        public static Way UserFlightArrival { get; set; }
+        public DateTime ThisDate { get; set; } = DateTime.Now;
+        public static DateTime SelectedBackDate { get; set; }
+        public static DateTime SelectedDepartureDate { get; set; }
+        //private Flight userSelectedFlight{ get; set; }
+        //public Flight UserSelectedFlight
+        //{
+        //    get { return userSelectedFlight; }
+        //    set
+        //    {
+        //        userSelectedFlight = value;
+        //        NotifyPropertyChanged("UserSelectedFlight");
+        //        PlacesList = MakeSchemaOfPlaces(UserSelectedFlight);
+        //        NotifyPropertyChanged("PlacesList");
+        //    }
+        //}
+        //public static Flight UserSelectedFlight { get; set; }
+        public static Flight UserSelectedBackFlight { get; set; }
+     
+
+
+      
+        private bool isBackEnable = false; 
         public bool IsBackEnable
         {
             get { return isBackEnable; }
@@ -49,15 +63,6 @@ namespace airlineApp.ViewModel
             {
                 isBackEnable = value;
                 NotifyPropertyChanged(nameof(IsBackEnable));
-                if (IsBackEnable == true && SelectedBackDate != ThisDate)
-                {
-                    UserListBackWay = UserBackWaySearch(UserFlightDeparture, UserFlightArrival, SelectedBackDate);
-                    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
-                    ChooseTicketPage.UserBackFlightsView.Items.Clear();
-                    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
-                    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
-                }
-                //вызвать тут поиск билета обратно + обновление списка для обратных рейсов
             }
         }
 
@@ -71,6 +76,7 @@ namespace airlineApp.ViewModel
             {
                 userListOneWay = value;
                 NotifyPropertyChanged("UserListOneWay");
+               
             }
         }
         public List<Flight> UserListBackWay
@@ -99,13 +105,12 @@ namespace airlineApp.ViewModel
         }
         public static List<Flight> UserBackWaySearch(Way d, Way a, DateTime dt)
         {
-            //MessageBox.Show($"{a.Arrival} - {d.Departure}");
+            
             using (ApplicationContext db = new ApplicationContext())
             {
-                //придумать когда вытаскивать дату из back date для сравнения
                 var result = db.Flights.Where(f => f.Way.Departure == d.Arrival
                 && f.Way.Arrival == a.Departure
-                /*&& f.Way.DepartureTime.Date == dt.Date*/).ToList();
+                && f.Way.DepartureTime.Date == dt.Date).ToList();
                 return result;
             }
 
@@ -119,7 +124,7 @@ namespace airlineApp.ViewModel
                     obj =>
                     {
                         UpdateUserFlights();
-                        if (IsBackEnable == true && SelectedBackDate != ThisDate)
+                        if (IsBackEnable == true)
                         {
                             UserListBackWay = UserBackWaySearch(UserFlightDeparture, UserFlightArrival, SelectedBackDate);
                             ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
@@ -127,6 +132,7 @@ namespace airlineApp.ViewModel
                             ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
                             ChooseTicketPage.UserBackFlightsView.Items.Refresh();
                         }
+                        
                     }
                     );
             }
@@ -176,26 +182,36 @@ namespace airlineApp.ViewModel
             Message message = new Message(text);
             SetWindowPosition(message);
         }
-        private List<int> MakeSchemaOfPlaces()
-        {
-            List<int> places = new List<int>();
-            using (ApplicationContext db = new ApplicationContext()) 
-            {
-                var result = db.Planes.Where(p=> p.Id == UserSelectedFlight.PlaneId).FirstOrDefault();
-                for (int i =0; i<result.MaxOfPlaces;i++) 
-                {
-                    places.Add(i);
-                }
-            }
-            return places;
-        }
+        //private static List<int> MakeSchemaOfPlaces(Flight f)
+        //{
+        //    List<int> places = new List<int>();
+        //    using (ApplicationContext db = new ApplicationContext()) 
+        //    {
+        //        var result = db.Planes.Where(p=> p.Id == f.PlaneId).FirstOrDefault();
+        //        for (int i =0; i<result.MaxOfPlaces;i++) 
+        //        {
+        //            places.Add(i);
+        //        }
+        //    }
+        //    return places;
+        //}
+        //private List<int> placesList { get; set; }//= MakeSchemaOfPlaces(UserSelectedFlight);
 
-        public List<int> PlacesList
-        {
-            get => MakeSchemaOfPlaces();
-        }
+        //public List<int> PlacesList //= MakeSchemaOfPlaces(UserSelectedFlight);
+        //{
+        //    get { return placesList; }
+        //    set
+        //    {
+        //        placesList = value;
+        //        NotifyPropertyChanged("PlacesList");
+        //    }
+        //}
+        //public List<int> PlacesList
+        //{
+        //    get => MakeSchemaOfPlaces();
+        //}
 
-  
+
 
         private void SetWindowPosition(Window window)
         {
@@ -213,6 +229,47 @@ namespace airlineApp.ViewModel
             
             //это грязно
             //придумать что-нибудь
+        }
+
+        private string passengerSurname { get; set; }
+        public string PassengerSurname 
+        {
+            get { return passengerSurname; }
+            set 
+            {
+                passengerSurname = value;
+                NotifyPropertyChanged("PassengerSurname");
+            }
+        }
+        private string passengerName { get; set; }
+        public string PassengerName
+        {
+            get { return passengerName; }
+            set
+            {
+                passengerName = value;
+                NotifyPropertyChanged("PassengerName");
+            }
+        }
+        private string passengerMiddleName { get; set; }
+        public string PassengerMiddleName
+        {
+            get { return passengerMiddleName; }
+            set
+            {
+                passengerMiddleName = value;
+                NotifyPropertyChanged("PassengerMiddleName");
+            }
+        }
+        private string passengerPassport { get; set; }
+        public string PassengerPassport
+        {
+            get { return passengerPassport; }
+            set
+            {
+                passengerPassport = value;
+                NotifyPropertyChanged("PassengerPassport");
+            }
         }
     }
 }

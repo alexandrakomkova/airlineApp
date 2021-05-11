@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:airlineApp.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Add Flight" Height="300" Width="250"
+        Title="Add Flight" Height="350" Width="260"
         Name="AddFlightWnd" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
@@ -51,19 +51,21 @@
                   Margin="0,15,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a way">
+                  materialDesign:HintAssist.Hint="Choose a place of departure">
             </ComboBox>
-            <!--<ComboBox 
-                ItemsSource="{Binding AllWays}"
+            <ComboBox 
+                ItemsSource="{Binding ArrivalWays}"
                 SelectedItem="{Binding FlightWay}"
+                DisplayMemberPath="Arrival"
                   Width="200" 
                   Height="30"
                   Padding="4"
-                  Margin="0,15,0,15"
+                  Margin="0,0,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a way">
-            </ComboBox>-->
+                  materialDesign:HintAssist.Hint="Choose a place of arrival">
+            </ComboBox>
+            
             <ComboBox 
                 ItemsSource="{Binding AllPlanes}"
                 SelectedItem="{Binding FlightPlane}"
@@ -95,12 +97,13 @@
                        PreviewTextInput="PreviewTextInputOnlyNumbers" Cursor="IBeam"/>
             <TextBlock  IsHitTestVisible="False" 
                                 Text="Price"
-                                FontWeight="Light"
+                               
                          HorizontalAlignment="Left"
                          FontFamily="helvetica"
                          FontSize="12"
-                         Foreground="WhiteSmoke"
+                         Foreground="White"
                          Background="Transparent"
+                         FontWeight="Bold"
                          Width="120"
                          Height="20"
                          Opacity="0.7"

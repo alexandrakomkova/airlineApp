@@ -173,3 +173,9 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Edi
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EditCompanyWindow.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\GetPlace.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\GetPlace.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EnterUserInfo.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutReturnTickets.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutTicket.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EnterUserInfo.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutReturnTickets.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutTicket.baml
