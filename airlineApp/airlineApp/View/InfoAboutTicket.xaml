@@ -130,7 +130,7 @@
                 Width="80" Height="40" 
                 Content="Next" 
                 Margin="0,0,20,20" 
-                Command="{Binding ThanksCommand }" 
+                Command="{Binding BookTicketCommand}" 
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 />

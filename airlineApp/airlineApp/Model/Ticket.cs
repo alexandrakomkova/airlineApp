@@ -18,10 +18,6 @@ namespace airlineApp.Model
         public string Passport { get; set; }
         public string Fullname { get; set; }
 
-        [NotMapped]
-        public Flight flightId
-        {
-            get { return DataWorker.GetFlightById(FlightId); }
-        }
+        
     }
 }

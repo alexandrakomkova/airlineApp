@@ -34,6 +34,27 @@ namespace airlineApp.Model
                 return result;
             }
         }
+        public static string CreateTicket(string fullname, string passport, Flight flight, User user)
+        {
+            string result = "Что-то пошло не так..";
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //нужен ли чек на существующие билеты?
+                Ticket newTicket = new Ticket 
+                { 
+                    Fullname = fullname, 
+                    Passport = passport,
+                    IsPaid = false,
+                    FlightId = flight.Id,
+                    UserId = user.Id
+                };
+                db.Tickets.Add(newTicket);
+                db.SaveChanges();
+                result = "Билет успешно приобретен!\nМожете посмотреть данные о билете в пункте 'Мои билеты'";
+                return result;
+            }
+        }
         //create flight
         public static string CreateFlight(Way way, Company company, Plane plane, decimal price, int freePlaces)
         {

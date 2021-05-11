@@ -20,7 +20,7 @@ namespace airlineApp.ViewModel
         public UserWindowViewModel()
         {
             UpdateViewCommand = new UpdateViewCommand(this);
-            currentPage = new ChooseTicketViewModel(this);
+            currentPage = new ChooseTicketViewModel(this, null);
         }
         private DataManageViewModel currentPage; //= new ChooseTicketViewModel();
         public DataManageViewModel CurrentPage

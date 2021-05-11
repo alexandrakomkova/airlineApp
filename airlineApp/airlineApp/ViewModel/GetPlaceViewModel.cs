@@ -50,9 +50,14 @@ namespace airlineApp.ViewModel
             }
         }
         public ICommand UpdateViewCommand { get; }
+        public ICommand UpdateBackViewCommand { get; }
         private void OnUpdateViewCommandExecuted(object p)
         {
             parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace);
+            if (p.ToString() == "GetTicket") 
+            {
+                parentVM.CurrentPage = new ChooseTicketViewModel(parentVM, UserSelectedFlight);
+            }
         }
 
     }

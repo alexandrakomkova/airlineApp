@@ -75,7 +75,7 @@ namespace airlineApp.Commands
             }
             else if (parameter.ToString() == "GetTicket")
             {
-                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel);
+                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, f);
             }
             else if (parameter.ToString() == "Place")
             {

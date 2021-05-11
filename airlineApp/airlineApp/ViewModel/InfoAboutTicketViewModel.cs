@@ -91,5 +91,18 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+        private Command bookTicketCommand;
+        public Command BookTicketCommand
+        {
+            get
+            {
+                return bookTicketCommand ?? new Command(
+                    obj =>
+                    {
+                        
+                    }
+                    );
+            }
+        }
     }
 }
