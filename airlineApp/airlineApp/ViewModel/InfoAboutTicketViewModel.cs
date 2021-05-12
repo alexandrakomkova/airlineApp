@@ -15,6 +15,7 @@ namespace airlineApp.ViewModel
 
         //public static Flight UserSelectedFlight;
         private Flight userSelectedFlight;
+        private User user;
         private UserWindowViewModel parentVM;
         public Flight UserSelectedFlight
         {
@@ -27,8 +28,10 @@ namespace airlineApp.ViewModel
         }
         public ICommand UpdateViewCommand { get; set; }
 
-        public InfoAboutTicketViewModel(UserWindowViewModel parentVM, string passSur, string passName, string passMiddle, string passPassport, Flight f, string passSeat)
+        public InfoAboutTicketViewModel(UserWindowViewModel parentVM, string passSur, string passName, string passMiddle, string passPassport, Flight f, string passSeat, User user)
         {
+            this.user = user;
+            MessageBox.Show($"{user.Email}");
             passengerFullName = passSur + " "+ passName + " "+ passMiddle;
             //NotifyPropertyChanged("PassengerFullName");
             passengerPassport = passPassport;

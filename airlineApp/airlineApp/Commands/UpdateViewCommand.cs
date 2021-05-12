@@ -59,6 +59,13 @@ namespace airlineApp.Commands
             this.user = user;
 
         }
+        public UpdateViewCommand(UserWindowViewModel userViewModel, User user, Flight f)
+        {
+            this.userViewModel = userViewModel;
+            this.user = user;
+            this.f = f;
+
+        }
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -82,25 +89,22 @@ namespace airlineApp.Commands
             }
             else if (parameter.ToString() == "GetTicket")
             {
-                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel);
+                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, user, f);
             }
             else if (parameter.ToString() == "Place")
             {
-                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f);
+                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f, user);
             }
             else if (parameter.ToString() == "Passenger")
             {
                 
-                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str);
+                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user);
             }
             else if (parameter.ToString() == "BookATicket")
             {
-                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str);
+                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str, user);
             }
-            else if (parameter.ToString() == "BookATicket" && userViewModel.IsBackEnable==true)
-            {
-                userViewModel.CurrentPage = new InfoAboutReturnTicketsViewModel(userViewModel);
-            }
+            
         }
     }
 }

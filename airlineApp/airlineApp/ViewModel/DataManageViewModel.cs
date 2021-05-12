@@ -21,7 +21,7 @@ namespace airlineApp.ViewModel
    {
         
         //get all flight
-        private List<Flight> allFlights = DataWorker.GetAllFlights();
+        
         private List<Plane> allPlanes = DataWorker.GetAllPlanes();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
@@ -36,6 +36,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllDeparturesString");
             }
         }
+        private List<Flight> allFlights = DataWorker.GetAllFlights();
         public List<Flight> AllFlights
         {
             get { return allFlights; }
@@ -326,6 +327,7 @@ namespace airlineApp.ViewModel
                 return openRegisterWndCommand ?? new Command(
                     obj =>
                     {
+                       
                         OpenRegisterWndMethod();
                     }
                     );
@@ -908,7 +910,8 @@ namespace airlineApp.ViewModel
 
                             AllFlights = sortByCompany.ToList();
                             NotifyPropertyChanged("AllFlights");
-                           
+                            UpdateFlightsList(AllFlights);
+
                         }
                     }
                     );
@@ -930,6 +933,7 @@ namespace airlineApp.ViewModel
 
                             AllFlights = sortByPrice.ToList();
                             NotifyPropertyChanged("AllFlights");
+                            UpdateFlightsList(AllFlights);
                         }
                     }
                     );
@@ -952,6 +956,7 @@ namespace airlineApp.ViewModel
 
                             AllFlights = sortByArrival.ToList();
                             NotifyPropertyChanged("AllFlights");
+                            UpdateFlightsList(AllFlights);
                         }
                     }
                     );
@@ -973,6 +978,7 @@ namespace airlineApp.ViewModel
 
                             AllFlights = sortByDeparture.ToList();
                             NotifyPropertyChanged("AllFlights");
+                            UpdateFlightsList(AllFlights);
                         }
                     }
                     );

@@ -22,7 +22,7 @@ namespace airlineApp.ViewModel
             this.user = user;
            // MessageBox.Show($"{user.Email}");//выводит месседж показывает данные а потом пишет что юзер нул
             UpdateViewCommand = new UpdateViewCommand(this);
-            currentPage = new ChooseTicketViewModel(this);
+            currentPage = new ChooseTicketViewModel(this, user, null);
         }
         private DataManageViewModel currentPage; //= new ChooseTicketViewModel();
         public DataManageViewModel CurrentPage
@@ -40,48 +40,33 @@ namespace airlineApp.ViewModel
         public DateTime ThisDate { get; set; } = DateTime.Now;
         public static DateTime SelectedBackDate { get; set; }
         public static DateTime SelectedDepartureDate { get; set; }
-        //private Flight userSelectedFlight{ get; set; }
-        //public Flight UserSelectedFlight
-        //{
-        //    get { return userSelectedFlight; }
-        //    set
-        //    {
-        //        userSelectedFlight = value;
-        //        NotifyPropertyChanged("UserSelectedFlight");
-        //        PlacesList = MakeSchemaOfPlaces(UserSelectedFlight);
-        //        NotifyPropertyChanged("PlacesList");
-        //    }
-        //}
-        //public static Flight UserSelectedFlight { get; set; }
+        
         public static Flight UserSelectedBackFlight { get; set; }
 
+        //private bool isBackEnable = false;
+        //public bool IsBackEnable
+        //{
+        //    get { return isBackEnable; }
+        //    set
+        //    {
+        //        isBackEnable = value;
+        //        NotifyPropertyChanged(nameof(IsBackEnable));
+        //    }
+        //}
 
-
-
-        private bool isBackEnable = false;
-        public bool IsBackEnable
-        {
-            get { return isBackEnable; }
-            set
-            {
-                isBackEnable = value;
-                NotifyPropertyChanged(nameof(IsBackEnable));
-            }
-        }
-
-        private List<Flight> userListOneWay { get; set; }//= DataWorker.GetAllFlights();
+        //private List<Flight> userListOneWay { get; set; } //= DataWorker.GetAllFlights();
         private List<Flight> userListBackWay { get; set; }//= DataWorker.GetAllFlights();
 
-        public List<Flight> UserListOneWay
-        {
-            get { return userListOneWay; }
-            set
-            {
-                userListOneWay = value;
-                NotifyPropertyChanged("UserListOneWay");
+        //public List<Flight> UserListOneWay
+        //{
+        //    get { return userListOneWay; }
+        //    set
+        //    {
+        //        userListOneWay = value;
+        //        NotifyPropertyChanged("UserListOneWay");
 
-            }
-        }
+        //    }
+        //}
         public List<Flight> UserListBackWay
         {
             get { return userListBackWay; }
@@ -92,27 +77,27 @@ namespace airlineApp.ViewModel
             }
         }
 
-        public static List<Flight> UserSearch(Way d, Way a, DateTime dt)
+        public static List<Flight> UserSearch(string d, string a, DateTime dt)
         {
 
             using (ApplicationContext db = new ApplicationContext())
             {
 
-                var result = db.Flights.Where(f => f.Way.Departure == d.Departure
-                && f.Way.Arrival == a.Arrival
+                var result = db.Flights.Where(f => f.Way.Departure == d
+                && f.Way.Arrival == a
                 && f.Way.DepartureTime.Date == dt.Date).ToList();
                 return result;
 
             }
 
         }
-        public static List<Flight> UserBackWaySearch(Way d, Way a, DateTime dt)
+        public static List<Flight> UserBackWaySearch(string d, string a, DateTime dt)
         {
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Flights.Where(f => f.Way.Departure == d.Arrival
-                && f.Way.Arrival == a.Departure
+                var result = db.Flights.Where(f => f.Way.Departure == d
+                && f.Way.Arrival == a
                 && f.Way.DepartureTime.Date == dt.Date).ToList();
                 return result;
             }
@@ -126,15 +111,16 @@ namespace airlineApp.ViewModel
                 return userSearchCommand ?? new Command(
                     obj =>
                     {
-                        UpdateUserFlights();
-                        if (IsBackEnable == true)
-                        {
-                            UserListBackWay = UserBackWaySearch(UserFlightDeparture, UserFlightArrival, SelectedBackDate);
-                            ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
-                            ChooseTicketPage.UserBackFlightsView.Items.Clear();
-                            ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
-                            ChooseTicketPage.UserBackFlightsView.Items.Refresh();
-                        }
+                        MessageBox.Show("123");
+                        //UpdateUserFlights();
+                        //if (IsBackEnable == true)
+                        //{
+                        //    UserListBackWay = UserBackWaySearch(FlightWayDepartureString, FlightWayArrivalString, SelectedBackDate);
+                        //    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
+                        //    ChooseTicketPage.UserBackFlightsView.Items.Clear();
+                        //    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
+                        //    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
+                        //}
 
                     }
                     );
@@ -174,7 +160,7 @@ namespace airlineApp.ViewModel
                 return needBackTicketCommand ?? new Command(
                     obj =>
                     {
-                        IsBackEnable = true;
+                       // IsBackEnable = true;
                         NotifyPropertyChanged("IsBackEnable");
                     }
                     );
@@ -192,17 +178,24 @@ namespace airlineApp.ViewModel
             window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             window.ShowDialog();
         }
-        private void UpdateUserFlights()
-        { //возможно надо будет в другой вьюмодел
-            UserListOneWay = UserSearch(UserFlightDeparture, UserFlightArrival, SelectedDepartureDate);
-            ChooseTicketPage.UserFlightsView.ItemsSource = null;
-            ChooseTicketPage.UserFlightsView.Items.Clear();
-            ChooseTicketPage.UserFlightsView.ItemsSource = UserListOneWay;
-            ChooseTicketPage.UserFlightsView.Items.Refresh();
+        //private void UpdateUserFlights()
+        //{ //возможно надо будет в другой вьюмодел
+        //    UserListOneWay = UserSearch(FlightWayDepartureString, FlightWayArrivalString, SelectedDepartureDate);
+        //    if (UserListOneWay != null)
+        //    {
+        //        ChooseTicketPage.UserFlightsView.ItemsSource = null;
+        //        ChooseTicketPage.UserFlightsView.Items.Clear();
+        //        ChooseTicketPage.UserFlightsView.ItemsSource = UserListOneWay;
+        //        ChooseTicketPage.UserFlightsView.Items.Refresh();
+        //    }
+        //    else 
+        //    {
+        //        MessageBox.Show("list is null");
+        //    }
 
-            //это грязно
-            //придумать что-нибудь
-        }
+        //    //это грязно
+        //    //придумать что-нибудь
+        //}
 
         
     }

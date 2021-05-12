@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using airlineApp.Commands;
 using airlineApp.Model;
@@ -12,6 +13,7 @@ namespace airlineApp.ViewModel
     public class EnterUserInfoViewModel : DataManageViewModel
     {
         private UserWindowViewModel parentVM;
+        private User user;
         public static Flight UserSelectedFlight;
         private string passengerSurname;
         public string PassengerSurname
@@ -65,8 +67,10 @@ namespace airlineApp.ViewModel
             }
         }
 
-        public EnterUserInfoViewModel(UserWindowViewModel parentVM, Flight f, string place)
+        public EnterUserInfoViewModel(UserWindowViewModel parentVM, Flight f, string place, User user)
         {
+            this.user = user;
+            MessageBox.Show($"{user.Email}");
             UserSelectedFlight = f;
             passengerSeat = place;
             this.parentVM = parentVM;
@@ -76,7 +80,7 @@ namespace airlineApp.ViewModel
         private void OnUpdateViewCommandExecuted(object p)
         {
            
-            parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat);
+            parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
         }
 
     }

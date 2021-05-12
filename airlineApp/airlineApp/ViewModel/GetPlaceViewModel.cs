@@ -18,9 +18,10 @@ namespace airlineApp.ViewModel
         public static Flight UserSelectedFlight;
 
 
-        public GetPlaceViewModel(UserWindowViewModel parentVM, Flight f)
+        public GetPlaceViewModel(UserWindowViewModel parentVM, Flight f, User user)
         {
-            
+            this.user = user;
+            //MessageBox.Show($"{user.Email}");
             UserSelectedFlight = f;
             List<string> places = new List<string>();
             using (ApplicationContext db = new ApplicationContext())
@@ -54,10 +55,10 @@ namespace airlineApp.ViewModel
         public ICommand UpdateBackViewCommand { get; }
         private void OnUpdateViewCommandExecuted(object p)
         {
-            parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace);
+            parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace, user);
             if (p.ToString() == "GetTicket") 
             {
-                parentVM.CurrentPage = new ChooseTicketViewModel(parentVM);
+                parentVM.CurrentPage = new ChooseTicketViewModel(parentVM, user, UserSelectedFlight);
             }
         }
 

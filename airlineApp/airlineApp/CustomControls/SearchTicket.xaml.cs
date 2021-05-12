@@ -22,12 +22,13 @@ namespace airlineApp.CustomControls
     /// </summary>
     public partial class SearchTicket : UserControl
     {
-        private User user;
-
-        public SearchTicket()
-        {
-            InitializeComponent();
-            DataContext = new UserWindowViewModel(user);
-        }
+        //private User user;
+        //public SearchTicket(User user)
+        //{
+        //    this.user = user;
+        //    InitializeComponent();
+        //    DataContext = new UserWindowViewModel(user);
+            
+        //}
     }
 }
