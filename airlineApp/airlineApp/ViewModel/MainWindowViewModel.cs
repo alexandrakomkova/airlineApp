@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using airlineApp.Commands;
 using airlineApp.Model;
@@ -11,15 +12,21 @@ using airlineApp.View;
 namespace airlineApp.ViewModel
 {
     public class MainWindowViewModel : DataManageViewModel
-
     {
+        private readonly User user;
         public ICommand UpdateViewCommand { get; set; }
 
         public MainWindowViewModel()
         {
+            
+            //MessageBox.Show($"{user.Email}");
             UpdateViewCommand = new UpdateViewCommand(this);
         }
-
+        //private void OnUpdateViewCommandExecuted(object p)
+        //{
+        //    //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
+        //    currentList = new ViewAllFlightsPageViewModel(this);
+        //}
         private DataManageViewModel currentList = new ViewAllFlightsPageViewModel();
         public DataManageViewModel CurrentList
         {

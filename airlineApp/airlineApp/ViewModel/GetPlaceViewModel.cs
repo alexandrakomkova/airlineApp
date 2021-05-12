@@ -14,6 +14,7 @@ namespace airlineApp.ViewModel
     public class GetPlaceViewModel : DataManageViewModel
     {
         private UserWindowViewModel parentVM;
+        private User user;
         public static Flight UserSelectedFlight;
 
 
@@ -56,7 +57,7 @@ namespace airlineApp.ViewModel
             parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace);
             if (p.ToString() == "GetTicket") 
             {
-                parentVM.CurrentPage = new ChooseTicketViewModel(parentVM, UserSelectedFlight);
+                parentVM.CurrentPage = new ChooseTicketViewModel(parentVM);
             }
         }
 

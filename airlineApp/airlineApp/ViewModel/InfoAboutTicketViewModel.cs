@@ -15,6 +15,7 @@ namespace airlineApp.ViewModel
 
         //public static Flight UserSelectedFlight;
         private Flight userSelectedFlight;
+        private UserWindowViewModel parentVM;
         public Flight UserSelectedFlight
         {
             get { return userSelectedFlight; }
@@ -35,7 +36,12 @@ namespace airlineApp.ViewModel
             userSelectedFlight = f;
             
         }
+        private void OnUpdateViewCommandExecuted(object p)
+        {
+            //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
 
+            parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight);
+        }
         private string passengerFullName;
         public string PassengerFullName
         {

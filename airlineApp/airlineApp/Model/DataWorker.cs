@@ -208,16 +208,26 @@ namespace airlineApp.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Ways.ToList();
+                var result = db.Ways.ToList(); //сделать группировку по полю
+
                 return result;
             }
         }
-        // public static List<string> GetSelectedWays()
+        public static List<string> GetAllDepartures()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Ways.Select(w => w.Departure).Distinct().ToList(); //сделать группировку по полю
+
+                return result;
+            }
+        }
+        //public static List<List<Way>> GetAllWaysGr()
         //{
         //    using (ApplicationContext db = new ApplicationContext())
         //    {
-        //        var result = (from c in db.Ways
-        //                     select c.Departure + " - " + c.Arrival).ToList();
+        //        var result = db.Ways.GroupBy(w => w.Departure).Select(grp => grp.ToList()).ToList();
+
         //        return result;
         //    }
         //}
@@ -240,6 +250,14 @@ namespace airlineApp.Model
                 return way;
             }
         }
+        //public static Way GetWayByDepartureArrival(string d, string a)
+        //{
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
+        //        Way way = db.Ways.FirstOrDefault(p => p.Departure == d && p.Arrival==);
+        //        return way;
+        //    }
+        //}
         //get plane by id
         public static Plane GetPlaneById(int id)
         {

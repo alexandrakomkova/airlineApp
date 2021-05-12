@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using airlineApp.Model;
 using airlineApp.ViewModel;
 
 namespace airlineApp.View
@@ -22,13 +23,24 @@ namespace airlineApp.View
     public partial class ViewAllFlightsPage : UserControl
     {
         public static ListView AllFlightsView;
-          
+
         public ViewAllFlightsPage()
         {
             InitializeComponent();
             AllFlightsView = ViewAllFlights;
             DataContext = new MainWindowViewModel();
-            
+
         }
+        //public static ListView AllFlightsView;
+        //private User user;
+
+        //public ViewAllFlightsPage(User user)
+        //{
+        //    this.user = user;
+        //    InitializeComponent();
+        //    AllFlightsView = ViewAllFlights;
+        //    DataContext = new MainWindowViewModel(user);
+
+        //}
     }
 }

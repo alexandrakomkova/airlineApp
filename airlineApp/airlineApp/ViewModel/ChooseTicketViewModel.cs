@@ -16,6 +16,7 @@ namespace airlineApp.ViewModel
     {
         private UserWindowViewModel parentVM;
         private Flight userSelectedFlight;
+        private User user;
         public Flight UserSelectedFlight
         {
             get { return userSelectedFlight; }
@@ -35,15 +36,18 @@ namespace airlineApp.ViewModel
             parentVM.CurrentPage = new GetPlaceViewModel(parentVM, userSelectedFlight);
         }
 
-        public ChooseTicketViewModel(UserWindowViewModel parentVM, Flight f)
+        public ChooseTicketViewModel(UserWindowViewModel parentVM)
         {
+           
             this.parentVM = parentVM;
-            userSelectedFlight = f;
-            if (f != null)
-            {
-                UserWindowViewModel.UserFlightDeparture = f.flightWay;
-                NotifyPropertyChanged("UserFlightDeparture");
-            }
+           // this.user = user;
+            //MessageBox.Show($"{this.user.Email}");
+            // userSelectedFlight = f;
+            //if (f != null)
+            //{
+            //    UserWindowViewModel.UserFlightDeparture = f.flightWay;
+            //    NotifyPropertyChanged("UserFlightDeparture");
+            //}
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
     }

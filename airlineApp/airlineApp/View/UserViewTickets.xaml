@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="airlineApp.View.UserViewTickets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:airlineApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid Background="WhiteSmoke">
+        <ListView
+                x:Name="ViewUserTickets"
+                ItemsSource="{Binding AllUserTickets}"
+                Foreground="black"
+                HorizontalContentAlignment="Center">
+           
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Id}"
+                            Header="Id" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightCompany.Name}"
+                            Header="Company" />
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            Header="Flight Id" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            Header="Fullname" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            Header="Departure" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            Header="Departure Time" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            Header="Arrival" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            Header="Arrival Time" 
+                            Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=flightPlane.Name}"
+                            Header="Plane" 
+                         Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=FreePlaces}"
+                            Header="Seat" 
+                         Width="auto"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Price}"
+                            Header="Price" 
+                         Width="auto"/>
+
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

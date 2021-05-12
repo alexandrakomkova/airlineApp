@@ -17,6 +17,7 @@ namespace airlineApp.Commands
         private DataManageViewModel model;
         private List<string> list;
         private Flight f;
+        private User user;
         private string str;
 
 
@@ -52,6 +53,12 @@ namespace airlineApp.Commands
             this.str = str;
 
         }
+        public UpdateViewCommand(UserWindowViewModel userViewModel, User user)
+        {
+            this.userViewModel = userViewModel;
+            this.user = user;
+
+        }
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -75,7 +82,7 @@ namespace airlineApp.Commands
             }
             else if (parameter.ToString() == "GetTicket")
             {
-                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, f);
+                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel);
             }
             else if (parameter.ToString() == "Place")
             {

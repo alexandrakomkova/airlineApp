@@ -49,7 +49,6 @@
                 <TextBlock Width="400" 
                            Text="{Binding PassengerFullName}"
                            Foreground="Black"
-                           Background="LightBlue"
                            FontSize="16"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"

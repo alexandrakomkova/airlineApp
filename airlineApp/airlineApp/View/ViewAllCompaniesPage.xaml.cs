@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using airlineApp.Model;
 using airlineApp.ViewModel;
 
 namespace airlineApp.View
@@ -28,5 +29,14 @@ namespace airlineApp.View
             DataContext = new MainWindowViewModel();
             AllCompaniesView = ViewAllCompanies;
         }
+        //public static ListView AllCompaniesView;
+        //private User user;
+
+        //public ViewAllCompaniesPage()
+        //{
+        //    InitializeComponent();
+        //    DataContext = new MainWindowViewModel(user);
+        //    AllCompaniesView = ViewAllCompanies;
+        //}
     }
 }

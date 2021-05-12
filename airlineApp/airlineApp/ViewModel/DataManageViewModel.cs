@@ -22,11 +22,20 @@ namespace airlineApp.ViewModel
         
         //get all flight
         private List<Flight> allFlights = DataWorker.GetAllFlights();
-        //private List<string> selectedWays = DataWorker.GetSelectedWays();
         private List<Plane> allPlanes = DataWorker.GetAllPlanes();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
-        
+        private List<string> allDeparturesString = DataWorker.GetAllDepartures();
+        //private List<List<Way>> allWaysGr = DataWorker.GetAllWaysGr();
+        public List<string> AllDeparturesString
+        {
+            get { return allDeparturesString; }
+            set
+            {
+                allDeparturesString = value;
+                NotifyPropertyChanged("AllDeparturesString");
+            }
+        }
         public List<Flight> AllFlights
         {
             get { return allFlights; }
@@ -64,24 +73,80 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllWays");
             }
         }
-        public ListView SelectedList { get; set; }
+        private List<Way> allWaysDateTime;
+        public List<Way> AllWaysDateTime
+        {
+            get { return allWaysDateTime; }
+            set
+            {
+                allWaysDateTime = value;
+                NotifyPropertyChanged("AllWaysDateTime");
+            }
+        }
+
+
         public static Flight SelectedFlight { get; set; }
         public static Company SelectedCompany { get; set; }
         public static string CompanyName { get; set; }
         public static string CompanyLogo { get; set; }
-        // public static Way FlightWayDeparture { get; set; }
-        //private Way flightWayDeparture { get; set; } //= OnlyAvailableArrivals(FlightWay); //поле то самое
-        //public Way FlightWayDeparture
-        //{
-        //    get { return flightWayDeparture; }
-        //    set
-        //    {
-        //        flightWayDeparture = value;
-        //        NotifyPropertyChanged("FlightWayDeparture");
-        //        ArrivalWays = OnlyAvailableArrivals(FlightWayDeparture);
-        //        NotifyPropertyChanged("ArrivalWays");
-        //    }
-        //}
+        private List<string> allArrivalsString { get; set; }
+        public List<string> AllArrivalsString
+        {
+            get { return allArrivalsString; }
+            set
+            {
+                allArrivalsString = value;
+                NotifyPropertyChanged("AllArrivalsString");
+            }
+        }
+        private string flightWayDepartureString { get; set; }
+        public string FlightWayDepartureString
+        {
+            get { return flightWayDepartureString; }
+            set
+            {
+                flightWayDepartureString = value;
+                NotifyPropertyChanged("FlightWayDepartureString");
+                AllArrivalsString = StringArrivals(FlightWayDepartureString);
+                NotifyPropertyChanged("AllArrivalsString");
+                
+            }
+        }
+        private string flightWayArrivalString { get; set; }
+        public string FlightWayArrivalString
+        {
+            get { return flightWayArrivalString; }
+            set
+            {
+                flightWayArrivalString = value;
+                NotifyPropertyChanged("FlightWayArrivalString");
+                AllWaysDateTime = AvailableDateTime(FlightWayDepartureString, FlightWayArrivalString);
+                NotifyPropertyChanged("AllWaysDateTime");
+
+            }
+        }
+        private static List<string> StringArrivals(string d)
+        {
+            
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //var result = db.Ways.Select(w => w.Departure).Distinct().ToList();
+                var result = db.Ways.Where(w => w.Departure == d).Select(w => w.Arrival).Distinct().ToList();
+                return result;
+            }
+        }
+        private static List<Way> AvailableDateTime(string d, string a)
+        {
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //var result = db.Ways.Select(w => w.Departure).Distinct().ToList();
+               // Way way = db.Ways.FirstOrDefault(p => p.Departure == d && p.Arrival ==);
+                //        return way;
+                var result = db.Ways.Where(w => w.Departure == d && w.Arrival == a).Distinct().ToList();
+                return result;
+            }
+        }
         private Way flightWay { get; set; } //= OnlyAvailableArrivals(FlightWay); //поле то самое
         public Way FlightWay
         {
@@ -90,12 +155,10 @@ namespace airlineApp.ViewModel
             {
                 flightWay = value;
                 NotifyPropertyChanged("FlightWay");
-                ArrivalWays = OnlyAvailableArrivals(FlightWay);
-                NotifyPropertyChanged("ArrivalWays");
             }
         }
-        public static Way FlightWayArrival { get; set; }
-       // public static Way FlightWay { get; set; }
+        //public static Way FlightWayArrival { get; set; }
+        // public static Way FlightWay { get; set; }
         public static Company FlightCompany { get; set; }
         public static Plane FlightPlane { get; set; }
         public static decimal FlightPrice { get; set; }
@@ -109,16 +172,7 @@ namespace airlineApp.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        private List<Way> arrivalWays { get; set; } 
-        public List<Way> ArrivalWays
-        {
-            get { return arrivalWays; }
-            set
-            {
-                arrivalWays = value;
-                NotifyPropertyChanged("ArrivalWays");
-            }
-        }
+        
 
 
         //methods for open/close windows
@@ -180,17 +234,31 @@ namespace airlineApp.ViewModel
             RegisterWindow registerWindow = new RegisterWindow();
             SetWindowPosition(registerWindow);
         }
+        private User user;
+        //private void OpenMainWndMethod(User user)
+        //{
+        //    this.user = user;
+        //    MainWindow mainWindow = new MainWindow(user);
+        //    SetWindowPosition(mainWindow);
+        //}
         private void OpenMainWndMethod()
         {
             MainWindow mainWindow = new MainWindow();
             SetWindowPosition(mainWindow);
         }
-        private void OpenUserWndMethod()
+        //private void OpenUserWndMethod(User user)
+        //{
+        //    this.user = user;
+        //    UserWindow userWindow = new UserWindow(user);
+        //    SetWindowPosition(userWindow);
+        //}
+        private void OpenUserWndMethod(User user)
         {
-            
-            UserWindow userWindow = new UserWindow();
-
-            SetWindowPosition(userWindow);
+            //MessageBox.Show($"{user.Email}"); //тут тоже классно я проверила всё показывает правильно
+            var UserWindowViewModel = new UserWindowViewModel(user);
+            var userWindow = new UserWindow { DataContext = UserWindowViewModel};
+            userWindow.Show();
+            //SetWindowPosition(userWindow);
         }
 
         private void CloseWndMethod(object obj)
@@ -350,6 +418,7 @@ namespace airlineApp.ViewModel
                             
                             resultStr = DataWorker.CreateCompany(CompanyName, CompanyLogo);
                             UpdateAllDataView();
+                            UpdateCompaniesList(AllCompanies);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
                             window.Close();
@@ -369,9 +438,14 @@ namespace airlineApp.ViewModel
                     {
                         Window window = obj as Window;
                         string resultStr = "";
-                        if (FlightWay == null)
+                        if (FlightWayDepartureString == null)
                         {
-                            string str = "Пожалуйста, выберите маршрут для данного рейса.";
+                            string str = "Пожалуйста, выберите пункт отправления для данного рейса.";
+                            ShowMessageToUser(str);
+                        }
+                        if (FlightWayArrivalString == null)
+                        {
+                            string str = "Пожалуйста, выберите пункт прибытия  для данного рейса.";
                             ShowMessageToUser(str);
                         }
                         if (FlightCompany == null)
@@ -392,8 +466,10 @@ namespace airlineApp.ViewModel
                         }
                         else
                         {
+                            
                             resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPlane, FlightPrice, FlightPlane.MaxOfPlaces);
                             UpdateAllDataView();
+                            UpdateFlightsList(AllFlights);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
                            // window.Close();
@@ -414,6 +490,7 @@ namespace airlineApp.ViewModel
         {
             UpdateCompanies();
             UpdateFlights();
+           
         }
 
  
@@ -421,12 +498,17 @@ namespace airlineApp.ViewModel
         private void UpdateFlights()
         {
             AllFlights = DataWorker.GetAllFlights();
-            ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
-            ViewAllFlightsPage.AllFlightsView.Items.Clear();
-            ViewAllFlightsPage.AllFlightsView.ItemsSource = AllFlights;
-            ViewAllFlightsPage.AllFlightsView.Items.Refresh();
+            //UpdateFlightsList(AllFlights);
             //это грязно
             //придумать что-нибудь
+        }
+        
+        private void UpdateFlightsList(List<Flight> list)
+        {
+            ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
+            ViewAllFlightsPage.AllFlightsView.Items.Clear();
+            ViewAllFlightsPage.AllFlightsView.ItemsSource = list;
+            ViewAllFlightsPage.AllFlightsView.Items.Refresh();
         }
         private void UpdateCompanies()
         {
@@ -434,11 +516,14 @@ namespace airlineApp.ViewModel
             AllCompanies = DataWorker.GetAllCompanies();
             //вынести ручное обновление в отдельный метод
             //так же сделать и у апдейтфлайс
+           
+        }
+        private void UpdateCompaniesList(List<Company> list)
+        {
             ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
             ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
-            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = AllCompanies;
+            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = list;
             ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
-
         }
         #endregion
 
@@ -457,6 +542,8 @@ namespace airlineApp.ViewModel
                     {
                         resultStr = DataWorker.DeleteFlight(SelectedFlight);
                         UpdateAllDataView();
+                        UpdateFlightsList(AllFlights);
+                        
                     }
                     SetNullValuesToProperties();
                     ShowMessageToUser(resultStr);
@@ -478,6 +565,7 @@ namespace airlineApp.ViewModel
                     {
                         resultStr = DataWorker.DeleteCompany(SelectedCompany);
                         UpdateAllDataView();
+                        UpdateCompaniesList(AllCompanies);
                     }
                     SetNullValuesToProperties();
                     ShowMessageToUser(resultStr);
@@ -547,6 +635,8 @@ namespace airlineApp.ViewModel
                                 resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, FlightPrice, FlightPlane.MaxOfPlaces);
 
                                 UpdateAllDataView();
+                                UpdateFlightsList(AllFlights);
+                               
                                 SetNullValuesToProperties();
                                 ShowMessageToUser(resultStr);
                                 window.Close();
@@ -576,6 +666,7 @@ namespace airlineApp.ViewModel
                         resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, CompanyLogo);
 
                         UpdateAllDataView();
+                        UpdateCompaniesList(AllCompanies);
                         SetNullValuesToProperties();
                         ShowMessageToUser(resultStr);
                         window.Close();
@@ -629,15 +720,23 @@ namespace airlineApp.ViewModel
 
                             if (IsAdmin(authUser) == true)
                             {
+                                //OpenMainWndMethod(authUser);
                                 OpenMainWndMethod();
-                                (window as Window).Close();
+                                //(window as Window).Hide(); 
 
                             }
                             else 
                             {
-                                OpenUserWndMethod();
-                                
-                                (window as Window).Close();
+                                if (authUser != null)
+                                {
+                                    OpenUserWndMethod(authUser); //тут всё классно всё передается
+                                }
+                                else 
+                                {
+                                    MessageBox.Show("authUser is null");
+                                }
+
+                                //(window as Window).Hide();
                             }
                         }
                     }
@@ -705,12 +804,16 @@ namespace airlineApp.ViewModel
             {
                 string isAdmin = "admin";
                 bool i = false;
-                user = db.Users.Where(u=> u.IsAdmin.ToLower() == isAdmin ).FirstOrDefault();
-                if (user != null) 
+                //MessageBox.Show();
+                //user = db.Users.Where(u=> u.IsAdmin.ToLower() == isAdmin).FirstOrDefault();
+                //if (user != null) 
+                //{
+                //    i = true;
+                //}
+                if (user.IsAdmin.ToString() == isAdmin) 
                 {
                     i = true;
                 }
-                
                 return i;
             }
         }
@@ -741,16 +844,21 @@ namespace airlineApp.ViewModel
             CompanyName = null;
             CompanyLogo = null;
             FlightWay = null;
+            FlightWayDepartureString = null;
+            FlightWayArrivalString = null;
             FlightCompany = null;
             FlightPrice = 0;
             FlightPlane = null;
+        }
+        private void SetNullValuesToUserProperties()
+        {
+
             EmailText = null;
             PasswordText = null;
             LoginPassword = null;
             LoginEmail = null;
             ConfirmPasswordText = null;
         }
-
 
         #region search bar and sorting
         private string searchText;
@@ -768,7 +876,7 @@ namespace airlineApp.ViewModel
                 {
                     ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
                     ViewAllFlightsPage.AllFlightsView.Items.Clear();
-                    var result = db.Flights.Select(f => f).Where(f => f.Company.Name.Contains(value) || f.Way.Departure== value || f.Way.Arrival == value).ToList();
+                    var result = db.Flights.Select(f => f).Where(f => f.Company.Name.Contains(value) || f.Way.Departure.Contains(value) || f.Way.Arrival.Contains(value)).ToList();
                     if (result != null)
                     {
                         ViewAllFlightsPage.AllFlightsView.ItemsSource = result;
@@ -870,8 +978,6 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-
-        #endregion
-       
-    }
+        #endregion    
+   }
 }

@@ -14,13 +14,15 @@ namespace airlineApp.ViewModel
 {
     public class UserWindowViewModel : DataManageViewModel
     {
-
+        private readonly User user;
         public ICommand UpdateViewCommand { get; set; }
 
-        public UserWindowViewModel()
+        public UserWindowViewModel(User user)
         {
+            this.user = user;
+           // MessageBox.Show($"{user.Email}");//выводит месседж показывает данные а потом пишет что юзер нул
             UpdateViewCommand = new UpdateViewCommand(this);
-            currentPage = new ChooseTicketViewModel(this, null);
+            currentPage = new ChooseTicketViewModel(this);
         }
         private DataManageViewModel currentPage; //= new ChooseTicketViewModel();
         public DataManageViewModel CurrentPage

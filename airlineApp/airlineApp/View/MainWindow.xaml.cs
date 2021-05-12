@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using airlineApp.Model;
 using airlineApp.ViewModel;
 
 namespace airlineApp.View
@@ -9,15 +10,17 @@ namespace airlineApp.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public static ListView AllFlightsView;
-        //public static ListView AllCompaniesView;
-
         public MainWindow()
         {
             InitializeComponent();
-            
-            //AllFlightsView = ViewAllFlights;
             DataContext = new MainWindowViewModel();
         }
+        //private User user; 
+        //public MainWindow(User user)
+        //{
+        //    this.user = user;
+        //    InitializeComponent();
+        //    DataContext = new MainWindowViewModel(user);
+        //}
     }
 }

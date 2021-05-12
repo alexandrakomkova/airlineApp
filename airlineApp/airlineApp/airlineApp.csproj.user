@@ -52,6 +52,9 @@
     <Compile Update="View\RegisterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\UserViewTickets.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\UserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,6 +118,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UserViewTickets.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\UserWindow.xaml">

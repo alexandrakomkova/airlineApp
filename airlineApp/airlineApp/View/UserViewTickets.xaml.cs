@@ -12,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using airlineApp.Model;
-using airlineApp.ViewModel;
 
-namespace airlineApp.CustomControls
+namespace airlineApp.View
 {
     /// <summary>
-    /// Логика взаимодействия для SearchTicket.xaml
+    /// Логика взаимодействия для UserViewTickets.xaml
     /// </summary>
-    public partial class SearchTicket : UserControl
+    public partial class UserViewTickets : UserControl
     {
-        private User user;
-
-        public SearchTicket()
+        public UserViewTickets()
         {
             InitializeComponent();
-            DataContext = new UserWindowViewModel(user);
         }
     }
 }
