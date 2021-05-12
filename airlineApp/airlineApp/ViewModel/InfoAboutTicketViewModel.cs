@@ -31,19 +31,22 @@ namespace airlineApp.ViewModel
         public InfoAboutTicketViewModel(UserWindowViewModel parentVM, string passSur, string passName, string passMiddle, string passPassport, Flight f, string passSeat, User user)
         {
             this.user = user;
-            MessageBox.Show($"{user.Email}");
+            //MessageBox.Show($"{user.Email}");
             passengerFullName = passSur + " "+ passName + " "+ passMiddle;
             //NotifyPropertyChanged("PassengerFullName");
             passengerPassport = passPassport;
             passengerSeat = passSeat;
             userSelectedFlight = f;
-            
+            this.parentVM = parentVM;
+            UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
         private void OnUpdateViewCommandExecuted(object p)
         {
             //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
 
-            parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight);
+            parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
+            //вот тут добавить создание билета
+            //и отображение его в листвью
         }
         private string passengerFullName;
         public string PassengerFullName
@@ -100,18 +103,6 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-        private Command bookTicketCommand;
-        public Command BookTicketCommand
-        {
-            get
-            {
-                return bookTicketCommand ?? new Command(
-                    obj =>
-                    {
-                        
-                    }
-                    );
-            }
-        }
+       
     }
 }

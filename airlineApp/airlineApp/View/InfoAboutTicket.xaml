@@ -129,7 +129,7 @@
                 Width="80" Height="40" 
                 Content="Next" 
                 Margin="0,0,20,20" 
-                Command="{Binding BookTicketCommand}" 
+                Command="{Binding UpdateViewCommand}" 
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 />

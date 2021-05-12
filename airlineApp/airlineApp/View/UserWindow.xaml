@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:airlineApp.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="UserWindow"  MinHeight="600" MinWidth="1024"
+        Title="UserWindow"  MinHeight="700" MinWidth="1024"
         Height="600" Width="1024"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
