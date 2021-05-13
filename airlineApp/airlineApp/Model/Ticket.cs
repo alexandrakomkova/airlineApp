@@ -18,7 +18,25 @@ namespace airlineApp.Model
         public string Passport { get; set; }
         public string Fullname { get; set; }
         public int Seat { get; set; }
-
-        
+        [NotMapped]
+        public Flight ticketFlight
+        {
+            get { return DataWorker.GetFlightById(FlightId); }
+        }
+        [NotMapped]
+        public Company ticketCompany
+        {
+            get { return DataWorker.GetCompanyById(ticketFlight.CompanyId); }
+        }
+        [NotMapped]
+        public Way ticketWay
+        {
+            get { return DataWorker.GetWayById(ticketFlight.WayId); }
+        }
+        [NotMapped]
+        public Plane ticketPlane
+        {
+            get { return DataWorker.GetPlaneById(ticketFlight.PlaneId); }
+        }
     }
 }

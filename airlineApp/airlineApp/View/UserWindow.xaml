@@ -23,8 +23,7 @@
             <ColumnDefinition Width="15"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -64,6 +63,32 @@
                         Foreground="WhiteSmoke"
                         Margin="0,0,0,0"/>
             </StackPanel>
+            <Button  Margin="10,0,0,0"
+                        Width="30" Height="30"  
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="WhiteSmoke" 
+                        Padding="1"
+                        Command="{Binding SearchUserTicketCommand}" Cursor="Hand"
+                       >
+                <materialDesign:PackIcon 
+                        Kind="Search" 
+                        Width="30" Height="30"
+                />
+            </Button>
+            <Button  Margin="10,0,0,0"
+                        Width="30" Height="30"  
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="WhiteSmoke" 
+                        Padding="1"
+                        Command="{Binding ViewUserTicketCommand}" Cursor="Hand"
+                       >
+                <materialDesign:PackIcon 
+                        Kind="Ticket" 
+                        Width="30" Height="30"
+                />
+            </Button>
             <Button Width="25" Height="25"  
                         Background="{x:Null}"
                         BorderBrush="{x:Null}" 
@@ -103,13 +128,14 @@
 
         <StackPanel Grid.Row="1"
                     Grid.Column="1"
-                    HorizontalAlignment="Stretch"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center">
-            <ProgressBar
+            
+            <!--<ProgressBar
                 Value="5"
                 Height="6" 
                 Foreground="WhiteSmoke"
-                Background="#FF673AB7"/>
+                Background="#FF673AB7"/>-->
         </StackPanel>
 
 

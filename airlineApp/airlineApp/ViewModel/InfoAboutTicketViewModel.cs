@@ -44,17 +44,11 @@ namespace airlineApp.ViewModel
         private void OnUpdateViewCommandExecuted(object p)
         {
             //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
-
-            parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
             string resultStr = "";
             resultStr = DataWorker.CreateTicket(PassengerFullName, PassengerPassport, Convert.ToInt32(passengerSeat), userSelectedFlight, user);
             ShowMessageToUser(resultStr);
-            UpdateTickets();
-            UpdateTicketsList(AllUserTickets);
+            parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
             
-
-            //вот тут добавить создание билета
-            //и отображение его в листвью
         }
         
         private string passengerFullName;
@@ -112,27 +106,8 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-        private List<Ticket> allUserTickets { get; set; }
-        public List<Ticket> AllUserTickets
-        {
-            get { return allUserTickets; }
-            set
-            {
-                allUserTickets = value;
-                NotifyPropertyChanged("AllUserTickets");
-            }
-        }
-        private void UpdateTickets()
-        {
-            AllUserTickets = DataWorker.GetAllUserTickets(user);
-        }
-        private void UpdateTicketsList(List<Ticket> list)
-        {
-            UserViewTickets.AllUserTicketsView.ItemsSource = null;
-            UserViewTickets.AllUserTicketsView.Items.Clear();
-            UserViewTickets.AllUserTicketsView.ItemsSource = list;
-            UserViewTickets.AllUserTicketsView.Items.Refresh();
-        }
+        
+        
 
     }
 }

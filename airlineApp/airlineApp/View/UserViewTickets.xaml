@@ -20,42 +20,42 @@
                             Header="Id" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=Flight.flightCompany.Name}"
+                            DisplayMemberBinding="{Binding Path=ticketCompany.Name}"
                             Header="Company" />
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            DisplayMemberBinding="{Binding Path=ticketFlight.Id}"
                             Header="Flight Id" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            DisplayMemberBinding="{Binding Path=Fullname}"
                             Header="Fullname" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            DisplayMemberBinding="{Binding Path=ticketWay.Departure}"
                             Header="Departure" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
+                            DisplayMemberBinding="{Binding Path=ticketWay.DepartureTime}"
                             Header="Departure Time" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            DisplayMemberBinding="{Binding Path=ticketWay.Arrival}"
                             Header="Arrival" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
+                            DisplayMemberBinding="{Binding Path=ticketWay.ArrivalTime}"
                             Header="Arrival Time" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightPlane.Name}"
+                            DisplayMemberBinding="{Binding Path=ticketPlane.Name}"
                             Header="Plane" 
                          Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=FreePlaces}"
+                            DisplayMemberBinding="{Binding Path=Seat}"
                             Header="Seat" 
                          Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=Price}"
+                            DisplayMemberBinding="{Binding Path=ticketFlight.Price}"
                             Header="Price" 
                          Width="auto"/>
 

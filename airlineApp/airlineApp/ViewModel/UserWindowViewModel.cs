@@ -166,6 +166,34 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+        private Command viewUserTicketCommand;
+        public Command ViewUserTicketCommand
+        {
+            get
+            {
+                return viewUserTicketCommand ?? new Command(
+                    obj =>
+                    {
+                        CurrentPage = new UserViewTicketViewModel(this, null, user);
+                        //MessageBox.Show("gbcz");
+                    }
+                    );
+            }
+        }
+        private Command searchUserTicketCommand;
+        public Command SearchUserTicketCommand
+        {
+            get
+            {
+                return searchUserTicketCommand ?? new Command(
+                    obj =>
+                    {
+                        CurrentPage = new ChooseTicketViewModel(this, user, null);
+                        //MessageBox.Show("gbcz");
+                    }
+                    );
+            }
+        }
         private void ShowMessageToUser(string text)
         {
             Message message = new Message(text);
