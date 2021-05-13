@@ -34,7 +34,7 @@ namespace airlineApp.Model
                 return result;
             }
         }
-        public static string CreateTicket(string fullname, string passport, Flight flight, User user)
+        public static string CreateTicket(string fullname, string passport, int seat, Flight flight, User user)
         {
             string result = "Что-то пошло не так..";
 
@@ -45,6 +45,7 @@ namespace airlineApp.Model
                 { 
                     Fullname = fullname, 
                     Passport = passport,
+                    Seat = seat,
                     IsPaid = false,
                     FlightId = flight.Id,
                     UserId = user.Id
@@ -174,6 +175,24 @@ namespace airlineApp.Model
                 
             }
             return result;
+        }
+        public static List<Ticket> GetAllUserTickets(User user)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Tickets.Where(t=> t.UserId == user.Id).ToList();
+
+                return result;
+            }
+        }
+        public static List<Ticket> GetAllTickets()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Tickets.ToList();
+
+                return result;
+            }
         }
         public static List<Flight> GetAllFlights()
         {

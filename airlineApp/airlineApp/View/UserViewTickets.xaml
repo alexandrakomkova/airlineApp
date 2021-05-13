@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:airlineApp.View"
+             xmlns:local="clr-namespace:airlineApp.View" xmlns:viewmodel="clr-namespace:airlineApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:InfoAboutTicketViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="700">
     <Grid Background="WhiteSmoke">
         <ListView
-                x:Name="ViewUserTickets"
+                x:Name="ViewAllUserTickets"
                 ItemsSource="{Binding AllUserTickets}"
                 Foreground="black"
                 HorizontalContentAlignment="Center">
@@ -20,7 +20,7 @@
                             Header="Id" 
                             Width="auto"/>
                     <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightCompany.Name}"
+                            DisplayMemberBinding="{Binding Path=Flight.flightCompany.Name}"
                             Header="Company" />
                     <GridViewColumn
                             DisplayMemberBinding="{Binding Path=flightWay.Departure}"

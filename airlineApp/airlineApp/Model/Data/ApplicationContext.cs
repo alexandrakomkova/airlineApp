@@ -4,7 +4,7 @@ namespace airlineApp.Model.Data
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<Account> Accounts { get; set; }
+       
         public DbSet<Company> Companies { get; set; }
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Ticket> Tickets { get; set; }

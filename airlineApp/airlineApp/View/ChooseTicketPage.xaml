@@ -106,7 +106,7 @@
                     Width="135"
                     materialDesign:HintAssist.Hint="Departure date"
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                    Foreground="Gray"
+                    Foreground="LightGray"
                     BorderBrush="WhiteSmoke"
                     SelectedDate="{Binding SelectedDepartureDate}"
                     Margin="0,0,20,0"

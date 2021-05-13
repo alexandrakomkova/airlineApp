@@ -19,7 +19,7 @@ namespace airlineApp.ViewModel
         private Flight userSelectedFlight;
         private User user;
         private UserWindowViewModel parentVM;
-
+        public DateTime ThisDate { get; set; } //= DateTime.Now;
         public Flight UserSelectedFlight
         {
             get { return userSelectedFlight; }
@@ -124,7 +124,7 @@ namespace airlineApp.ViewModel
             this.user = user;
             //MessageBox.Show($"{this.user.Email}");
             userSelectedFlight = f;
-            
+            ThisDate = DateTime.Now;
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
 

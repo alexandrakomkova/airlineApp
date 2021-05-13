@@ -32,12 +32,12 @@ namespace airlineApp.ViewModel
             {
                 currentPage = value;
                 NotifyPropertyChanged(nameof(CurrentPage));
-                ThisDate = DateTime.Now;
+                
             }
         }
         public static Way UserFlightDeparture { get; set; }
         public static Way UserFlightArrival { get; set; }
-        public DateTime ThisDate { get; set; } = DateTime.Now;
+       
         public static DateTime SelectedBackDate { get; set; }
         public static DateTime SelectedDepartureDate { get; set; }
         
@@ -77,20 +77,20 @@ namespace airlineApp.ViewModel
             }
         }
 
-        public static List<Flight> UserSearch(string d, string a, DateTime dt)
-        {
+        //public static List<Flight> UserSearch(string d, string a, DateTime dt)
+        //{
 
-            using (ApplicationContext db = new ApplicationContext())
-            {
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
 
-                var result = db.Flights.Where(f => f.Way.Departure == d
-                && f.Way.Arrival == a
-                && f.Way.DepartureTime.Date == dt.Date).ToList();
-                return result;
+        //        var result = db.Flights.Where(f => f.Way.Departure == d
+        //        && f.Way.Arrival == a
+        //        && f.Way.DepartureTime.Date == dt.Date).ToList();
+        //        return result;
 
-            }
+        //    }
 
-        }
+        //}
         public static List<Flight> UserBackWaySearch(string d, string a, DateTime dt)
         {
 
@@ -103,29 +103,29 @@ namespace airlineApp.ViewModel
             }
 
         }
-        private Command userSearchCommand;
-        public Command UserSearchCommand
-        {
-            get
-            {
-                return userSearchCommand ?? new Command(
-                    obj =>
-                    {
-                        MessageBox.Show("123");
-                        //UpdateUserFlights();
-                        //if (IsBackEnable == true)
-                        //{
-                        //    UserListBackWay = UserBackWaySearch(FlightWayDepartureString, FlightWayArrivalString, SelectedBackDate);
-                        //    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
-                        //    ChooseTicketPage.UserBackFlightsView.Items.Clear();
-                        //    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
-                        //    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
-                        //}
+        //private Command userSearchCommand;
+        //public Command UserSearchCommand
+        //{
+        //    get
+        //    {
+        //        return userSearchCommand ?? new Command(
+        //            obj =>
+        //            {
+        //                MessageBox.Show("123");
+        //                //UpdateUserFlights();
+        //                //if (IsBackEnable == true)
+        //                //{
+        //                //    UserListBackWay = UserBackWaySearch(FlightWayDepartureString, FlightWayArrivalString, SelectedBackDate);
+        //                //    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
+        //                //    ChooseTicketPage.UserBackFlightsView.Items.Clear();
+        //                //    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
+        //                //    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
+        //                //}
 
-                    }
-                    );
-            }
-        }
+        //            }
+        //            );
+        //    }
+        //}
         private Command switchDapartureArrivalCommand;
         public Command SwitchDapartureArrivalCommand
         {

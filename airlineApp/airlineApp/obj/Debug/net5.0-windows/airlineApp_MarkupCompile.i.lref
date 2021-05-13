@@ -1,23 +1,4 @@
-﻿D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.i.cs
-FD:\uni\ооп\coursework\airlineApp\airlineApp\App.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\CustomControls\AnalogClock.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\CustomControls\BindablePasswordBox.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\CustomControls\SearchTicket.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\AddCompanyWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\AddFlightWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\ChooseTicketPage.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\EditCompanyWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\EditFlightWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\EnterUserInfo.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\FindTicketPage.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\InfoAboutReturnTickets.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\InfoAboutTicket.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\LoginRegisterWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\MainWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\Message.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\RegisterWindow.xaml;;
+﻿
+
 FD:\uni\ооп\coursework\airlineApp\airlineApp\View\UserViewTickets.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\UserWindow.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\ViewAllCompaniesPage.xaml;;
-FD:\uni\ооп\coursework\airlineApp\airlineApp\View\ViewAllFlightsPage.xaml;;
 

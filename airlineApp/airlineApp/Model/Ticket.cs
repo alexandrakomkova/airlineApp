@@ -17,6 +17,7 @@ namespace airlineApp.Model
         public bool IsPaid { get; set; }
         public string Passport { get; set; }
         public string Fullname { get; set; }
+        public int Seat { get; set; }
 
         
     }

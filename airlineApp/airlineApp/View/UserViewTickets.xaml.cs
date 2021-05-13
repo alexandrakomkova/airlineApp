@@ -20,9 +20,11 @@ namespace airlineApp.View
     /// </summary>
     public partial class UserViewTickets : UserControl
     {
+        public static ListView AllUserTicketsView;
         public UserViewTickets()
         {
             InitializeComponent();
+            AllUserTicketsView = ViewAllUserTickets;
         }
     }
 }

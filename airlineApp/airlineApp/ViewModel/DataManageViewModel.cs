@@ -836,7 +836,7 @@ namespace airlineApp.ViewModel
                 return result;
             }
         }
-        private void ShowMessageToUser(string text)
+        protected void ShowMessageToUser(string text)
         {
             Message message = new Message(text);
             SetWindowPosition(message);
