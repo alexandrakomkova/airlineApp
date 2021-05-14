@@ -109,8 +109,9 @@
 
             <StackPanel Grid.Row="1"
                         Margin="0,30,0,0">
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL FLIGHTS" Margin="0,0,0,0" Command="{Binding UpdateViewCommand }" CommandParameter="Flight"/>
-                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL COMPANIES" Margin="0,10,0,0" Command="{Binding UpdateViewCommand}" CommandParameter="Company"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL FLIGHTS" Margin="0,0,0,0" Command="{Binding UpdateViewCommand }" CommandParameter="Flight" ToolTip="Посмотреть все рейсы"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL COMPANIES" Margin="0,10,0,0" Command="{Binding UpdateViewCommand}" CommandParameter="Company" ToolTip="Посмотреть все компании"/>
+                <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="VIEW ALL TICKETS" Margin="0,10,0,0" Command="{Binding UpdateViewCommand}" CommandParameter="Ticket" ToolTip="Посмотреть все билеты"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="ADD COMPANY" Margin="0,10,0,0" Command="{Binding OpenAddCompanyWndCommand}"/>
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
                 

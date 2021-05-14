@@ -13,20 +13,20 @@ namespace airlineApp.ViewModel
 {
     public class MainWindowViewModel : DataManageViewModel
     {
-        private readonly User user;
         public ICommand UpdateViewCommand { get; set; }
+       // public ICommand ViewTicketsCommand { get; set; }
 
         public MainWindowViewModel()
         {
-            
-            //MessageBox.Show($"{user.Email}");
             UpdateViewCommand = new UpdateViewCommand(this);
+            //ViewTicketsCommand = new Command(OnUpdateViewCommandExecuted);
+            
         }
-        //private void OnUpdateViewCommandExecuted(object p)
-        //{
-        //    //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
-        //    currentList = new ViewAllFlightsPageViewModel(this);
-        //}
+        private void OnUpdateViewCommandExecuted(object p)
+        {   
+           CurrentList = new ViewAllTicketsPageViewModel();
+        }
+        
         private DataManageViewModel currentList = new ViewAllFlightsPageViewModel();
         public DataManageViewModel CurrentList
         {
@@ -38,7 +38,7 @@ namespace airlineApp.ViewModel
 
             }
         }
-       
+
         public void UpdateCompanies()
         {
 
@@ -55,9 +55,14 @@ namespace airlineApp.ViewModel
             //ViewAllFlightsPage.AllFlightsView.Items.Clear();
             //ViewAllFlightsPage.AllFlightsView.ItemsSource = AllFlights;
             //ViewAllFlightsPage.AllFlightsView.Items.Refresh();
-          
+
         }
-        
+        public void UpdateTickets()
+        {
+
+            AllTickets = DataWorker.GetAllTickets();
+        }
+
 
 
     }

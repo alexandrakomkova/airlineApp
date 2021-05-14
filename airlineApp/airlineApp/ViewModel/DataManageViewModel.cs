@@ -25,7 +25,9 @@ namespace airlineApp.ViewModel
         private List<Plane> allPlanes = DataWorker.GetAllPlanes();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<Way> allWays = DataWorker.GetAllWays();
+        private List<Ticket> allTickets = DataWorker.GetAllTickets();
         private List<string> allDeparturesString = DataWorker.GetAllDepartures();
+        private List<Flight> allFlights = DataWorker.GetAllFlights();
         //private List<List<Way>> allWaysGr = DataWorker.GetAllWaysGr();
         public List<string> AllDeparturesString
         {
@@ -36,7 +38,15 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllDeparturesString");
             }
         }
-        private List<Flight> allFlights = DataWorker.GetAllFlights();
+        public List<Ticket> AllTickets
+        {
+            get { return allTickets; }
+            set
+            {
+                allTickets = value;
+                NotifyPropertyChanged("AllTickets");
+            }
+        }
         public List<Flight> AllFlights
         {
             get { return allFlights; }
@@ -514,11 +524,7 @@ namespace airlineApp.ViewModel
         }
         private void UpdateCompanies()
         {
-
-            AllCompanies = DataWorker.GetAllCompanies();
-            //вынести ручное обновление в отдельный метод
-            //так же сделать и у апдейтфлайс
-           
+            AllCompanies = DataWorker.GetAllCompanies();          
         }
         private void UpdateCompaniesList(List<Company> list)
         {
@@ -806,12 +812,6 @@ namespace airlineApp.ViewModel
             {
                 string isAdmin = "admin";
                 bool i = false;
-                //MessageBox.Show();
-                //user = db.Users.Where(u=> u.IsAdmin.ToLower() == isAdmin).FirstOrDefault();
-                //if (user != null) 
-                //{
-                //    i = true;
-                //}
                 if (user.IsAdmin.ToString() == isAdmin) 
                 {
                     i = true;

@@ -64,6 +64,9 @@
     <Compile Update="View\ViewAllFlightsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\ViewAllTicketsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CustomControls\AnalogClock.xaml">
@@ -130,6 +133,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ViewAllFlightsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ViewAllTicketsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

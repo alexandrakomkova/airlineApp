@@ -206,24 +206,7 @@ namespace airlineApp.ViewModel
             window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             window.ShowDialog();
         }
-        //private void UpdateUserFlights()
-        //{ //возможно надо будет в другой вьюмодел
-        //    UserListOneWay = UserSearch(FlightWayDepartureString, FlightWayArrivalString, SelectedDepartureDate);
-        //    if (UserListOneWay != null)
-        //    {
-        //        ChooseTicketPage.UserFlightsView.ItemsSource = null;
-        //        ChooseTicketPage.UserFlightsView.Items.Clear();
-        //        ChooseTicketPage.UserFlightsView.ItemsSource = UserListOneWay;
-        //        ChooseTicketPage.UserFlightsView.Items.Refresh();
-        //    }
-        //    else 
-        //    {
-        //        MessageBox.Show("list is null");
-        //    }
-
-        //    //это грязно
-        //    //придумать что-нибудь
-        //}
+        
 
         
     }

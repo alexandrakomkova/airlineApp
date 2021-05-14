@@ -27,16 +27,15 @@ namespace airlineApp.ViewModel
             using (ApplicationContext db = new ApplicationContext())
             {
                 var result = db.Flights.Where(p => p.Id == f.Id).FirstOrDefault();
-                var except = db.Tickets.Where(t => t.ticketFlight.Id == f.Id).ToList();
-                for (int i = 1; i < result.FreePlaces+1; i++)
+                var except = db.Tickets.Where(t => t.FlightId == f.Id).Select(t => t.Seat).ToList();
+                for (int i = 1; i < result.FreePlaces + 1; i++)
                 {
-                    for (int j = 1; j < except.Count; j++)
-                    {
-                        //доделать
-                        places.Add(i.ToString());
-                    }
+                    places.Add(i.ToString());
                 }
-                
+                for (int j = 0; j < except.Count; j++)
+                {
+                    places.Remove(except[j].ToString());
+                }
             }
             PlacesList = places;
             NotifyPropertyChanged("PlacesList");

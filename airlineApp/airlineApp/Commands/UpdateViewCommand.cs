@@ -14,8 +14,8 @@ namespace airlineApp.Commands
     {
         private MainWindowViewModel viewModel;
         private UserWindowViewModel userViewModel;
-        private DataManageViewModel model;
-        private List<string> list;
+        //private DataManageViewModel model;
+        //private List<string> list;
         private Flight f;
         private User user;
         private string str;
@@ -25,22 +25,22 @@ namespace airlineApp.Commands
         {
             this.viewModel = viewModel;
         }
-        public UpdateViewCommand(UserWindowViewModel userViewModel, DataManageViewModel model)
-        {
-            this.userViewModel = userViewModel;
-            this.model = model;
-        }
+        //public UpdateViewCommand(UserWindowViewModel userViewModel, DataManageViewModel model)
+        //{
+        //    this.userViewModel = userViewModel;
+        //    this.model = model;
+        //}
         public UpdateViewCommand(UserWindowViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
             
         }
-        public UpdateViewCommand(UserWindowViewModel userViewModel, List<string> list)
-        {
-            this.userViewModel = userViewModel;
-            this.list = list;
+        //public UpdateViewCommand(UserWindowViewModel userViewModel, List<string> list)
+        //{
+        //    this.userViewModel = userViewModel;
+        //    this.list = list;
 
-        }
+        //}
         public UpdateViewCommand(UserWindowViewModel userViewModel, Flight f)
         {
             this.userViewModel = userViewModel;
@@ -75,6 +75,12 @@ namespace airlineApp.Commands
 
         public void Execute(object parameter)
         {
+            if (parameter.ToString() == "Ticket")
+            {
+                viewModel.UpdateTickets();
+                viewModel.CurrentList = new ViewAllTicketsPageViewModel();
+
+            }
             if (parameter.ToString() == "Flight")
             {
                 viewModel.UpdateFlights();

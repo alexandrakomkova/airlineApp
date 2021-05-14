@@ -29,6 +29,9 @@
             <DataTemplate DataType="{x:Type vm:ViewAllCompaniesPageViewModel}">
                 <views:ViewAllCompaniesPage/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ViewAllTicketsPageViewModel}">
+                <views:ViewAllTicketsPage/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type vm:GetPlaceViewModel}">
                 <views:GetPlace/>
             </DataTemplate>

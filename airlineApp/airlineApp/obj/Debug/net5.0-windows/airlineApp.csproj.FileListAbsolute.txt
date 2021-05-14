@@ -181,3 +181,5 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Inf
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutTicket.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserViewTickets.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserViewTickets.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllTicketsPage.g.cs
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllTicketsPage.baml

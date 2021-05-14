@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace airlineApp.ViewModel
 {
-    public class ViewAllFlightsPageViewModel : DataManageViewModel
+    public class ViewAllTicketsPageViewModel : DataManageViewModel
     {
-        
     }
 }
