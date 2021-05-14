@@ -166,7 +166,7 @@
                            Margin="0,0,0,0"
                            Opacity="0.7"
                            HorizontalContentAlignment="Center"
-                             Command="{Binding }"/>
+                             Command="{Binding ForgotPasswordCommand}" Cursor="Hand"/>
                     <Button Name="RegisterLabel" 
                            Content="Don't have an account?"
                            Foreground="WhiteSmoke"

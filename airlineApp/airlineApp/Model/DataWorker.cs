@@ -57,7 +57,7 @@ namespace airlineApp.Model
             }
         }
         //create flight
-        public static string CreateFlight(Way way, Company company, Plane plane, decimal price, int freePlaces)
+        public static string CreateFlight(Way way, Company company, Plane plane, int price, int freePlaces)
         {
             string result = "Авиарейс с такими данными уже есть.";
             using (ApplicationContext db = new ApplicationContext())
@@ -141,7 +141,7 @@ namespace airlineApp.Model
             return result;
         }
         //edit flight
-        public static string EditFlight(Flight oldFlight, Way newWay, Company newCompany, Plane newPlane, decimal newPrice, int newFreePlaces)
+        public static string EditFlight(Flight oldFlight, Way newWay, Company newCompany, Plane newPlane, int newPrice, int newFreePlaces)
         {
             string result = "Авиарейса с такими данными не существует.";
             using (ApplicationContext db = new ApplicationContext())
@@ -159,9 +159,9 @@ namespace airlineApp.Model
                     {
                         flight.PlaneId = newPlane.Id;
                         flight.FreePlaces = diff;
-                        result = "Авиарейс " + flight.Id + "\r"
-                        + flight.Company + "\n"
-                        + flight.Way + "\n"
+                        result = "Авиарейс " + flight.Id + " "
+                        + flight.Company.Name + " "
+                        + flight.Way.Departure + "->"+ flight.Way.Arrival + "\n"
                         + " успешно изменен!";
                     }
                     else

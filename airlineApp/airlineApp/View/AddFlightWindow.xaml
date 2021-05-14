@@ -89,9 +89,22 @@
                   Foreground="black"
                   materialDesign:HintAssist.Hint="Choose a plane">
             </ComboBox>
+            <TextBox
+                x:Name="CommentTextBox"
+                Text="{Binding FlightPrice}"
+                materialDesign:HintAssist.Hint="Price"
+                PreviewTextInput="PreviewTextInputOnlyNumbers"
+                Width="200" Height="25"
+                FontWeight="Light"
+                         FontFamily="helvetica"
+                         FontSize="12"
+                         Foreground="WhiteSmoke"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         BorderThickness="1"
+                         Margin="0,15,0,0" />
 
-
-            <TextBox x:Name="PriceTextBox"
+            <!--<TextBox x:Name="PriceTextBox"
                          FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="12"
@@ -105,8 +118,9 @@
                          Opacity="0.7"
                          Text="{Binding FlightPrice}"
                          Margin="0,15,0,0" 
-                       PreviewTextInput="PreviewTextInputOnlyNumbers" Cursor="IBeam"/>
-            <TextBlock  IsHitTestVisible="False" 
+                       PreviewTextInput="PreviewTextInputOnlyNumbers" Cursor="IBeam"/>-->
+                 
+            <!--<TextBlock  IsHitTestVisible="False" 
                                 Text="Price"
                                Grid.Column="1"
                         Grid.Row="1"
@@ -131,7 +145,7 @@
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
-            </TextBlock>
+            </TextBlock>-->
 
             <Button Style="{DynamicResource InstrumentsButton}" 
                     Width="100" 

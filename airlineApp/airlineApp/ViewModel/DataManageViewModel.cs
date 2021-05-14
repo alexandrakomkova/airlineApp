@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -172,8 +175,8 @@ namespace airlineApp.ViewModel
         // public static Way FlightWay { get; set; }
         public static Company FlightCompany { get; set; }
         public static Plane FlightPlane { get; set; }
-        public static decimal FlightPrice { get; set; }
-        public static int FlightAllPlaces { get; set; }
+        public static string FlightPrice { get; set; }
+        //public static int FlightAllPlaces { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(String propertyName) 
@@ -465,21 +468,21 @@ namespace airlineApp.ViewModel
                             string str = "Пожалуйста, выберите авиакомпанию для данного рейса.";
                             ShowMessageToUser(str);
                         }
-                        if (FlightPrice == 0)
+                        if (FlightPrice ==null)
                         {
-                            string str = "Пожалуйста, укажите макисмальное количество мест на борту саамолета для данного рейса.";
+                            string str = "Пожалуйста, укажите цену за билет для данного рейса.";
                             ShowMessageToUser(str);
-                            SetRedBlockControll(window, "PriceTextBox");
+                            //SetRedBlockControll(window, "PriceTextBox");
                         }
                         if (FlightPlane == null)
                         {
-                            string str = "Пожалуйста, выберите авиакомпанию для данного рейса.";
+                            string str = "Пожалуйста, выберите самолет для данного рейса.";
                             ShowMessageToUser(str);
                         }
                         else
                         {
                             
-                            resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPlane, FlightPrice, FlightPlane.MaxOfPlaces);
+                            resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
                             UpdateAllDataView();
                             UpdateFlightsList(AllFlights);
                             ShowMessageToUser(resultStr);
@@ -624,36 +627,114 @@ namespace airlineApp.ViewModel
 
         #region edit command
         private Command editFlightCommand { get; set; }
-        public Command EditFlight
+        public Command EditFlightCommand
         {
             get
             {
+                //if (FlightWay != null)
+                //{
+                //    resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
+
+                //    UpdateAllDataView();
+                //    UpdateFlightsList(AllFlights);
+
+                //    SetNullValuesToProperties();
+                //    ShowMessageToUser(resultStr);
+                //    window.Close();
+
+                //}
+                //else ShowMessageToUser(noWayStr);
+
                 return editFlightCommand ?? new Command(obj =>
                 {
                     Window window = obj as Window;
-                    string resultStr = "Пожалуйста, выберите рейс для редактирования.";
-                    string noCompanyStr = "Не выбрана новая компания дл авиарейса.";
-                    string noWayStr = "Не выбран новый маршрут для авиарейса.";
-                    if (SelectedFlight != null)
+                    string resultStr = "";
+                    string noSelectedFlightStr = "Пожалуйста, выберите рейс для редактирования.";
+                    string noCompanyStr = "Не выбрана новая компания для авиарейса.";
+                    string noWayDepartureStr = "Не выбран новый пункт отправления для авиарейса.";
+                    string noWayArrivalStr = "Не выбран новый пункт прибытия для авиарейса.";
+                    string noWayStr = "Не выбрана дата отправления для авиарейса.";
+                    string noPlaneStr = "Не выбран новый самолет для авиарейса.";
+                    string noPriceStr = "Пожалуйста, укажите цену за билет для авиарейса.";
+                    
+                    if (FlightCompany != null ||
+                            FlightWayDepartureString != null ||
+                            FlightWayArrivalString != null||
+                            FlightWay != null ||
+                            FlightPlane !=null||
+                            FlightPrice != null || Convert.ToInt32(FlightPrice) != 0
+                            )
                     {
-                        if (FlightCompany != null)
+                        int diff = FlightPlane.MaxOfPlaces - (SelectedFlight.flightPlane.MaxOfPlaces - SelectedFlight.FreePlaces);
+                        if (diff > 0)
                         {
-                            if (FlightWay != null)
-                            {
-                                resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, FlightPrice, FlightPlane.MaxOfPlaces);
+                            resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
 
-                                UpdateAllDataView();
-                                UpdateFlightsList(AllFlights);
-                               
-                                SetNullValuesToProperties();
-                                ShowMessageToUser(resultStr);
-                                window.Close();
-                            }
-                            else ShowMessageToUser(noWayStr);
+                            UpdateAllDataView();
+                            UpdateFlightsList(AllFlights);
+
+                            SetNullValuesToProperties();
+                            ShowMessageToUser(resultStr);
+                            window.Close();
+
+                            resultStr = "Пожалуйста, заполните все поля.";
+                            ShowMessageToUser(resultStr);
                         }
-                        else ShowMessageToUser(noCompanyStr);
+                        else 
+                        {
+                            resultStr = "Количество забронированных билетов превышает места в новом самолете. Выберите самолет побольше.";
+                            ShowMessageToUser(resultStr);
+                        }
+                            
                     }
-                    else ShowMessageToUser(resultStr);
+                    else
+                    {
+                        resultStr = "Пожалуйста, заполните все поля.";
+                        ShowMessageToUser(resultStr);
+                    }
+
+                        //if (FlightCompany != null)
+                        //{
+                        //    if (FlightWayDepartureString != null)
+                        //    {
+                        //        if (FlightWayArrivalString != null)
+                        //        {
+                        //            if (FlightWayArrivalString != null)
+                        //            {
+                        //                if (FlightWay != null)
+                        //                {
+                        //                    if (FlightPlane != null)
+                        //                    {
+                        //                        if (FlightPrice != null || Convert.ToInt32(FlightPrice) == 0)
+                        //                        {
+                        //                            resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
+
+                        //                            UpdateAllDataView();
+                        //                            UpdateFlightsList(AllFlights);
+
+                        //                            SetNullValuesToProperties();
+                        //                            ShowMessageToUser(resultStr);
+                        //                            window.Close();
+
+                        //                        }
+                        //                        else ShowMessageToUser(noPriceStr);
+
+                        //                    }
+                        //                    else ShowMessageToUser(noPlaneStr);
+
+                        //                }
+                        //                else ShowMessageToUser(noWayStr);
+
+                        //            }
+                        //            else ShowMessageToUser(noWayArrivalStr);
+
+                        //        }
+                        //        else ShowMessageToUser(noWayDepartureStr);
+                        //    }
+                        //    else ShowMessageToUser(noCompanyStr);
+                        //}
+                        //else ShowMessageToUser(noCompanyStr);
+                    
                 }
                     );
             }
@@ -697,6 +778,7 @@ namespace airlineApp.ViewModel
         public string LoginPassword { get; set; }
         private Command login { get; set; }
         private Command register { get; set; }
+        private Command forgotPassword { get; set; }
         public Command LoginCommand
         {
             get
@@ -705,46 +787,41 @@ namespace airlineApp.ViewModel
                 {
                     Window window = obj as Window;
                     string resultStr = "";
-                    if (LoginEmail == null || LoginEmail.Replace(" ", "").Length == 0 
-                    || LoginPassword==null || LoginPassword.Replace(" ", "").Length == 0) 
+                    if (LoginEmail == null || LoginEmail.Replace(" ", "").Length == 0
+                    || LoginPassword == null || LoginPassword.Replace(" ", "").Length == 0)
                     {
                         resultStr = "Пожалуйста, введите email и пароль для входа.";
                         ShowMessageToUser(resultStr);
                     }
-                    User authUser = null;
-                    IPasswordHasher passwordHashed = new PasswordHasher();
-                    
-                    using (ApplicationContext db = new ApplicationContext()) 
+                    else
                     {
-                        authUser = DataWorker.GetUserByEmail(LoginEmail);
-                        PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
-                        if (authUser == null || verificationResult ==PasswordVerificationResult.Failed)
-                        {
-                            resultStr = "Неверный email или пароль.";
-                            ShowMessageToUser(resultStr);
-                        }
-                        else 
-                        {
+                        User authUser = null;
+                        IPasswordHasher passwordHashed = new PasswordHasher();
 
-                            if (IsAdmin(authUser) == true)
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                            authUser = DataWorker.GetUserByEmail(LoginEmail);
+                            PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
+                            if (authUser == null || verificationResult == PasswordVerificationResult.Failed)
                             {
-                                //OpenMainWndMethod(authUser);
-                                OpenMainWndMethod();
-                                //(window as Window).Hide(); 
-
+                                resultStr = "Неверный email или пароль.";
+                                ShowMessageToUser(resultStr);
                             }
-                            else 
+                            else
                             {
-                                if (authUser != null)
-                                {
-                                    OpenUserWndMethod(authUser); //тут всё классно всё передается
-                                }
-                                else 
-                                {
-                                    MessageBox.Show("authUser is null");
-                                }
 
-                                //(window as Window).Hide();
+                                if (IsAdmin(authUser) == true)
+                                {
+                                    //OpenMainWndMethod(authUser);
+                                    OpenMainWndMethod();
+                                    //(window as Window).Hide(); 
+
+                                }
+                                else
+                                {
+                                    OpenUserWndMethod(authUser);
+                                    //(window as Window).Hide();
+                                }
                             }
                         }
                     }
@@ -764,28 +841,23 @@ namespace airlineApp.ViewModel
                    
                     try
                     {
-                        //if (EmailText == null || PasswordText == null || ConfirmPasswordText == null)
-                        //{
-                        //    resultStr = "Пожалуйста, заполните поля для регистрации.";
-                        //    ShowMessageToUser(resultStr);
-                        //}
-                        if (EmailText == null || EmailText.Replace(" ", "").Length == 0)
+                        if (EmailText == null || EmailText.Replace(" ", "").Length == 0
+                        || PasswordText == null || PasswordText.Replace(" ", "").Length == 0
+                        || ConfirmPasswordText == null)
                         {
-                            //SetRedBlockControll(window, "EmailBox");
-                            resultStr = "Пожалуйста, введите email для регистрации.";
+                            resultStr = "Пожалуйста, заполните поля для регистрации.";
                             ShowMessageToUser(resultStr);
                         }
-                        if (PasswordText == null || PasswordText.Replace(" ", "").Length == 0 || PasswordText.Length < 6)
+                        else if (PasswordText.Length < 6)
                         {
                             resultStr = "Пароль должен быть не меньше 6 символов.";
                             // SetRedBlockControll(window, "PasswordBox");
                             ShowMessageToUser(resultStr);
                         }
+                        else
                         if (PasswordText != ConfirmPasswordText)
                         {
                             resultStr = "Пароли не совпадают.";
-                            //SetRedBlockControll(window, "PasswordBox");
-                            //SetRedBlockControll(window, "ConfirmPasswordBox");
                             ShowMessageToUser(resultStr);
                         }
                         else
@@ -796,6 +868,15 @@ namespace airlineApp.ViewModel
                             OpenLoginWndMethod();
                             SetNullValuesToProperties();
                         }
+                        //else
+                        //if (EmailText == null || EmailText.Replace(" ", "").Length == 0)
+                        //{
+                        //    //SetRedBlockControll(window, "EmailBox");
+                        //    resultStr = "Пожалуйста, введите email для регистрации.";
+                        //    ShowMessageToUser(resultStr);
+                        //}
+
+
                     }
                     catch
                     {
@@ -819,7 +900,53 @@ namespace airlineApp.ViewModel
                 return i;
             }
         }
+        public Command ForgotPasswordCommand
+        {
+            get
+            {
+                return forgotPassword ?? new Command(obj =>
+                {
+                    string resultStr = "";
+                    if (LoginEmail != null)
+                    {
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                            var result = db.Users.Select(u => u.Email == LoginEmail).FirstOrDefault();
+                            if (result)
+                            {
+                                resultStr = "Письмо отправлено на email под которым вы зарегистрированы. Никому не сообщайте информацию из письма!";
+                                SendEmailAsync(LoginEmail).GetAwaiter();
+                                ShowMessageToUser(resultStr);
+                            }
+                            else
+                            {
+                            resultStr = "Пользователь с таким Email отсутствует. Необходимо зарегистрироваться.";
+                            ShowMessageToUser(resultStr);
+                            }
 
+                        }
+                    }
+                    else 
+                    {
+                        resultStr = "Пожалуйста, заполните поле Email, чтобы мы могли отправить вам дальнейшие указания.";
+                        ShowMessageToUser(resultStr);
+                    }
+                }
+                    );
+            }
+        }
+        private static async Task SendEmailAsync(string str)
+        {
+            MailAddress from = new MailAddress("airlineapp377@gmail.com", "AirlineApp");
+            MailAddress to = new MailAddress(str); //monmiel@yandex.by
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = "Не показывайте это посторонним!";
+            m.Body = "password";
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential("airlineapp377@gmail.com", "CnEiHvZR2Q");
+            smtp.EnableSsl = true;
+            await smtp.SendMailAsync(m);
+        }
         #endregion
 
         private void SetRedBlockControll(Window wnd, string blockName)
@@ -849,7 +976,7 @@ namespace airlineApp.ViewModel
             FlightWayDepartureString = null;
             FlightWayArrivalString = null;
             FlightCompany = null;
-            FlightPrice = 0;
+            FlightPrice = null;
             FlightPlane = null;
         }
         private void SetNullValuesToUserProperties()

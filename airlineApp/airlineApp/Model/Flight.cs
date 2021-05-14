@@ -16,7 +16,7 @@ namespace airlineApp.Model
         public Company Company { get; set; }
         public int PlaneId { get; set; }
         public Plane Plane { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         public int FreePlaces { get; set; }
         public List<Ticket> Tickets { get; set; }
         [NotMapped]
