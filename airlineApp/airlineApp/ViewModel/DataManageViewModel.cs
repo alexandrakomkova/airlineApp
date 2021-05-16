@@ -104,7 +104,7 @@ namespace airlineApp.ViewModel
         public static Company SelectedCompany { get; set; }
         public static string CompanyName { get; set; }
         // public static string CompanyLogo { get; set; }
-        private string companyLogoPath;
+        private string companyLogoPath = @"../../Styles/no_image.png";
 
         private BitmapImage companyLogo = new BitmapImage();
         public BitmapImage CompanyLogo
@@ -116,6 +116,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("CompanyLogo");
             }
         }
+        
         private List<string> allArrivalsString { get; set; }
         public List<string> AllArrivalsString
         {
@@ -241,6 +242,7 @@ namespace airlineApp.ViewModel
         }
         private void OpenAddCompanyWndMethod()
         {
+
             AddCompanyWindow addCompanyWindow = new AddCompanyWindow();
             SetWindowPosition(addCompanyWindow);
         }
@@ -254,10 +256,12 @@ namespace airlineApp.ViewModel
             {
                 try
                 {
+                    //CompanyLogo = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
                     
-                   // CompanyLogo = ofd.FileName;
-                    CompanyLogo = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
-                    companyLogoPath = ofd.FileName;
+                   
+                   CompanyLogo = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
+                   companyLogoPath = ofd.FileName;
+
 
                 }
                 catch
@@ -471,12 +475,18 @@ namespace airlineApp.ViewModel
 
                             // resultStr = DataWorker.CreateCompany(CompanyName, CompanyLogo);
 
+                            // resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
+                            
                             resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
+
                             UpdateAllDataView();
                             UpdateCompaniesList(AllCompanies);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
+
+                          //  CompanyLogo = new BitmapImage(new Uri(@"../../Styles/no_image.png", UriKind.RelativeOrAbsolute));
                             window.Close();
+
                         }
                       
                     }
@@ -546,10 +556,10 @@ namespace airlineApp.ViewModel
         
         private void UpdateFlightsList(List<Flight> list)
         {
-            ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
-            ViewAllFlightsPage.AllFlightsView.Items.Clear();
-            ViewAllFlightsPage.AllFlightsView.ItemsSource = list;
-            ViewAllFlightsPage.AllFlightsView.Items.Refresh();
+            //ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
+            //ViewAllFlightsPage.AllFlightsView.Items.Clear();
+            //ViewAllFlightsPage.AllFlightsView.ItemsSource = list;
+            //ViewAllFlightsPage.AllFlightsView.Items.Refresh();
         }
         private void UpdateCompanies()
         {
@@ -557,10 +567,10 @@ namespace airlineApp.ViewModel
         }
         private void UpdateCompaniesList(List<Company> list)
         {
-            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
-            ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
-            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = list;
-            ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
+            //ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
+            //ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
+            //ViewAllCompaniesPage.AllCompaniesView.ItemsSource = list;
+            //ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
         }
         #endregion
 

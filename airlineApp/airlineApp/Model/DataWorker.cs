@@ -20,11 +20,7 @@ namespace airlineApp.Model
                 bool IsExist = db.Companies.Any(el => el.Name == name);
                 if (IsExist == false) 
                 {
-                    if (logo == null)
-                    {
-                        logo = @"/Styles/no_image.png";
-                    }
-
+                    
 
                     Company newCompany = new Company { Name = name, Logo = logo };
                         db.Companies.Add(newCompany);
