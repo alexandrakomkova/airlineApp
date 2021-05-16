@@ -21,11 +21,11 @@ namespace airlineApp.View
     /// </summary>
     public partial class GetPlace : UserControl
     {
-        public static ComboBox UserCombo;
+       
         public GetPlace()
         {
             InitializeComponent();
-            UserCombo = combo;
+           
             
         }
     }

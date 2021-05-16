@@ -23,7 +23,7 @@ namespace airlineApp.ViewModel
 {
    public class DataManageViewModel : INotifyPropertyChanged
    {
-        
+
         //get all flight
         
         private List<Plane> allPlanes = DataWorker.GetAllPlanes();
@@ -103,7 +103,7 @@ namespace airlineApp.ViewModel
         public static Flight SelectedFlight { get; set; }
         public static Company SelectedCompany { get; set; }
         public static string CompanyName { get; set; }
-        // public static string CompanyLogo { get; set; }
+        
         private string companyLogoPath = @"../../Styles/no_image.png";
 
         private BitmapImage companyLogo = new BitmapImage();
@@ -168,7 +168,7 @@ namespace airlineApp.ViewModel
             
             using (ApplicationContext db = new ApplicationContext())
             {
-                //var result = db.Ways.Select(w => w.Departure).Distinct().ToList();
+                
                 var result = db.Ways.Where(w => w.Departure == d).Select(w => w.Arrival).Distinct().ToList();
                 return result;
             }
@@ -178,14 +178,12 @@ namespace airlineApp.ViewModel
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                //var result = db.Ways.Select(w => w.Departure).Distinct().ToList();
-               // Way way = db.Ways.FirstOrDefault(p => p.Departure == d && p.Arrival ==);
-                //        return way;
+                
                 var result = db.Ways.Where(w => w.Departure == d && w.Arrival == a).Distinct().ToList();
                 return result;
             }
         }
-        private Way flightWay { get; set; } //= OnlyAvailableArrivals(FlightWay); //поле то самое
+        private Way flightWay { get; set; } 
         public Way FlightWay
         {
             get { return flightWay; }
@@ -226,18 +224,26 @@ namespace airlineApp.ViewModel
         }
         private void OpenEditFlightWndMethod(Flight flight)
         {
-            FlightWayArrivalString = flight.flightWay.Arrival;
-            FlightWayDepartureString = flight.flightWay.Departure;
+            FlightCompany = flight.flightCompany;
+            FlightCompany.Name = flight.flightCompany.Name.ToString();
+            FlightWayDepartureString = flight.flightWay.Departure.ToString();
+            FlightWayArrivalString = flight.flightWay.Arrival.ToString();
+            FlightWay = flight.flightWay;
+            FlightPlane = flight.flightPlane;
             FlightPrice = flight.Price.ToString();
-            EditFlightWindow editFlightWindow = new EditFlightWindow(flight);
+
+
+            EditFlightWindow editFlightWindow = new EditFlightWindow(this);
             SetWindowPosition(editFlightWindow);
+            
+           
         }
         private void OpenEditCompanyWndMethod(Company selectedCompany)
         {
-            EditCompanyWindow editCompanyWindow = new EditCompanyWindow(selectedCompany);
+            EditCompanyWindow editCompanyWindow = new EditCompanyWindow();
             SelectedCompany = selectedCompany;
             CompanyName = selectedCompany.Name;
-            //CompanyLogo = selectedCompany.Logo;
+           // CompanyLogo = selectedCompany.Logo;
             SetWindowPosition(editCompanyWindow);
         }
         private void OpenAddCompanyWndMethod()

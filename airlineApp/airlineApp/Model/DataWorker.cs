@@ -20,8 +20,6 @@ namespace airlineApp.Model
                 bool IsExist = db.Companies.Any(el => el.Name == name);
                 if (IsExist == false) 
                 {
-                    
-
                     Company newCompany = new Company { Name = name, Logo = logo };
                         db.Companies.Add(newCompany);
                         db.SaveChanges();
@@ -37,7 +35,7 @@ namespace airlineApp.Model
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                //нужен ли чек на существующие билеты?
+                
                 Ticket newTicket = new Ticket 
                 { 
                     Fullname = fullname, 
@@ -80,7 +78,7 @@ namespace airlineApp.Model
                             Price = price,
                             FreePlaces = plane.MaxOfPlaces
                         };
-                       // DataManageViewModel.FlightCollection.Add(newFlight);
+                       
                         db.Flights.Add(newFlight);
                         db.SaveChanges();
                         result = "Новый авиарейс успешно добавлен!";

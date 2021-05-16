@@ -30,7 +30,7 @@
         <StackPanel Grid.Column="1"
                   Grid.Row="1"
                   >
-            <ComboBox  x:Name="combo"
+            <ComboBox 
                 ItemsSource="{Binding AllCompanies}"
                 SelectedItem="{Binding FlightCompany}"
                 DisplayMemberPath="Name"
@@ -43,20 +43,19 @@
                   materialDesign:HintAssist.Hint="Choose a company">
             </ComboBox>
             <ComboBox 
+               
                 ItemsSource="{Binding AllDeparturesString}"
-                SelectedItem="{Binding FlightWayDepartureString}"
-                Text="{Binding FlightWayDepartureString}"
-                IsEditable="True"
+                SelectedItem="{Binding FlightWayDepartureString, Mode=TwoWay}"
+                 IsSynchronizedWithCurrentItem="True"
                   Width="200" 
                   Height="30"
                   Padding="4"
                   Margin="0,15,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a place of departure" SelectionChanged="ComboBox_SelectionChanged">
-            </ComboBox>
-
-            <ComboBox 
+                  materialDesign:HintAssist.Hint="Choose a place of departure"/>
+            
+                <ComboBox 
                 ItemsSource="{Binding AllArrivalsString}"
                 SelectedItem="{Binding FlightWayArrivalString}"
                 Text="{Binding FlightWayArrivalString}"
@@ -114,7 +113,8 @@
                     Content="SAVE EDITS"
                     Margin="0,20,0,0"
                     Command="{Binding EditFlightCommand}"
-                    CommandParameter="{Binding EditFlightWnd}"/>
+                    />
+            <!--CommandParameter="{Binding EditFlightWnd}"-->
         </StackPanel>
     </Grid>
 </Window>

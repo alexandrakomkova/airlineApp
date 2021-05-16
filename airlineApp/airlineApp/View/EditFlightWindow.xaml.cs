@@ -22,13 +22,10 @@ namespace airlineApp.View
     /// </summary>
     public partial class EditFlightWindow : Window
     {
-        public EditFlightWindow(Flight flightToEdit)
+        public EditFlightWindow(DataManageViewModel data)
         {
             InitializeComponent();
-            DataContext = new DataManageViewModel();
-            //DataManageViewModel.SelectedFlight = flightToEdit;
-            //DataManageViewModel.FlightCompany = flightToEdit.Company;
-            //DataManageViewModel.FlightPrice = flightToEdit.Price.ToString();
+            DataContext = data;
         }
         private void PreviewTextInputOnlyNumbers(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
@@ -36,14 +33,6 @@ namespace airlineApp.View
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -22,19 +22,15 @@ namespace airlineApp.View
     /// </summary>
     public partial class EditCompanyWindow : Window
     {
-        public EditCompanyWindow(Company companyToEdit)
+        public EditCompanyWindow()
         {
             InitializeComponent();
             DataContext = new DataManageViewModel();
-            //DataManageViewModel.SelectedCompany = companyToEdit;
-            //DataManageViewModel.CompanyName = companyToEdit.Name;
-            //DataManageViewModel.CompanyLogo = companyToEdit.Logo;
           
         }
         private void PreviewTextInputOnlyLetters(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("^[a-zA-Z]+$");
-            // Regex regex = new Regex("/^([- A-Za-zа-яА-ЯёЁ0-9_@]+)$/");
+            Regex regex = new Regex("^[^a-zA-ZА-Яа-я]+");
 
             e.Handled = regex.IsMatch(e.Text);
         }
