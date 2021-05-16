@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace airlineApp.Model
 {
@@ -52,24 +53,28 @@ namespace airlineApp.Model
             }
         }
         //create flight
-        public static string CreateFlight(Way way, Company company, Plane plane, int price, int freePlaces)
+        public static string CreateFlight(Way way, string companyName, string planeName, int price)
         {
             string result = "Авиарейс с такими данными уже есть.";
             using (ApplicationContext db = new ApplicationContext())
             {
                 //check existence
                 bool IsExist = db.Flights.Any(el => el.Way == way
-                && el.Company == company
-                && el.Plane == plane);
+                && el.Company.Name == companyName
+                && el.Plane.Name == planeName);
                 
                 if (!IsExist)
                 {
-                    if (price <= 0)
+                    if (price < 1000)
                     {
                         price = 1000;
                     }
                     else
                     {
+                        //MessageBox.Show(companyName.ToString());
+                        var company = db.Companies.FirstOrDefault(c => c.Name == companyName);
+                        var plane = db.Planes.FirstOrDefault(p => p.Name == planeName);
+                        
                         Flight newFlight = new Flight
                         {
                             WayId = way.Id,
@@ -78,7 +83,7 @@ namespace airlineApp.Model
                             Price = price,
                             FreePlaces = plane.MaxOfPlaces
                         };
-                       
+
                         db.Flights.Add(newFlight);
                         db.SaveChanges();
                         result = "Новый авиарейс успешно добавлен!";
@@ -136,11 +141,13 @@ namespace airlineApp.Model
             return result;
         }
         //edit flight
-        public static string EditFlight(Flight oldFlight, Way newWay, Company newCompany, Plane newPlane, int newPrice, int newFreePlaces)
+        public static string EditFlight(Flight oldFlight, Way newWay, string newCompanyName,string newPlaneName, int newPrice)
         {
             string result = "Авиарейса с такими данными не существует.";
             using (ApplicationContext db = new ApplicationContext())
             {
+                var newCompany = db.Companies.FirstOrDefault(c => c.Name == newCompanyName);
+                var newPlane = db.Planes.FirstOrDefault(p => p.Name == newPlaneName);
                 Flight flight = db.Flights.FirstOrDefault(f => f.Id==oldFlight.Id);
                 if (flight != null)
                 {
@@ -202,12 +209,29 @@ namespace airlineApp.Model
                 return result;
             }
         }
+        public static List<string> GetAllPlanesString()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Planes.Select(p => p.Name).Distinct().ToList();
+
+                return result;
+            }
+        }
 
         public static List<Company> GetAllCompanies()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
                 var result = db.Companies.ToList();
+                return result;
+            }
+        }
+        public static List<string> GetAllCompaniesString()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Companies.Select(c => c.Name).Distinct().ToList();
                 return result;
             }
         }

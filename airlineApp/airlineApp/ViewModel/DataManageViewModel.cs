@@ -25,9 +25,11 @@ namespace airlineApp.ViewModel
    {
 
         //get all flight
-        
-        private List<Plane> allPlanes = DataWorker.GetAllPlanes();
+
+        //private List<Plane> allPlanes = DataWorker.GetAllPlanes();
+        private List<string> allPlanes = DataWorker.GetAllPlanesString();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
+        private List<string> allCompaniesString = DataWorker.GetAllCompaniesString();
         private List<Way> allWays = DataWorker.GetAllWays();
         private List<Ticket> allTickets = DataWorker.GetAllTickets();
         private List<string> allDeparturesString = DataWorker.GetAllDepartures();
@@ -60,7 +62,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllFlights");
             }
         }
-        
+
         public List<Company> AllCompanies
         {
             get { return allCompanies; }
@@ -70,7 +72,17 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllCompanies");
             }
         }
-        public List<Plane> AllPlanes
+        public List<string> AllCompaniesString
+        {
+            get { return allCompaniesString; }
+            set
+            {
+                allCompaniesString = value;
+                NotifyPropertyChanged("AllCompaniesString");
+            }
+        }
+       
+        public List<string> AllPlanes
         {
             get { return allPlanes; }
             set
@@ -98,7 +110,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllWaysDateTime");
             }
         }
-
+        
 
         public static Flight SelectedFlight { get; set; }
         public static Company SelectedCompany { get; set; }
@@ -127,6 +139,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("AllArrivalsString");
             }
         }
+
         private string flightWayDepartureString { get; set; }
         public string FlightWayDepartureString
         {
@@ -153,16 +166,7 @@ namespace airlineApp.ViewModel
 
             }
         }
-        private string test;
-        public string Test
-        {
-            get { return test; }
-            set
-            {
-                test = value;
-                NotifyPropertyChanged("Test");
-            }
-        }
+       
         private static List<string> StringArrivals(string d)
         {
             
@@ -173,17 +177,29 @@ namespace airlineApp.ViewModel
                 return result;
             }
         }
+        
         private static List<Way> AvailableDateTime(string d, string a)
         {
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                
+
                 var result = db.Ways.Where(w => w.Departure == d && w.Arrival == a).Distinct().ToList();
                 return result;
             }
         }
-        private Way flightWay { get; set; } 
+
+        //private Way flightWay { get; set; } 
+        //public Way FlightWay
+        //{
+        //    get { return flightWay; }
+        //    set
+        //    {
+        //        flightWay = value;
+        //        NotifyPropertyChanged("FlightWay");
+        //    }
+        //}
+        private Way flightWay { get; set; }
         public Way FlightWay
         {
             get { return flightWay; }
@@ -193,12 +209,13 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("FlightWay");
             }
         }
-        //public static Way FlightWayArrival { get; set; }
-        // public static Way FlightWay { get; set; }
-        public static Company FlightCompany { get; set; }
-        public static Plane FlightPlane { get; set; }
+
+
+        public static string FlightCompany { get; set; }
+        //public static Plane FlightPlane { get; set; }
+        public static string FlightPlane { get; set; }
         public static string FlightPrice { get; set; }
-        //public static int FlightAllPlaces { get; set; }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(String propertyName) 
@@ -224,12 +241,13 @@ namespace airlineApp.ViewModel
         }
         private void OpenEditFlightWndMethod(Flight flight)
         {
-            FlightCompany = flight.flightCompany;
-            FlightCompany.Name = flight.flightCompany.Name.ToString();
+            FlightCompany = flight.flightCompany.Name;
+            
             FlightWayDepartureString = flight.flightWay.Departure.ToString();
             FlightWayArrivalString = flight.flightWay.Arrival.ToString();
+            //FlightWay = flight.flightWay;
             FlightWay = flight.flightWay;
-            FlightPlane = flight.flightPlane;
+            FlightPlane = flight.flightPlane.Name;
             FlightPrice = flight.Price.ToString();
 
 
@@ -262,13 +280,8 @@ namespace airlineApp.ViewModel
             {
                 try
                 {
-                    //CompanyLogo = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
-                    
-                   
                    CompanyLogo = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
                    companyLogoPath = ofd.FileName;
-
-
                 }
                 catch
                 {
@@ -474,23 +487,20 @@ namespace airlineApp.ViewModel
                         string resultStr = "";
                         if (CompanyName == null || CompanyName.Replace(" ", "").Length == 0)
                         {
-                            SetRedBlockControll(window, "CompanyNameTextBox");
+                            resultStr = "Пожалуйста, введите название авиакомпании.";
+                            ShowMessageToUser(resultStr);
                         }
                         else
                         {
-
-                            // resultStr = DataWorker.CreateCompany(CompanyName, CompanyLogo);
-
-                            // resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
                             
                             resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
 
                             UpdateAllDataView();
-                            UpdateCompaniesList(AllCompanies);
+                            //UpdateCompaniesList(AllCompanies);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
 
-                          //  CompanyLogo = new BitmapImage(new Uri(@"../../Styles/no_image.png", UriKind.RelativeOrAbsolute));
+                          
                             window.Close();
 
                         }
@@ -514,21 +524,27 @@ namespace airlineApp.ViewModel
                            FlightWayArrivalString != null &&
                            FlightWay != null &&
                            FlightPlane != null &&
-                           FlightPrice != null &&Convert.ToInt32(FlightPrice) != 0
+                           FlightPrice != null && Convert.ToInt32(FlightPrice) != 0
                            )
                         {
-                            resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
-                            UpdateAllDataView();
-                            UpdateFlightsList(AllFlights);
-                            ShowMessageToUser(resultStr);
-                            SetNullValuesToProperties();
+                            using (ApplicationContext db = new ApplicationContext())
+                            {
+                                resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany.ToString(), FlightPlane, Convert.ToInt32(FlightPrice));
+                                 
+                                UpdateAllDataView();
+                                UpdateFlightsList(AllFlights);
+                                SetNullValuesToProperties();
+                                ShowMessageToUser(resultStr);
+
+                            }
+                            //window.Close();
                         }
                         else 
                         {
                             string str = "Пожалуйста, заполните все поля формы.";
                             ShowMessageToUser(str);
                         }
-
+                        
 
 
                     }
@@ -562,21 +578,22 @@ namespace airlineApp.ViewModel
         
         private void UpdateFlightsList(List<Flight> list)
         {
-            //ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
-            //ViewAllFlightsPage.AllFlightsView.Items.Clear();
-            //ViewAllFlightsPage.AllFlightsView.ItemsSource = list;
-            //ViewAllFlightsPage.AllFlightsView.Items.Refresh();
+            ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
+            ViewAllFlightsPage.AllFlightsView.Items.Clear();
+            ViewAllFlightsPage.AllFlightsView.ItemsSource = list;
+            ViewAllFlightsPage.AllFlightsView.Items.Refresh();
         }
         private void UpdateCompanies()
         {
-            AllCompanies = DataWorker.GetAllCompanies();          
+            AllCompanies = DataWorker.GetAllCompanies();
+            NotifyPropertyChanged(nameof(AllCompanies));
         }
         private void UpdateCompaniesList(List<Company> list)
         {
-            //ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
-            //ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
-            //ViewAllCompaniesPage.AllCompaniesView.ItemsSource = list;
-            //ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
+            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
+            ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
+            ViewAllCompaniesPage.AllCompaniesView.ItemsSource = list;
+            ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
         }
         #endregion
 
@@ -687,24 +704,30 @@ namespace airlineApp.ViewModel
                             FlightPrice != null && Convert.ToInt32(FlightPrice) != 0
                             )
                     {
-                        int diff = FlightPlane.MaxOfPlaces - (SelectedFlight.flightPlane.MaxOfPlaces - SelectedFlight.FreePlaces);
-                        if (diff > 0)
+                        using (ApplicationContext db = new ApplicationContext()) 
                         {
-                            resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
+                            var plane = db.Planes.FirstOrDefault(p => p.Name == FlightPlane);
+                           
+                            int diff = plane.MaxOfPlaces - (SelectedFlight.flightPlane.MaxOfPlaces - SelectedFlight.FreePlaces);
+                            if (diff > 0)
+                            {
 
-                            UpdateAllDataView();
-                            UpdateFlightsList(AllFlights);
+                                resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice));
 
-                            SetNullValuesToProperties();
-                            ShowMessageToUser(resultStr);
-                            
-                            // window.Close(); //----------------------------------------------------
+                                UpdateAllDataView();
+                                UpdateFlightsList(AllFlights);
 
-                        }
-                        else 
-                        {
-                            resultStr = "Количество забронированных билетов превышает места в новом самолете. Выберите самолет побольше.";
-                            ShowMessageToUser(resultStr);
+                                SetNullValuesToProperties();
+                                ShowMessageToUser(resultStr);
+
+                                // window.Close(); //----------------------------------------------------
+
+                            }
+                            else
+                            {
+                                resultStr = "Количество забронированных билетов превышает места в новом самолете. Выберите самолет побольше.";
+                                ShowMessageToUser(resultStr);
+                            } 
                         }
                             
                     }
@@ -962,6 +985,7 @@ namespace airlineApp.ViewModel
             FlightWayDepartureString = null;
             FlightWayArrivalString = null;
             FlightCompany = null;
+            NotifyPropertyChanged(nameof(FlightCompany));
             FlightPrice = null;
             FlightPlane = null;
         }

@@ -30,8 +30,7 @@
                   Grid.Row="1" 
                   >
             <ComboBox 
-                ItemsSource="{Binding AllCompanies}"
-                DisplayMemberPath="Name"
+                ItemsSource="{Binding AllCompaniesString}"
                 SelectedItem="{Binding FlightCompany}"
                   Width="200" 
                   Height="30"
@@ -80,7 +79,7 @@
             <ComboBox 
                 ItemsSource="{Binding AllPlanes}"
                 SelectedItem="{Binding FlightPlane}"
-                DisplayMemberPath="Name"
+               
                   Width="200" 
                   Height="30"
                   Padding="4"
