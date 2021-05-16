@@ -18,6 +18,8 @@ namespace airlineApp.ViewModel
         private Flight userSelectedFlight;
         private User user;
         private UserWindowViewModel parentVM;
+        public string ps, pn, pm;
+
         public Flight UserSelectedFlight
         {
             get { return userSelectedFlight; }
@@ -40,15 +42,28 @@ namespace airlineApp.ViewModel
             userSelectedFlight = f;
             this.parentVM = parentVM;
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
+            ps = passSur;
+            pn = passName;
+            pm = passMiddle;
         }
         private void OnUpdateViewCommandExecuted(object p)
         {
             //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
-            string resultStr = "";
-            resultStr = DataWorker.CreateTicket(PassengerFullName, PassengerPassport, Convert.ToInt32(passengerSeat), userSelectedFlight, user);
-            ShowMessageToUser(resultStr);
-            parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
-            
+
+
+            if (p.ToString() == "Passenger")
+            {
+                parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, passengerSeat, user, passengerPassport, ps, pn, pm);
+            }
+            else if(p.ToString() == "ViewTicket")
+            {
+                //MessageBox.Show("dsds");
+                string resultStr = "";
+                resultStr = DataWorker.CreateTicket(PassengerFullName, PassengerPassport, Convert.ToInt32(passengerSeat), userSelectedFlight, user);
+                ShowMessageToUser(resultStr);
+                parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
+            }
+
         }
         
         private string passengerFullName;

@@ -60,7 +60,7 @@ namespace airlineApp.ViewModel
         public ICommand UpdateBackViewCommand { get; }
         private void OnUpdateViewCommandExecuted(object p)
         {
-            parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace, user);
+            parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace, user, null, null, null, null);
             if (p.ToString() == "GetTicket") 
             {
                 parentVM.CurrentPage = new ChooseTicketViewModel(parentVM, user, UserSelectedFlight);

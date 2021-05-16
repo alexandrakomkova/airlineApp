@@ -20,7 +20,7 @@ namespace airlineApp.ViewModel
         public UserWindowViewModel(User user)
         {
             this.user = user;
-           // MessageBox.Show($"{user.Email}");//выводит месседж показывает данные а потом пишет что юзер нул
+           
             UpdateViewCommand = new UpdateViewCommand(this);
             currentPage = new ChooseTicketViewModel(this, user, null);
         }
@@ -43,30 +43,10 @@ namespace airlineApp.ViewModel
         
         public static Flight UserSelectedBackFlight { get; set; }
 
-        //private bool isBackEnable = false;
-        //public bool IsBackEnable
-        //{
-        //    get { return isBackEnable; }
-        //    set
-        //    {
-        //        isBackEnable = value;
-        //        NotifyPropertyChanged(nameof(IsBackEnable));
-        //    }
-        //}
-
-        //private List<Flight> userListOneWay { get; set; } //= DataWorker.GetAllFlights();
+        
         private List<Flight> userListBackWay { get; set; }//= DataWorker.GetAllFlights();
 
-        //public List<Flight> UserListOneWay
-        //{
-        //    get { return userListOneWay; }
-        //    set
-        //    {
-        //        userListOneWay = value;
-        //        NotifyPropertyChanged("UserListOneWay");
-
-        //    }
-        //}
+        
         public List<Flight> UserListBackWay
         {
             get { return userListBackWay; }
@@ -77,20 +57,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        //public static List<Flight> UserSearch(string d, string a, DateTime dt)
-        //{
-
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-
-        //        var result = db.Flights.Where(f => f.Way.Departure == d
-        //        && f.Way.Arrival == a
-        //        && f.Way.DepartureTime.Date == dt.Date).ToList();
-        //        return result;
-
-        //    }
-
-        //}
+       
         public static List<Flight> UserBackWaySearch(string d, string a, DateTime dt)
         {
 
@@ -103,55 +70,30 @@ namespace airlineApp.ViewModel
             }
 
         }
-        //private Command userSearchCommand;
-        //public Command UserSearchCommand
+        
+        //private Command switchDapartureArrivalCommand;
+        //public Command SwitchDapartureArrivalCommand
         //{
         //    get
         //    {
-        //        return userSearchCommand ?? new Command(
+        //        return switchDapartureArrivalCommand ?? new Command(
         //            obj =>
         //            {
-        //                MessageBox.Show("123");
-        //                //UpdateUserFlights();
-        //                //if (IsBackEnable == true)
-        //                //{
-        //                //    UserListBackWay = UserBackWaySearch(FlightWayDepartureString, FlightWayArrivalString, SelectedBackDate);
-        //                //    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
-        //                //    ChooseTicketPage.UserBackFlightsView.Items.Clear();
-        //                //    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
-        //                //    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
-        //                //}
+                        
+        //                Way middle = UserFlightDeparture;
+        //                UserFlightDeparture = null;
+        //                UserFlightDeparture = UserFlightArrival;
+        //                UserFlightArrival = null;
+        //                UserFlightArrival = middle;
+
+        //                NotifyPropertyChanged("UserFlightDeparture");
+        //                NotifyPropertyChanged("UserFlightArrival");
+        //                ShowMessageToUser($"{UserFlightDeparture.Departure} - {UserFlightArrival.Arrival}");
 
         //            }
         //            );
         //    }
         //}
-        private Command switchDapartureArrivalCommand;
-        public Command SwitchDapartureArrivalCommand
-        {
-            get
-            {
-                return switchDapartureArrivalCommand ?? new Command(
-                    obj =>
-                    {
-                        //Way middleD = UserFlightDeparture;
-                        //Way middleA = UserFlightArrival;
-                        //UserFlightDeparture = middleA;
-                        //UserFlightArrival = middleD;
-                        Way middle = UserFlightDeparture;
-                        UserFlightDeparture = null;
-                        UserFlightDeparture = UserFlightArrival;
-                        UserFlightArrival = null;
-                        UserFlightArrival = middle;
-
-                        NotifyPropertyChanged("UserFlightDeparture");
-                        NotifyPropertyChanged("UserFlightArrival");
-                        ShowMessageToUser($"{UserFlightDeparture.Departure} - {UserFlightArrival.Arrival}");
-
-                    }
-                    );
-            }
-        }
         private Command needBackTicketCommand;
         public Command NeedBackTicketCommand
         {

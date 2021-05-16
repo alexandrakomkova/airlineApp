@@ -24,21 +24,7 @@
                 Orientation="Horizontal" Width="780">
             <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Top">
-                <!--<ComboBox 
-                  Width="130" 
-                  Height="40"
-                  Padding="4"
-                  Background="WhiteSmoke"
-                  Foreground="black"
-                  Margin="0,0,0,0"
-                  HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Center"
-                  materialDesign:HintAssist.Hint="Place of daparture"
-                  ItemsSource="{Binding AllWays}"
-                  SelectedItem="{Binding UserFlightDeparture}"
-                  DisplayMemberPath="Departure">
-
-                </ComboBox>-->
+                
                 <ComboBox 
                   Width="130" 
                   Height="40"
@@ -79,21 +65,7 @@
                   SelectedItem="{Binding FlightWayArrivalString}">
 
                 </ComboBox>
-                <!--<ComboBox 
-                  Width="130" 
-                  Height="40"
-                  Padding="4"
-                  Background="WhiteSmoke"
-                  Foreground="black"
-                  Margin="0,0,0,0"
-                  HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Center"
-                  materialDesign:HintAssist.Hint="Place of arrival"
-                  ItemsSource="{Binding AllWays}"
-                  SelectedItem="{Binding UserFlightArrival}"
-                  DisplayMemberPath="Arrival">
-
-                </ComboBox>-->
+                
             </StackPanel>
 
             <StackPanel 

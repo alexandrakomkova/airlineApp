@@ -26,19 +26,24 @@ namespace airlineApp.View
         {
             InitializeComponent();
             DataContext = new DataManageViewModel();
-           DataManageViewModel.SelectedFlight = flightToEdit;
-            // DataManageViewModel.FlightCompany = flightToEdit.Company;
-           // combo.SelectedItem = flightToEdit.Company.Name;
-            //MessageBox.Show($"{flightToEdit.Company}");
+            //DataManageViewModel.SelectedFlight = flightToEdit;
+            //DataManageViewModel.FlightCompany = flightToEdit.Company;
             //DataManageViewModel.FlightPrice = flightToEdit.Price.ToString();
-           // DataManageViewModel.FlightWay = flightToEdit.Way;
-          //  DataManageViewModel.FlightAllPlaces = flightToEdit.AllPlaces;
-
         }
         private void PreviewTextInputOnlyNumbers(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

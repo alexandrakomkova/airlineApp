@@ -45,19 +45,23 @@
             <ComboBox 
                 ItemsSource="{Binding AllDeparturesString}"
                 SelectedItem="{Binding FlightWayDepartureString}"
-                
+                Text="{Binding FlightWayDepartureString}"
+                IsEditable="True"
                   Width="200" 
                   Height="30"
                   Padding="4"
                   Margin="0,15,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a place of departure">
+                  materialDesign:HintAssist.Hint="Choose a place of departure" SelectionChanged="ComboBox_SelectionChanged">
             </ComboBox>
 
             <ComboBox 
                 ItemsSource="{Binding AllArrivalsString}"
                 SelectedItem="{Binding FlightWayArrivalString}"
+                Text="{Binding FlightWayArrivalString}"
+                       IsEditable="True"
+                
                   Width="200" 
                   Height="30"
                   Padding="4"

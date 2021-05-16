@@ -76,7 +76,7 @@
                         Width="30" Height="30"
                 />
             </Button>
-            <Button  Margin="10,0,0,0"
+            <Button  Margin="10,0,10,0"
                         Width="30" Height="30"  
                         Background="{x:Null}" 
                         BorderBrush="{x:Null}" 
@@ -89,16 +89,6 @@
                         Width="30" Height="30"
                 />
             </Button>
-            <Button Width="25" Height="25"  
-                        Background="{x:Null}"
-                        BorderBrush="{x:Null}" 
-                        Foreground="WhiteSmoke" 
-                        Padding="1" 
-                        Margin="6,0,0,0">
-
-                <materialDesign:PackIcon 
-                        Kind="Help" Width="22" Height="22"/>
-            </Button>
             <Button x:Name="LogOutButton" 
                         Width="25" Height="25" 
                         Foreground="WhiteSmoke" 
@@ -106,11 +96,13 @@
                         BorderBrush="{x:Null}"
                         Padding="1"
                          Margin="6,0,6,0"
-                     Command="{Binding ChangeAccountWndCommand}">
+                        Command="{Binding ChangeAccountWndCommand}" Cursor="Hand">
+
                 <materialDesign:PackIcon 
                         Kind="Logout" 
                         Width="22" Height="22"/>
             </Button>
+
             <Button x:Name="ShutDownButton" 
                         Width="25" Height="25"  
                         Background="{x:Null}" 
@@ -126,17 +118,7 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center">
-            
-            <!--<ProgressBar
-                Value="5"
-                Height="6" 
-                Foreground="WhiteSmoke"
-                Background="#FF673AB7"/>-->
-        </StackPanel>
+        
 
 
         <ContentControl x:Name="mainFrame"

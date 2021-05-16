@@ -26,13 +26,10 @@ namespace airlineApp.View
         {
             InitializeComponent();
             DataContext = new DataManageViewModel();
-            DataManageViewModel.SelectedCompany = companyToEdit;
-            DataManageViewModel.CompanyName = companyToEdit.Name;
-            DataManageViewModel.CompanyLogo = companyToEdit.Logo;
-            // DataManageViewModel.FlightCompany = flightToEdit.Company;
-            // DataManageViewModel.FlightPrice = flightToEdit.Price;
-            // DataManageViewModel.FlightWay = flightToEdit.Way;
-            //  DataManageViewModel.FlightAllPlaces = flightToEdit.AllPlaces;
+            //DataManageViewModel.SelectedCompany = companyToEdit;
+            //DataManageViewModel.CompanyName = companyToEdit.Name;
+            //DataManageViewModel.CompanyLogo = companyToEdit.Logo;
+          
         }
         private void PreviewTextInputOnlyLetters(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {

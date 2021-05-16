@@ -90,7 +90,7 @@
                   Margin="0,10,0,0">
                 <Image Width="80"
                     Height="80" 
-                    Source="{Binding CompanyLogo}"
+                    Source="{Binding Path=CompanyLogo}"
                        Stretch="Fill"/>
             </Grid>
             <Button 

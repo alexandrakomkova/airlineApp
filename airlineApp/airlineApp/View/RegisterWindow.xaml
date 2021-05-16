@@ -120,7 +120,8 @@
                            Margin="0,10,0,0"
                            Opacity="0.7"
                            HorizontalContentAlignment="Center"
-                          Command="{Binding OpenLoginWndCommand}" Cursor="Hand"/>
+                          Command="{Binding OpenLoginWndCommand}" Cursor="Hand"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:LoginRegisterWindow}}"/>
 
                 </StackPanel>
             </StackPanel>

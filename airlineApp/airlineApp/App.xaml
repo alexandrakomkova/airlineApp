@@ -4,13 +4,14 @@
              xmlns:local="clr-namespace:airlineApp"
              xmlns:views="clr-namespace:airlineApp.View"
              xmlns:vm="clr-namespace:airlineApp.ViewModel"
-             StartupUri="/View/LoginRegisterWindow.xaml">
+             StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
         
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Styles.xaml"></ResourceDictionary>
+                
                 <!--<ResourceDictionary Source="Styles/no_image.png"></ResourceDictionary>-->
                 <ResourceDictionary Source="CustomControls/AnalogClock.xaml"></ResourceDictionary>
                 

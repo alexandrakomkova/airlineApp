@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using airlineApp.Model;
 using airlineApp.Model.Data;
 using airlineApp.View;
@@ -102,7 +103,19 @@ namespace airlineApp.ViewModel
         public static Flight SelectedFlight { get; set; }
         public static Company SelectedCompany { get; set; }
         public static string CompanyName { get; set; }
-        public static string CompanyLogo { get; set; }
+        // public static string CompanyLogo { get; set; }
+        private string companyLogoPath;
+
+        private BitmapImage companyLogo = new BitmapImage();
+        public BitmapImage CompanyLogo
+        {
+            get { return companyLogo; }
+            set
+            {
+                companyLogo = value;
+                NotifyPropertyChanged("CompanyLogo");
+            }
+        }
         private List<string> allArrivalsString { get; set; }
         public List<string> AllArrivalsString
         {
@@ -137,6 +150,16 @@ namespace airlineApp.ViewModel
                 AllWaysDateTime = AvailableDateTime(FlightWayDepartureString, FlightWayArrivalString);
                 NotifyPropertyChanged("AllWaysDateTime");
 
+            }
+        }
+        private string test;
+        public string Test
+        {
+            get { return test; }
+            set
+            {
+                test = value;
+                NotifyPropertyChanged("Test");
             }
         }
         private static List<string> StringArrivals(string d)
@@ -193,8 +216,6 @@ namespace airlineApp.ViewModel
         #region methods for open windows
         private void SetWindowPosition(Window window) 
         {
-            window.Owner = Application.Current.MainWindow;
-            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             window.ShowDialog();
         }
         private void OpenAddFlightWndMethod() 
@@ -204,12 +225,18 @@ namespace airlineApp.ViewModel
         }
         private void OpenEditFlightWndMethod(Flight flight)
         {
+            FlightWayArrivalString = flight.flightWay.Arrival;
+            FlightWayDepartureString = flight.flightWay.Departure;
+            FlightPrice = flight.Price.ToString();
             EditFlightWindow editFlightWindow = new EditFlightWindow(flight);
             SetWindowPosition(editFlightWindow);
         }
         private void OpenEditCompanyWndMethod(Company selectedCompany)
         {
             EditCompanyWindow editCompanyWindow = new EditCompanyWindow(selectedCompany);
+            SelectedCompany = selectedCompany;
+            CompanyName = selectedCompany.Name;
+            //CompanyLogo = selectedCompany.Logo;
             SetWindowPosition(editCompanyWindow);
         }
         private void OpenAddCompanyWndMethod()
@@ -228,8 +255,10 @@ namespace airlineApp.ViewModel
                 try
                 {
                     
-                    CompanyLogo = ofd.FileName;
-                    
+                   // CompanyLogo = ofd.FileName;
+                    CompanyLogo = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
+                    companyLogoPath = ofd.FileName;
+
                 }
                 catch
                 {
@@ -240,8 +269,10 @@ namespace airlineApp.ViewModel
         }
         private void OpenLoginWndMethod()
         {
-            LoginRegisterWindow loginWindow = new LoginRegisterWindow();
-            SetWindowPosition(loginWindow);
+            //LoginRegisterWindow loginWindow = new LoginRegisterWindow();
+            //registerWindow.Show();
+            //(obj as Window).Close();
+            //SetWindowPosition(loginWindow);
         }
         private void OpenRegisterWndMethod()
         {
@@ -278,7 +309,7 @@ namespace airlineApp.ViewModel
         private void CloseWndMethod(object obj)
         {
             Window win = obj as Window;
-            win.Hide();
+            win.Close();
         }
         #endregion
 
@@ -315,8 +346,12 @@ namespace airlineApp.ViewModel
                 return changeAccountWndCommand ?? new Command(
                     obj =>
                     {
-                        App.Current.MainWindow.Hide();
-                        OpenLoginWndMethod();
+                        //Application.Current.MainWindow.Close();
+                        
+                        LoginRegisterWindow loginWindow = new LoginRegisterWindow();
+                        loginWindow.Show();
+                       // (obj as Window).Close();
+
                     }
                     );
             }
@@ -328,7 +363,9 @@ namespace airlineApp.ViewModel
                 return openLoginWndCommand ?? new Command(
                     obj =>
                     {
-                        OpenLoginWndMethod();
+                        LoginRegisterWindow loginWindow = new LoginRegisterWindow();
+                        loginWindow.Show();
+                        (obj as Window).Close();
                     }
                     );
             }
@@ -340,8 +377,9 @@ namespace airlineApp.ViewModel
                 return openRegisterWndCommand ?? new Command(
                     obj =>
                     {
-                       
-                        OpenRegisterWndMethod();
+                        RegisterWindow registerWindow = new RegisterWindow();
+                        registerWindow.Show();
+                        (obj as Window).Close();
                     }
                     );
             }
@@ -430,8 +468,10 @@ namespace airlineApp.ViewModel
                         }
                         else
                         {
-                            
-                            resultStr = DataWorker.CreateCompany(CompanyName, CompanyLogo);
+
+                            // resultStr = DataWorker.CreateCompany(CompanyName, CompanyLogo);
+
+                            resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
                             UpdateAllDataView();
                             UpdateCompaniesList(AllCompanies);
                             ShowMessageToUser(resultStr);
@@ -453,42 +493,28 @@ namespace airlineApp.ViewModel
                     {
                         Window window = obj as Window;
                         string resultStr = "";
-                        if (FlightWayDepartureString == null)
+                        if (FlightCompany != null &&
+                           FlightWayDepartureString != null &&
+                           FlightWayArrivalString != null &&
+                           FlightWay != null &&
+                           FlightPlane != null &&
+                           FlightPrice != null &&Convert.ToInt32(FlightPrice) != 0
+                           )
                         {
-                            string str = "Пожалуйста, выберите пункт отправления для данного рейса.";
-                            ShowMessageToUser(str);
-                        }
-                        if (FlightWayArrivalString == null)
-                        {
-                            string str = "Пожалуйста, выберите пункт прибытия  для данного рейса.";
-                            ShowMessageToUser(str);
-                        }
-                        if (FlightCompany == null)
-                        {
-                            string str = "Пожалуйста, выберите авиакомпанию для данного рейса.";
-                            ShowMessageToUser(str);
-                        }
-                        if (FlightPrice ==null)
-                        {
-                            string str = "Пожалуйста, укажите цену за билет для данного рейса.";
-                            ShowMessageToUser(str);
-                            //SetRedBlockControll(window, "PriceTextBox");
-                        }
-                        if (FlightPlane == null)
-                        {
-                            string str = "Пожалуйста, выберите самолет для данного рейса.";
-                            ShowMessageToUser(str);
-                        }
-                        else
-                        {
-                            
                             resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
                             UpdateAllDataView();
                             UpdateFlightsList(AllFlights);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
-                           // window.Close();
                         }
+                        else 
+                        {
+                            string str = "Пожалуйста, заполните все поля формы.";
+                            ShowMessageToUser(str);
+                        }
+
+
+
                     }
                     );
             }
@@ -631,38 +657,18 @@ namespace airlineApp.ViewModel
         {
             get
             {
-                //if (FlightWay != null)
-                //{
-                //    resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
-
-                //    UpdateAllDataView();
-                //    UpdateFlightsList(AllFlights);
-
-                //    SetNullValuesToProperties();
-                //    ShowMessageToUser(resultStr);
-                //    window.Close();
-
-                //}
-                //else ShowMessageToUser(noWayStr);
 
                 return editFlightCommand ?? new Command(obj =>
                 {
                     Window window = obj as Window;
                     string resultStr = "";
-                    string noSelectedFlightStr = "Пожалуйста, выберите рейс для редактирования.";
-                    string noCompanyStr = "Не выбрана новая компания для авиарейса.";
-                    string noWayDepartureStr = "Не выбран новый пункт отправления для авиарейса.";
-                    string noWayArrivalStr = "Не выбран новый пункт прибытия для авиарейса.";
-                    string noWayStr = "Не выбрана дата отправления для авиарейса.";
-                    string noPlaneStr = "Не выбран новый самолет для авиарейса.";
-                    string noPriceStr = "Пожалуйста, укажите цену за билет для авиарейса.";
                     
-                    if (FlightCompany != null ||
-                            FlightWayDepartureString != null ||
-                            FlightWayArrivalString != null||
-                            FlightWay != null ||
-                            FlightPlane !=null||
-                            FlightPrice != null || Convert.ToInt32(FlightPrice) != 0
+                    if (FlightCompany != null &&
+                            FlightWayDepartureString != null &&
+                            FlightWayArrivalString != null &&
+                            FlightWay != null &&
+                            FlightPlane !=null &&
+                            FlightPrice != null && Convert.ToInt32(FlightPrice) != 0
                             )
                     {
                         int diff = FlightPlane.MaxOfPlaces - (SelectedFlight.flightPlane.MaxOfPlaces - SelectedFlight.FreePlaces);
@@ -675,10 +681,9 @@ namespace airlineApp.ViewModel
 
                             SetNullValuesToProperties();
                             ShowMessageToUser(resultStr);
-                            window.Close();
+                            
+                            // window.Close(); //----------------------------------------------------
 
-                            resultStr = "Пожалуйста, заполните все поля.";
-                            ShowMessageToUser(resultStr);
                         }
                         else 
                         {
@@ -693,48 +698,6 @@ namespace airlineApp.ViewModel
                         ShowMessageToUser(resultStr);
                     }
 
-                        //if (FlightCompany != null)
-                        //{
-                        //    if (FlightWayDepartureString != null)
-                        //    {
-                        //        if (FlightWayArrivalString != null)
-                        //        {
-                        //            if (FlightWayArrivalString != null)
-                        //            {
-                        //                if (FlightWay != null)
-                        //                {
-                        //                    if (FlightPlane != null)
-                        //                    {
-                        //                        if (FlightPrice != null || Convert.ToInt32(FlightPrice) == 0)
-                        //                        {
-                        //                            resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice), FlightPlane.MaxOfPlaces);
-
-                        //                            UpdateAllDataView();
-                        //                            UpdateFlightsList(AllFlights);
-
-                        //                            SetNullValuesToProperties();
-                        //                            ShowMessageToUser(resultStr);
-                        //                            window.Close();
-
-                        //                        }
-                        //                        else ShowMessageToUser(noPriceStr);
-
-                        //                    }
-                        //                    else ShowMessageToUser(noPlaneStr);
-
-                        //                }
-                        //                else ShowMessageToUser(noWayStr);
-
-                        //            }
-                        //            else ShowMessageToUser(noWayArrivalStr);
-
-                        //        }
-                        //        else ShowMessageToUser(noWayDepartureStr);
-                        //    }
-                        //    else ShowMessageToUser(noCompanyStr);
-                        //}
-                        //else ShowMessageToUser(noCompanyStr);
-                    
                 }
                     );
             }
@@ -752,8 +715,8 @@ namespace airlineApp.ViewModel
                     
                     if (SelectedCompany != null)
                     {
-                        resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, CompanyLogo);
-
+                        //resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, CompanyLogo);
+                        resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, companyLogoPath);
                         UpdateAllDataView();
                         UpdateCompaniesList(AllCompanies);
                         SetNullValuesToProperties();
@@ -797,31 +760,38 @@ namespace airlineApp.ViewModel
                     {
                         User authUser = null;
                         IPasswordHasher passwordHashed = new PasswordHasher();
+                        
 
                         using (ApplicationContext db = new ApplicationContext())
                         {
                             authUser = DataWorker.GetUserByEmail(LoginEmail);
-                            PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
-                            if (authUser == null || verificationResult == PasswordVerificationResult.Failed)
+                            if (authUser != null)
                             {
-                                resultStr = "Неверный email или пароль.";
-                                ShowMessageToUser(resultStr);
-                            }
-                            else
-                            {
-
-                                if (IsAdmin(authUser) == true)
+                                PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
+                                if (verificationResult == PasswordVerificationResult.Success)
                                 {
-                                    //OpenMainWndMethod(authUser);
-                                    OpenMainWndMethod();
-                                    //(window as Window).Hide(); 
-
+                                    if (IsAdmin(authUser) == true)
+                                    {
+                                        Window main = new MainWindow();
+                                        main.Show();
+                                        window.Close();
+                                    }
+                                    else
+                                    {
+                                        OpenUserWndMethod(authUser);
+                                        window.Close();
+                                    }
                                 }
                                 else
                                 {
-                                    OpenUserWndMethod(authUser);
-                                    //(window as Window).Hide();
+                                    resultStr = "Неверный пароль.";
+                                    ShowMessageToUser(resultStr);
                                 }
+                            }
+                            else
+                            {
+                                resultStr = "Неверный email.";
+                                ShowMessageToUser(resultStr);
                             }
                         }
                     }

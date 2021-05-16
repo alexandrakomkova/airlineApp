@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,18 @@ namespace airlineApp.View
         {
             InitializeComponent();
            
+        }
+        private void PreviewTextInputOnlyLetters(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            
+            Regex regex = new Regex("^[^a-zA-ZА-Яа-я]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void PreviewTextInputPassport(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[A-Z]{2}[0-9]{7}$");
+
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

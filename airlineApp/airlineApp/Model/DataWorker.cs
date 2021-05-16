@@ -24,8 +24,9 @@ namespace airlineApp.Model
                     {
                         logo = @"/Styles/no_image.png";
                     }
-                    
-                        Company newCompany = new Company { Name = name, Logo = logo };
+
+
+                    Company newCompany = new Company { Name = name, Logo = logo };
                         db.Companies.Add(newCompany);
                         db.SaveChanges();
                         result = "Новая компания успешно добавлена!";
@@ -154,21 +155,15 @@ namespace airlineApp.Model
                     flight.CompanyId = newCompany.Id;
                     
                   
-                    int diff  = newPlane.MaxOfPlaces - (oldFlight.Plane.MaxOfPlaces - oldFlight.FreePlaces);
-                    if (diff > 0)
-                    {
+                    int diff  = newPlane.MaxOfPlaces - (oldFlight.flightPlane.MaxOfPlaces - oldFlight.FreePlaces);
+                    
                         flight.PlaneId = newPlane.Id;
                         flight.FreePlaces = diff;
                         result = "Авиарейс " + flight.Id + " "
-                        + flight.Company.Name + " "
-                        + flight.Way.Departure + "->"+ flight.Way.Arrival + "\n"
+                        + flight.flightCompany.Name + " "
+                        + flight.flightWay.Departure + "->"+ flight.flightWay.Arrival + "\n"
                         + " успешно изменен!";
-                    }
-                    else
-                    {
-                        //flight.FreePlaces = 0;
-                        result = "Кто-то останется без билета. :(\nВажно, чтобы все, кто уже приобрели билет, смогли полететь этим самолетом.\n\nДанные о количестве мест не будут изменены. ";
-                    }
+                   
                     db.SaveChanges();
                 }
                 

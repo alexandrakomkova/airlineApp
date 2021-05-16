@@ -27,7 +27,6 @@ namespace airlineApp.ViewModel
             {
                 userSelectedFlight = value;
                 NotifyPropertyChanged("UserSelectedFlight");
-               // MessageBox.Show($"{userSelectedFlight.FreePlaces}");
             }
         }
 
@@ -127,8 +126,22 @@ namespace airlineApp.ViewModel
             ThisDate = DateTime.Now;
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
+        private Command switchDapartureArrivalCommand;
+        public Command SwitchDapartureArrivalCommand
+        {
+            get
+            {
+                return switchDapartureArrivalCommand ?? new Command(
+                    obj =>
+                    {
+                        string str = FlightWayDepartureString;
+                        FlightWayDepartureString = FlightWayArrivalString;
+                        FlightWayArrivalString = str;
+                    }
+                    );
+            }
+        }
 
-        
     }
     
 }

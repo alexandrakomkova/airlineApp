@@ -18,6 +18,9 @@ namespace airlineApp.View
         private void PreviewTextInputOnlyNumbers(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
+            
+            //Regex regex = new Regex("^([A-Z]{2}[0-9]{7})$");
+            //Regex regex = new Regex("^[^a-zA-ZА-Яа-я]+");
             e.Handled = regex.IsMatch(e.Text);
         }
     }

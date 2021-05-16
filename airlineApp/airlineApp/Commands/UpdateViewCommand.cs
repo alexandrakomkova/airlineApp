@@ -104,7 +104,7 @@ namespace airlineApp.Commands
             else if (parameter.ToString() == "Passenger")
             {
                 
-                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user);
+                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user, str, str, str, str);
             }
             else if (parameter.ToString() == "BookATicket")
             {

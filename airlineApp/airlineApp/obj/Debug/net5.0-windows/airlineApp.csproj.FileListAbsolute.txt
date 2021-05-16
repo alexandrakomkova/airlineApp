@@ -183,3 +183,5 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Use
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserViewTickets.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllTicketsPage.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllTicketsPage.baml
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.Properties.Resources.resources
+D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csproj.GenerateResource.cache

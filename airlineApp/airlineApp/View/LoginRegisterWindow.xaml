@@ -7,7 +7,7 @@
          xmlns:custom="clr-namespace:airlineApp.CustomControls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="380"
+        Title="LoginWindow" Height="450" Width="380"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
        
@@ -57,7 +57,8 @@
                          FontFamily="helvetica"
                          FontSize="20"
                          Width="200"
-                         Text="{Binding LoginEmail}"/>
+                         Text="{Binding LoginEmail}"
+                         PreviewTextInput="PreviewTextInputEmail" Cursor="IBeam"/>
                     <!--<TextBox x:Name="UsernameTextBox"
                          FontWeight="Light"
                          FontFamily="helvetica"
@@ -153,7 +154,8 @@
                 <StackPanel Orientation="Vertical" 
                             HorizontalAlignment="Center" 
                             Margin="0,30,0,0">
-                    <Button Style="{DynamicResource LoginRegisterButton}"  Width="100" Height="40" Content="LOGIN" Margin="0,0,0,0" Command="{Binding LoginCommand}"/>
+                    <Button Style="{DynamicResource LoginRegisterButton}"  Width="100" Height="40" Content="LOGIN" Margin="0,0,0,0" 
+                            Command="{Binding LoginCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:LoginRegisterWindow}}"/>
                 
                     <Button Name="ForgotPassLabel" 
                            Content="Forgot your password or login?"
@@ -178,7 +180,7 @@
                            Margin="0,0,0,0"
                            Opacity="0.7"
                            HorizontalContentAlignment="Center"
-                           Command="{Binding OpenRegisterWndCommand}" Cursor="Hand"
+                           Command="{Binding OpenRegisterWndCommand}" Cursor="Hand" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:LoginRegisterWindow}}"
                           />
                    
                 </StackPanel>

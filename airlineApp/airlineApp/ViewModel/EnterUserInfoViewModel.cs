@@ -67,20 +67,31 @@ namespace airlineApp.ViewModel
             }
         }
 
-        public EnterUserInfoViewModel(UserWindowViewModel parentVM, Flight f, string place, User user)
+        public EnterUserInfoViewModel(UserWindowViewModel parentVM, Flight f, string place, User user, string pass, string ps, string pn, string pm)
         {
             this.user = user;
-            MessageBox.Show($"{user.Email}");
+           // MessageBox.Show($"{user.Email}");
             UserSelectedFlight = f;
             passengerSeat = place;
             this.parentVM = parentVM;
+            this.passengerPassport = pass;
+            this.passengerName = pn;
+            this.passengerMiddleName = pm;
+            this.passengerSurname = ps;
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
         public ICommand UpdateViewCommand { get; }
         private void OnUpdateViewCommandExecuted(object p)
         {
-           
-            parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+            if (p.ToString() == "Place")
+            {
+                parentVM.CurrentPage = new GetPlaceViewModel(parentVM, UserSelectedFlight, user);
+               
+            }
+            else 
+            {
+                parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+            }
         }
 
     }
