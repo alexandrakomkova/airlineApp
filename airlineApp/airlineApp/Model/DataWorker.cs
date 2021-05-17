@@ -120,6 +120,17 @@ namespace airlineApp.Model
             }
             return result;
         }
+        public static void DeleteUser (User user)
+        {
+            //MessageBox.Show("123");
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+
+            }
+
+        }
 
         //edit company
         public static string EditCompany(Company oldCompany, string newName, string newLogo)

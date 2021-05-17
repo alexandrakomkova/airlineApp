@@ -950,13 +950,18 @@ namespace airlineApp.ViewModel
                     if (LoginEmail != null)
                     {
                         using (ApplicationContext db = new ApplicationContext())
-                        {
-                            var result = db.Users.Select(u => u.Email == LoginEmail).FirstOrDefault();
-                            if (result)
+                        { 
+                            User authUser = null;
+                            authUser = DataWorker.GetUserByEmail(LoginEmail);
+                            if (authUser != null)
                             {
-                                resultStr = "Письмо отправлено на email под которым вы зарегистрированы. Никому не сообщайте информацию из письма!";
+                                resultStr = "Письмо отправлено на email под которым вы зарегистрированы. Проверьте также категорию Спам.";
                                 SendEmailAsync(LoginEmail).GetAwaiter();
                                 ShowMessageToUser(resultStr);
+                                authUser = DataWorker.GetUserByEmail(LoginEmail);
+                                DataWorker.DeleteUser(authUser);
+                                DataWorker.CreateUser(LoginEmail, newPassword);
+
                             }
                             else
                             {
@@ -975,17 +980,35 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+        public static string newPassword;
         private static async Task SendEmailAsync(string str)
         {
+            newPassword = Random(7);
             MailAddress from = new MailAddress("airlineapp377@gmail.com", "AirlineApp");
-            MailAddress to = new MailAddress(str); //monmiel@yandex.by
+            MailAddress to = new MailAddress(str); //"monmiel@yandex.by"
             MailMessage m = new MailMessage(from, to);
-            m.Subject = "Не показывайте это посторонним!";
-            m.Body = "password";
+            m.Subject = "Никому не сообщайте информацию из письма!";
+            m.Body = $"Здравствуйте! Ваш новый пароль: {newPassword}";
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials = new NetworkCredential("airlineapp377@gmail.com", "CnEiHvZR2Q");
             smtp.EnableSsl = true;
             await smtp.SendMailAsync(m);
+        }
+        public static string Random(int length)
+        {
+            try
+            {
+                byte[] result = new byte[length];
+                for (int index = 0; index < length; index++)
+                {
+                    result[index] = (byte)new Random().Next(33, 126);
+                }
+                return System.Text.Encoding.ASCII.GetString(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         #endregion
 

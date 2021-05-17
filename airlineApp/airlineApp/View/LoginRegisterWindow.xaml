@@ -58,7 +58,7 @@
                          FontSize="20"
                          Width="200"
                          Text="{Binding LoginEmail}"
-                         PreviewTextInput="PreviewTextInputEmail" Cursor="IBeam"/>
+                          Cursor="IBeam"/>
                     <!--<TextBox x:Name="UsernameTextBox"
                          FontWeight="Light"
                          FontFamily="helvetica"
