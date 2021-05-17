@@ -33,11 +33,6 @@ namespace airlineApp.View
             Regex regex = new Regex("^[^a-zA-ZА-Яа-я]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        private void PreviewTextInputPassport(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[A-Z]{2}[0-9]{7}$");
-
-            e.Handled = regex.IsMatch(e.Text);
-        }
+        
     }
 }

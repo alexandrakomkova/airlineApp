@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -78,7 +79,15 @@ namespace airlineApp.ViewModel
             this.passengerName = pn;
             this.passengerMiddleName = pm;
             this.passengerSurname = ps;
+            
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
+        }
+        public bool IsValidPassport(string passport)
+        {
+            //Regex regex = new Regex("[A-Z]{2}[0-9]{7}$");
+            string pattern = "[A-Z]{2}[0-9]{7}$";
+            Match isMatch = Regex.Match(passport, pattern, RegexOptions.IgnoreCase);
+            return isMatch.Success;
         }
         public ICommand UpdateViewCommand { get; }
         private void OnUpdateViewCommandExecuted(object p)
@@ -90,7 +99,11 @@ namespace airlineApp.ViewModel
             }
             else 
             {
-                parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+                if (IsValidPassport(passengerPassport) == true)
+                {
+                    //MessageBox.Show("ok");
+                    parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+                }
             }
         }
 

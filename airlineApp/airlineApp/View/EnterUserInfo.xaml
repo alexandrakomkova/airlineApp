@@ -90,7 +90,6 @@
                          Foreground="WhiteSmoke"
                          BorderBrush="WhiteSmoke"
                          FontSize="16"
-                         PreviewTextInput="PreviewTextInputPassport"
                          Text="{Binding PassengerPassport}" Cursor="IBeam"/>
             </StackPanel>
             
