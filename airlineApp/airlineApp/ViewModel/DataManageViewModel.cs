@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -799,7 +800,6 @@ namespace airlineApp.ViewModel
                     {
                         User authUser = null;
                         IPasswordHasher passwordHashed = new PasswordHasher();
-                        
 
                         using (ApplicationContext db = new ApplicationContext())
                         {
@@ -838,7 +838,24 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-       
+        public bool IsValidEmail(string email)
+        {
+
+            string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
+            Match isMatch = Regex.Match(email, pattern, RegexOptions.IgnoreCase);
+            return isMatch.Success;
+        }
+        public bool IsEmailUsed(string email)
+        {
+            User authUser = null;
+            authUser = DataWorker.GetUserByEmail(email);
+            bool isUsed = false;
+            if (authUser != null) 
+            {
+               isUsed = true;
+            }
+            return isUsed;
+        }
         public Command RegisterCommand
         {
             get
@@ -847,7 +864,7 @@ namespace airlineApp.ViewModel
                 {
 
                     string resultStr = "";
-                   
+                    Window window = obj as Window;
                     try
                     {
                         if (EmailText == null || EmailText.Replace(" ", "").Length == 0
@@ -860,7 +877,7 @@ namespace airlineApp.ViewModel
                         else if (PasswordText.Length < 6)
                         {
                             resultStr = "Пароль должен быть не меньше 6 символов.";
-                            // SetRedBlockControll(window, "PasswordBox");
+                            
                             ShowMessageToUser(resultStr);
                         }
                         else
@@ -871,21 +888,35 @@ namespace airlineApp.ViewModel
                         }
                         else
                         {
+                            if (IsEmailUsed(EmailText) == false)
+                            {
+                                if (IsValidEmail(EmailText) == true)
+                                {
 
-                            resultStr = DataWorker.CreateUser(EmailText, PasswordText);
-                            ShowMessageToUser(resultStr);
-                            OpenLoginWndMethod();
-                            SetNullValuesToProperties();
+
+                                    resultStr = DataWorker.CreateUser(EmailText, PasswordText);
+                                    ShowMessageToUser(resultStr);
+                                    User authUser = null;
+                                    authUser = DataWorker.GetUserByEmail(EmailText);
+                                    OpenUserWndMethod(authUser);
+                                    //window.Close();
+                                    SetNullValuesToProperties();
+
+                                }
+                                else
+                                {
+                                    resultStr = "Неверный формат email.";
+                                    ShowMessageToUser(resultStr);
+
+                                }
+                            }
+                            else 
+                            {
+                                resultStr = "Пользователь с таким email уже зарегистрирован.";
+                                ShowMessageToUser(resultStr);
+                            }
                         }
-                        //else
-                        //if (EmailText == null || EmailText.Replace(" ", "").Length == 0)
-                        //{
-                        //    //SetRedBlockControll(window, "EmailBox");
-                        //    resultStr = "Пожалуйста, введите email для регистрации.";
-                        //    ShowMessageToUser(resultStr);
-                        //}
-
-
+                        
                     }
                     catch
                     {
