@@ -24,65 +24,7 @@
 
             <ContentControl Content="{Binding CurrentList}"/>
 
-            <!--<ListView
-                x:Name="ViewAllFlights"
-                ItemsSource="{Binding AllFlights}"
-                Foreground="black"
-                HorizontalContentAlignment="Center"
-                SelectedItem="{Binding SelectedFlight}"
-                >
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Edit" Command="{Binding EditFlightWndCommand}"/>
-                        <MenuItem Header="Delete" Command="{Binding DeleteFlightCommand}"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-
-
-                <ListView.View >
-                    <GridView >
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=Id}"
-                            Header="Id" 
-                            Width="auto"/>
-                        <GridViewColumn
-                            Header="Logo" 
-                            Width="auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding Path=flightCompany.Logo}" Stretch="Fill"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightCompany.Name}"
-                            Header="Company" />
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Departure}"
-                            Header="Departure" 
-                            Width="auto"/>
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightWay.Arrival}"
-                            Header="Arrival" 
-                            Width="auto"/>
-                        
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=Price}"
-                            Header="Price" />
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightPlane.Name}"
-                            Header="Plane" />
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=flightPlane.MaxOfPlaces}"
-                            Header="Max of places" />
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=FreePlaces}"
-                            Header="Free places" />
-
-
-                    </GridView>
-                </ListView.View>
-            </ListView>-->
+            
         </Grid>
 
 
@@ -116,12 +58,12 @@
                 <Button Style="{DynamicResource InstrumentsButton}"  Width="140" Height="40" Content="ADD FLIGHT" Margin="0,10,0,0" Command="{Binding OpenAddFlightWndCommand}"/>
                 
                 
-                <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+                <!--<StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by company name" Margin="0,0,0,0" Command="{Binding SortByCompanyCommand}"/>
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of departure" Margin="0,5,0,0" Command="{Binding SortByDepartureCommand}"/>
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by place of arrival" Margin="0,5,0,0" Command="{Binding SortByArrivalCommand}"/>
                     <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Sort by price" Margin="0,5,0,0" Command="{Binding SortByPriceCommand}"/>
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
 
 
@@ -137,14 +79,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
                         Margin="0,0,15,0">
 
-                <!--<TextBox Style="{DynamicResource FindTextBox}" Width="200"
-                         Height="25"
-                         VerticalContentAlignment="Center"
-                         HorizontalAlignment="Left"
-                         Margin="0,0,140,0"
-                         x:Name="Txt"
-                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                         />-->
+                
                 <materialDesign:PackIcon 
                         Kind="Search" 
                         Width="25" Height="25"
@@ -194,20 +129,23 @@
                         Foreground="WhiteSmoke"
                         Margin="0,0,0,0"/>
                 </StackPanel>
-
-                <!--<Button Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Padding="1">
-                    -->
-                <!--<iconPacks:PackIconMaterial 
-                    Kind="Cog" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke" Width="18"/>-->
-                <!--
-                    <materialDesign:PackIcon 
-                        Kind="Cog" Width="22" Height="22"/>
-                </Button>-->
-
-
+                <Menu Background="#000080"
+                      Foreground="WhiteSmoke">
+                    <MenuItem Icon="{materialDesign:PackIcon Kind=SortVariant}">
+                        <MenuItem Header="By company name" 
+                                  Command="{Binding SortByCompanyCommand}"
+                                  Icon="{materialDesign:PackIcon Kind=SortAlphabeticalDescendingVariant}"/>
+                        <MenuItem Header="By place of departure" 
+                                  Command="{Binding SortByDepartureCommand}"
+                                  Icon="{materialDesign:PackIcon Kind=AirplaneTakeoff}"/>
+                        <MenuItem Header="By place of arrival" 
+                                  Command="{Binding SortByArrivalCommand}"
+                                  Icon="{materialDesign:PackIcon Kind=AirplaneLanding}"/>
+                        <MenuItem Header="By price" 
+                                  Command="{Binding SortByPriceCommand}"
+                                  Icon="{materialDesign:PackIcon Kind=SortNumericVariant}"/>
+                    </MenuItem>
+                </Menu>
                 <Button x:Name="LogOutButton" 
                         Width="25" Height="25" 
                         Foreground="WhiteSmoke" 

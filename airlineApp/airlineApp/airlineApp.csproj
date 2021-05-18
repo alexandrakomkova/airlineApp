@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Styles\120.jpg" />
+    <None Remove="Styles\149.jpg" />
+    <None Remove="Styles\189.jpg" />
     <None Remove="Styles\no_image.png" />
   </ItemGroup>
 
@@ -22,6 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Styles\120.jpg" />
+    <Resource Include="Styles\149.jpg" />
+    <Resource Include="Styles\189.jpg">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Styles\no_image.png" />
   </ItemGroup>
 

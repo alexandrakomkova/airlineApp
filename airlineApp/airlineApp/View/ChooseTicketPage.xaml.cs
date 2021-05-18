@@ -27,7 +27,7 @@ namespace airlineApp.View
         {
             InitializeComponent();
             UserFlightsView = ViewUserFlights ;
-            UserBackFlightsView = ViewUserBackFlights;
+            
         }
 
        

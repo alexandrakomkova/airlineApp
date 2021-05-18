@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:airlineApp"
              xmlns:views="clr-namespace:airlineApp.View"
              xmlns:vm="clr-namespace:airlineApp.ViewModel"
-             StartupUri="/View/LoginRegisterWindow.xaml">
+             StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
         
 

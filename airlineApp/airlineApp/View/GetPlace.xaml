@@ -6,8 +6,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900">
-    <Grid Background="Transparent"> 
-        <Image Source="{Binding SchemaOfPlaces}" Width="900"
+    <Grid Background="Transparent">
+        <Image Source="{Binding schemeOfPlane}" Width="900"
                Height="340"
                VerticalAlignment="top"/>
         <Button Style="{DynamicResource InstrumentsButton}"  

@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:airlineApp.View"
         mc:Ignorable="d"
         Name="MessageWnd"
-        Title="Message" Height="140" Width="240">
+        Title="Message" Height="160" Width="260"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             
         </Grid.RowDefinitions>
         <TextBlock x:Name="MessageText" Grid.Row="0"
@@ -18,13 +19,17 @@
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"/>
         <Button Grid.Row="1" 
+                Style="{DynamicResource InstrumentsButtonBlack}"
                 Content="OK" 
+                Width="140"
                 Command="{Binding CloseWndCommand}"
                 CommandParameter="{Binding ElementName=MessageWnd}"
-                Width="100"
-                Background="#000080"
+                Height="40"
+                Background="Transparent"
+                BorderBrush="DarkBlue"
+                Foreground="DarkBlue"
                 Padding="4"
-                Foreground="WhiteSmoke" 
+               
                 Cursor="Hand"/>
     </Grid>
 </Window>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using airlineApp.Commands;
 using airlineApp.Model;
 using airlineApp.Model.Data;
@@ -16,13 +17,25 @@ namespace airlineApp.ViewModel
         private UserWindowViewModel parentVM;
         private User user;
         public static Flight UserSelectedFlight;
-
-
+        public string schemeOfPlane { get; set; }
         public GetPlaceViewModel(UserWindowViewModel parentVM, Flight f, User user)
         {
             this.user = user;
             //MessageBox.Show($"{user.Email}");
             UserSelectedFlight = f;
+            
+            if (UserSelectedFlight.flightPlane.MaxOfPlaces == 120)
+            {
+                schemeOfPlane = "/Styles/120.jpg";
+            }
+            else if (UserSelectedFlight.flightPlane.MaxOfPlaces == 148)
+            {
+                schemeOfPlane = "/Styles/149.jpg";
+            }
+            else if (UserSelectedFlight.flightPlane.MaxOfPlaces == 189)
+            {
+                schemeOfPlane = "/Styles/189.jpg";
+            }
             List<string> places = new List<string>();
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -60,11 +73,26 @@ namespace airlineApp.ViewModel
         public ICommand UpdateBackViewCommand { get; }
         private void OnUpdateViewCommandExecuted(object p)
         {
-            parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace, user, null, null, null, null);
-            if (p.ToString() == "GetTicket") 
+
+            if (p.ToString() == "GetTicket")
             {
                 parentVM.CurrentPage = new ChooseTicketViewModel(parentVM, user, UserSelectedFlight);
             }
+
+
+            if (p.ToString() == "Passenger" )
+            {
+                if (ChosenPlace != null) 
+                {
+                    parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, ChosenPlace, user, null, null, null, null);
+                }
+                else
+                {
+                    string resultStr = "Пожалуйста, выберите место.";
+                    ShowMessageToUser(resultStr);
+                }
+            }
+            
         }
 
     }

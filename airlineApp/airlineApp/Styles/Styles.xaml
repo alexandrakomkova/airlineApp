@@ -52,6 +52,32 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+     <Style x:Key="InstrumentsButtonBlack" TargetType="Button">
+        <Setter Property="Foreground" Value="DarkBlue"/>
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="20"
+                            BorderThickness="2"
+                            BorderBrush="DarkBlue">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="Foreground" Value="DarkBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="InstrumentsRadionButton" TargetType="RadioButton">
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="2"/>

@@ -31,7 +31,7 @@
                   Padding="4"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  Margin="0,0,0,0"
+                  Margin="0,0,10,0"
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center"
                   materialDesign:HintAssist.Hint="Place of daparture"
@@ -45,7 +45,7 @@
                         BorderBrush="{x:Null}" 
                         Foreground="WhiteSmoke" 
                         Padding="1" 
-                        Margin="0,0,0,0"
+                        Margin="0,0,10,0"
                     Command="{Binding SwitchDapartureArrivalCommand}">
                     <materialDesign:PackIcon 
                         Kind="ArrowLeftRight" Width="25" Height="25"
@@ -88,7 +88,7 @@
                 DisplayDateEnd="2021-12-12"
                 DisplayDate="{Binding ThisDate}"/>
                 
-                <DatePicker
+                <!--<DatePicker
                 VerticalAlignment="Top"
                     Width="135"
                     IsEnabled="{Binding IsBackEnable}"
@@ -101,19 +101,22 @@
                     FirstDayOfWeek="Monday"  
                     DisplayDateStart="{Binding ThisDate}" 
                     DisplayDateEnd="2021-12-12"
-                    DisplayDate="{Binding ThisDate}"/>
+                    DisplayDate="{Binding ThisDate}"/>-->
                 <StackPanel Orientation="Vertical"
-                         Margin="60,0,0,0">
-                    <StackPanel 
+                         Margin="60,0,0,0"
+                            HorizontalAlignment="Right"
+                            Grid.Row="0">
+                    <!--<StackPanel 
                 HorizontalAlignment="Left"
                 Margin="0,0,0,0"
                 Orientation="Vertical">
                         <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="One-way" Margin="0,0,20,0" IsChecked="true"/>
                         <RadioButton Style="{DynamicResource InstrumentsRadionButton}" Content="Return" Margin="0,0,0,0" IsChecked="{Binding IsBackEnable}" />
-                    </StackPanel>
+                    </StackPanel>-->
                     <Button Style="{DynamicResource InstrumentsButton}" 
                     Width="110" Height="40" 
-                    Content="SEARCH" Margin="0,20,0,0" 
+                    
+                    Content="SEARCH" Margin="0,0,0,0" 
                     Command="{Binding UserSearchCommand}"/>
                 </StackPanel>
             </StackPanel>
@@ -121,10 +124,11 @@
         </StackPanel>
         <StackPanel Grid.Row="1" 
                     Orientation="Vertical"
-                    HorizontalAlignment="Left">
+                    HorizontalAlignment="Left"
+                    Background="WhiteSmoke">
             <ListView x:Name="ViewUserFlights"
-                Width="800"
-                      Height="140"
+                Width="780"
+                      Height="300"
                       Margin="0,0,0,30"
                       BorderBrush="WhiteSmoke"
                       Foreground="WhiteSmoke"
@@ -153,13 +157,13 @@
                             Header="Price" 
                             Width="auto"/>
                         <GridViewColumn
-                            DisplayMemberBinding="{Binding Path=Id}"
+                            DisplayMemberBinding="{Binding Path=FreePlaces}"
                             Header="Free Places" 
                             Width="auto"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView x:Name="ViewUserBackFlights"
+            <!--<ListView x:Name="ViewUserBackFlights"
                       Width="800"
                       Height="140"
                       HorizontalAlignment="Left"
@@ -193,7 +197,7 @@
                             Width="auto"/>
                     </GridView>
                 </ListView.View>
-            </ListView>
+            </ListView>-->
 
         </StackPanel>
        
