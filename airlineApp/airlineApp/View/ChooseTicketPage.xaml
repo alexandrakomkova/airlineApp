@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       xmlns:custom="clr-namespace:airlineApp.CustomControls" xmlns:viewmodel="clr-namespace:airlineApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:UserWindowViewModel}"
              mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="900"
+      d:DesignHeight="450" d:DesignWidth="1000"
       >
 
     <Grid>
@@ -124,14 +124,13 @@
         </StackPanel>
         <StackPanel Grid.Row="1" 
                     Orientation="Vertical"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="center"
                     Background="WhiteSmoke">
             <ListView x:Name="ViewUserFlights"
-                Width="780"
+                Width="750"
                       Height="300"
                       Margin="0,0,0,30"
                       BorderBrush="WhiteSmoke"
-                      Foreground="WhiteSmoke"
                       ItemsSource="{Binding UserListOneWay}"
                       SelectedItem="{Binding UserSelectedFlight}">
                 <ListView.View>
@@ -205,7 +204,9 @@
                 Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
                 Content="NEXT" 
-                Margin="800,270,0,10" 
+                Margin="0,0,20,20" 
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
                 Command="{Binding UpdateViewCommand}" 
                 CommandParameter="Place"
                 Grid.Row="1"/>

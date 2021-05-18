@@ -48,20 +48,26 @@ namespace airlineApp.ViewModel
         }
         private void OnUpdateViewCommandExecuted(object p)
         {
-            //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
-
-
+           
             if (p.ToString() == "Passenger")
             {
                 parentVM.CurrentPage = new EnterUserInfoViewModel(parentVM, UserSelectedFlight, passengerSeat, user, passengerPassport, ps, pn, pm);
             }
             else if(p.ToString() == "ViewTicket")
             {
-                //MessageBox.Show("dsds");
                 string resultStr = "";
-                resultStr = DataWorker.CreateTicket(PassengerFullName, PassengerPassport, Convert.ToInt32(passengerSeat), userSelectedFlight, user);
-                ShowMessageToUser(resultStr);
-                parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
+                //MessageBox.Show("dsds");
+                if (IsAccept == true)
+                {
+                    resultStr = DataWorker.CreateTicket(PassengerFullName, PassengerPassport, Convert.ToInt32(passengerSeat), userSelectedFlight, user);
+                    ShowMessageToUser(resultStr);
+                    parentVM.CurrentPage = new UserViewTicketViewModel(parentVM, userSelectedFlight, user);
+                }
+                else 
+                {
+                    resultStr = "Пожалуйста, проверьте введенные данные. Если они верны, подтвердите в поле Accept.";
+                    ShowMessageToUser(resultStr);
+                }
             }
 
         }
@@ -115,8 +121,12 @@ namespace airlineApp.ViewModel
                 return isAcceptCommand ?? new Command(
                     obj =>
                     {
-                        isAccept = true;
-                        NotifyPropertyChanged("IsAccept");
+                        if (IsAccept == false)
+                        {
+                            IsAccept = true;
+                            NotifyPropertyChanged("IsAccept");
+                        }
+                      
                     }
                     );
             }

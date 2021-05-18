@@ -15,7 +15,7 @@
         <Button
                 Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="Back" 
+                Content="BACK" 
                 Margin="0,20,0,20" 
                 Command="{Binding UpdateViewCommand}" 
                 HorizontalAlignment="Right"
@@ -25,7 +25,7 @@
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Width="600"
-                    Height="400"
+                    Height="500"
                     Margin="40,0,0,0"
                     Background="WhiteSmoke"
                     Orientation="Vertical"
@@ -36,9 +36,10 @@
             <StackPanel Orientation="Horizontal"
                         Margin="10,20,0,0">
                 <TextBlock Text="Flight number : " 
-                    Width="130"
-                           FontWeight="DemiBold"/>
-                <TextBlock Width="400" 
+                    Width="160"
+                           FontWeight="DemiBold"
+                           FontSize="16"/>
+                <TextBlock Width="400"  FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.Id}"
                            />
             </StackPanel>
@@ -46,9 +47,9 @@
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Full passenger name : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400" 
+                <TextBlock Width="400"  
                            Text="{Binding PassengerFullName}"
                            Foreground="Black"
                            FontSize="16"/>
@@ -56,80 +57,85 @@
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Company : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400"  FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.flightCompany.Name}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Place of departure : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400"  FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.flightWay.Departure}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Place of arrival : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400" FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.flightWay.Arrival}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Departure Date : " 
-                    Width="130"
+                    Width="160"  FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400" FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.flightWay.DepartureTime}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Arrival Date : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400" FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.flightWay.ArrivalTime}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Seat : " 
-                    Width="130"
+                    Width="160"  FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400" FontSize="16"
                            Text="{Binding PassengerSeat}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Price : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400" FontSize="16"
                            Text="{Binding Path=UserSelectedFlight.Price}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
                 <TextBlock Text="Passport : " 
-                    Width="130"
+                    Width="160" FontSize="16"
                            FontWeight="DemiBold"/>
-                <TextBlock Width="400"
+                <TextBlock Width="400" FontSize="16"
                            Text="{Binding PassengerPassport}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"
+            <StackPanel Orientation="Vertical"
                         Margin="10,20,0,0">
                 <CheckBox Content="Accept" 
-                          FontWeight="DemiBold"
+                          FontWeight="Bold"
                           IsChecked="{Binding IsAccept}"
-                          Command="{Binding IsAcceptCommand}"/>
+                          Command="{Binding IsAcceptCommand}"
+                           FontSize="16"/>
+                <Label Content="Пожалуйста, проверьте данные, которые будут в билете. Если всё верно, поставьте галочку. "
+                       FontSize="12"
+                       FontWeight="DemiBold"
+                       />
             </StackPanel>
         </StackPanel>
         <Button  Grid.Column="2"
-                 IsEnabled="{Binding IsAccept}"
+                
                 Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="Next" 
+                Content="NEXT" 
                 Margin="0,0,20,20" 
                 Command="{Binding UpdateViewCommand}" 
                 HorizontalAlignment="Right"

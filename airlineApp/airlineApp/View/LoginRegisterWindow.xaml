@@ -43,7 +43,8 @@
                         Kind="power" 
                         Width="22" Height="22"/>
             </Button>
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center"
+                        Grid.Row="0">
                 <Image Source="/Styles/logo.png" Width="80"
                        Margin="0,0,0,7"/>
                 <TextBlock Text="AirlineApp" 

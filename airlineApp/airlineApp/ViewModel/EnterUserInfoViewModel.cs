@@ -76,6 +76,7 @@ namespace airlineApp.ViewModel
             passengerSeat = place;
             this.parentVM = parentVM;
             this.passengerPassport = pass;
+            
             this.passengerName = pn;
             this.passengerMiddleName = pm;
             this.passengerSurname = ps;
@@ -84,7 +85,6 @@ namespace airlineApp.ViewModel
         }
         public bool IsValidPassport(string passport)
         {
-            //Regex regex = new Regex("[A-Z]{2}[0-9]{7}$");
             string pattern = "[A-Z]{2}[0-9]{7}$";
             Match isMatch = Regex.Match(passport, pattern, RegexOptions.IgnoreCase);
             return isMatch.Success;
@@ -101,8 +101,12 @@ namespace airlineApp.ViewModel
             {
                 if (IsValidPassport(passengerPassport) == true)
                 {
-                    //MessageBox.Show("ok");
                     parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+                }
+                else 
+                {
+                    string resultStr = "Неправильный формат записи номера пасспорта.\nПример: XX1234567";
+                    ShowMessageToUser(resultStr);
                 }
             }
         }

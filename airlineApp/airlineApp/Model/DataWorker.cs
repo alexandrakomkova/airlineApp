@@ -120,7 +120,7 @@ namespace airlineApp.Model
             }
             return result;
         }
-        public static void DeleteUser (User user)
+        public static void DeleteUser(User user)
         {
             //MessageBox.Show("123");
             using (ApplicationContext db = new ApplicationContext())
@@ -131,7 +131,24 @@ namespace airlineApp.Model
             }
 
         }
+        public static void EditUser(string email, string newPassword)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                User user = db.Users.FirstOrDefault(u => u.Email == email);
+                if (user != null)
+                {
+                    IPasswordHasher hasher = new PasswordHasher();
+                    string hashedPassword = hasher.HashPassword(newPassword);
+                    user.Email = email;
+                    user.Password = hashedPassword;
 
+                    db.SaveChanges();
+                }
+
+            }
+            
+        }
         //edit company
         public static string EditCompany(Company oldCompany, string newName, string newLogo)
         {

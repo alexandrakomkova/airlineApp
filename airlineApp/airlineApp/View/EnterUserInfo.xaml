@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <Button Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="Back" 
+                Content="BACK" 
                 Margin="20,0,0,20" 
                 Command="{Binding UpdateViewCommand}" 
                 HorizontalAlignment="Left"
@@ -24,7 +24,7 @@
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Width="300"
-                    Height="400"
+                    Height="300"
                     Margin="40,0,0,0"
                     Background="Transparent"
                     Orientation="Vertical"
@@ -93,21 +93,12 @@
                          Text="{Binding PassengerPassport}" Cursor="IBeam"/>
             </StackPanel>
             
-            <StackPanel Orientation="Horizontal"
-                        Margin="10,40,0,0">
-                <CheckBox Content="Accept" 
-                          FontWeight="DemiBold"
-                          IsChecked="{Binding IsAccept}"
-                          Foreground="WhiteSmoke"
-                          BorderBrush="WhiteSmoke" Background="WhiteSmoke"
-                          />
-            </StackPanel>
+            
         </StackPanel>
         <Button  Grid.Column="2"
-                 IsEnabled="{Binding IsAccept}"
                 Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="Next" 
+                Content="NEXT" 
                 Margin="0,0,20,20" 
                 Command="{Binding UpdateViewCommand }" 
                 HorizontalAlignment="Right"

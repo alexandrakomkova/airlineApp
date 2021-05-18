@@ -806,6 +806,8 @@ namespace airlineApp.ViewModel
                             authUser = DataWorker.GetUserByEmail(LoginEmail);
                             if (authUser != null)
                             {
+                                //string str = Convert.FromBase64String(authUser.Password);
+                               // BitConverter.ToString(Convert.FromBase64String(authUser.Password))
                                 PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
                                 if (verificationResult == PasswordVerificationResult.Success)
                                 {
@@ -959,9 +961,9 @@ namespace airlineApp.ViewModel
                                 SendEmailAsync(LoginEmail).GetAwaiter();
                                 ShowMessageToUser(resultStr);
                                 authUser = DataWorker.GetUserByEmail(LoginEmail);
-                                DataWorker.DeleteUser(authUser);
-                                DataWorker.CreateUser(LoginEmail, newPassword);
-
+                                //DataWorker.DeleteUser(authUser);
+                                //DataWorker.CreateUser(LoginEmail, newPassword);
+                                DataWorker.EditUser(LoginEmail, newPassword);
                             }
                             else
                             {
@@ -984,6 +986,8 @@ namespace airlineApp.ViewModel
         private static async Task SendEmailAsync(string str)
         {
             newPassword = Random(7);
+            
+            //MessageBox.Show(Random(7));
             MailAddress from = new MailAddress("airlineapp377@gmail.com", "AirlineApp");
             MailAddress to = new MailAddress(str); //"monmiel@yandex.by"
             MailMessage m = new MailMessage(from, to);
@@ -1001,9 +1005,21 @@ namespace airlineApp.ViewModel
                 byte[] result = new byte[length];
                 for (int index = 0; index < length; index++)
                 {
-                    result[index] = (byte)new Random().Next(33, 126);
+                    result[index] = (byte)new Random().Next(33, 100);
                 }
+
                 return System.Text.Encoding.ASCII.GetString(result);
+                //char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".ToCharArray();
+
+                //char[] letters = "1234567890".ToCharArray();
+                //Random rand = new Random();
+                //newPassword = null;
+                //for (int i = 1; i <= length; i++)
+                //{
+                //    int letter_num = rand.Next(0, letters.Length - 1);
+                //    newPassword += letters[letter_num];
+                //}
+                //return newPassword;
             }
             catch (Exception ex)
             {
