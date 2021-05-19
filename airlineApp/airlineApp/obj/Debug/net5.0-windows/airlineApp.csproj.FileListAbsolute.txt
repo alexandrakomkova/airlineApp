@@ -76,7 +76,6 @@ D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\FindTicke
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\LoginRegisterWindow.baml
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Message.baml
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserWindow.baml
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\Styles\Styles.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddCompanyWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddFlightWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\FindTicketPage.g.cs
@@ -185,3 +184,6 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Vie
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllTicketsPage.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.Properties.Resources.resources
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\airlineApp.csproj.GenerateResource.cache
+D:\uni\ооп\coursework\airlineApp\airlineApp\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+D:\uni\ооп\coursework\airlineApp\airlineApp\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\uni\ооп\coursework\airlineApp\airlineApp\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

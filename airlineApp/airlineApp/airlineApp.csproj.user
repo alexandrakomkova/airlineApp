@@ -81,9 +81,9 @@
     <Resource Update="lang.en-US.xaml">
       <SubType>Designer</SubType>
     </Resource>
-    <Page Update="Styles\Styles.xaml">
+    <Resource Update="Styles\Styles.xaml">
       <SubType>Designer</SubType>
-    </Page>
+    </Resource>
     <Page Update="View\AddCompanyWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

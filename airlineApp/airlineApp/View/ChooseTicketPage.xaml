@@ -149,7 +149,7 @@
         <Button 
                 Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="NEXT" 
+                Content="{DynamicResource Next}" 
                 Margin="0,0,20,20" 
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Right"

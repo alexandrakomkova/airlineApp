@@ -19,7 +19,7 @@
        
             <Button Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="BACK" 
+                Content="{DynamicResource Back}" 
                 Margin="20,0,0,20" 
                 Command="{Binding UpdateViewCommand}" 
                 HorizontalAlignment="Left"
@@ -44,12 +44,12 @@
                   Foreground="black"
                   Margin="0,0,100,20"
                   HorizontalAlignment="Right"
-                  materialDesign:HintAssist.Hint="Choose a place">
+                  materialDesign:HintAssist.Hint="{DynamicResource ChoosePlace}">
                 
             </ComboBox>
             <Button Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="NEXT" 
+                Content="{DynamicResource Next}" 
                 Margin="0,0,20,20" 
                 Command="{Binding UpdateViewCommand}" 
                 HorizontalAlignment="Right"

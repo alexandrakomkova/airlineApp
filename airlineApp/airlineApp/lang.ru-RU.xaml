@@ -3,4 +3,48 @@
 					xmlns:local="clr-namespace:airlineApp.Resources"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <v:String x:Key="ViewAllFlight">ВСЕ РЕЙСЫ</v:String>
+	<v:String x:Key="ViewAllFlightToolTip">Посмотреть список всех рейсов</v:String>
+	<v:String x:Key="ViewAllCompanies">ВСЕ КОМПАНИИ</v:String>
+	<v:String x:Key="ViewAllCompaniesToolTip">Посмотреть список всех авиакомпаний</v:String>
+	<v:String x:Key="ViewAllTickets">ВСЕ БИЛЕТЫ</v:String>
+	<v:String x:Key="ViewAllTicketsToolTip">Посмотреть список всех забронированных билетов</v:String>
+	<v:String x:Key="AddCompany">ДОБАВИТЬ КОМПАНИЮ</v:String>
+	<v:String x:Key="AddFlight">ДОБАВИТЬ РЕЙС</v:String>
+	<v:String x:Key="PasswordText">Пароль</v:String>
+	<v:String x:Key="ConfirmPasswordText">Повторите пароль</v:String>
+	<v:String x:Key="PasswordMiniText">Минимум 6 символов</v:String>
+	<v:String x:Key="ConfirmPasswordMiniText">Проверьте пароль</v:String>
+	<v:String x:Key="ForgotPassLabel">Забыли пароль?</v:String>
+	<v:String x:Key="RegisterLabel">Нет аккаунта? Зарегистрируйтесь!</v:String>
+	<v:String x:Key="CompanyNameTextBlock">Имя компании</v:String>
+	<v:String x:Key="Add">ДОБАВИТЬ</v:String>
+	<v:String x:Key="LoadLogo">ЗАГРУЗИТЬ</v:String>
+	<v:String x:Key="ChooseCompany">Выберите компанию</v:String>
+	<v:String x:Key="ChooseDeparture">Выберите пункт отправления</v:String>
+	<v:String x:Key="ChooseDepartureTime">Выберите дату отправления</v:String>
+	<v:String x:Key="ChooseArrival">Выберите пункт прибытия</v:String>
+	<v:String x:Key="ChoosePlane">Выберите самолет</v:String>
+	<v:String x:Key="Price">Цена</v:String>
+	<v:String x:Key="SortByCompany">По названию компании</v:String>
+	<v:String x:Key="SortByDeparture">По пункту отправления</v:String>
+	<v:String x:Key="SortByArrival">По пункту прибытия</v:String>
+	<v:String x:Key="SortByPrice">По цене</v:String>
+	<v:String x:Key="LoginLabel">Уже есть аккаунт?</v:String>
+	<v:String x:Key="ChoosePlace">Место</v:String>
+
+	<v:String x:Key="TicketLabel">Билет</v:String>
+	<v:String x:Key="FlightNumberLabel">Номер рейса :</v:String>
+	<v:String x:Key="FullnameLabel">Полное имя пассажира :</v:String>
+	<v:String x:Key="CompanyLabel">Компания :</v:String>
+	<v:String x:Key="DepartureLabel">Пункт отправления :</v:String>
+	<v:String x:Key="ArrivalLabel">Пункт прибытия :</v:String>
+	<v:String x:Key="DepartureTimeLabel">Дата отправления :</v:String>
+	<v:String x:Key="ArrivalTimeLabel">Дата прибытия :</v:String>
+	<v:String x:Key="SeatLabel">Место в самолете :</v:String>
+	<v:String x:Key="PassportLabel">Номер пасспорта :</v:String>
+	<v:String x:Key="AcceptLabel">Принимаю</v:String>
+	<v:String x:Key="AcceptMiniLabel">Пожалуйста, проверьте данные, которые будут в билете. Если всё верно, поставьте галочку. </v:String>
+
+	<v:String x:Key="Back">НАЗАД</v:String>
+	<v:String x:Key="Next">ДАЛЕЕ</v:String>
 </ResourceDictionary>

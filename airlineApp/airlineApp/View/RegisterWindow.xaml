@@ -93,9 +93,9 @@
                          FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="20"
-                         materialDesign:HintAssist.Hint="Password"
+                         materialDesign:HintAssist.Hint="{DynamicResource PasswordText}"
                          materialDesign:TextFieldAssist.HasClearButton="True"
-                         materialDesign:HintAssist.HelperText="At least 6 characters" 
+                         materialDesign:HintAssist.HelperText="{DynamicResource PasswordMiniText}" 
                          Width="200" 
                         Password="{Binding PasswordText}"
                          />
@@ -115,9 +115,9 @@
                          FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="20"
-                         materialDesign:HintAssist.Hint="Confirm Password"
+                         materialDesign:HintAssist.Hint="{DynamicResource ConfirmPasswordText}"
                          materialDesign:TextFieldAssist.HasClearButton="True"
-                         materialDesign:HintAssist.HelperText="Confirm to know if you type it correct :) " 
+                         materialDesign:HintAssist.HelperText="{DynamicResource ConfirmPasswordMiniText}" 
                          Width="200" 
                          Password="{Binding ConfirmPasswordText}"/>
 
@@ -129,7 +129,7 @@
                     <Button Style="{DynamicResource LoginRegisterButton}" Width="100" Height="40" Content="REGISTER" Command="{Binding RegisterCommand}"/>
                     
                     <Button Name="RegisterLabel" 
-                           Content="Have already an account? Login!"
+                           Content="{DynamicResource LoginLabel}"
                            Foreground="WhiteSmoke"
                            FontWeight="Light"
                            FontFamily="helvetica"

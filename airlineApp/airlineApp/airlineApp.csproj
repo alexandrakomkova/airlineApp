@@ -16,6 +16,7 @@
   <ItemGroup>
     <Page Remove="lang.en-US.xaml" />
     <Page Remove="lang.ru-RU.xaml" />
+    <Page Remove="Styles\Styles.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +41,7 @@
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
     <Resource Include="Styles\no_image.png" />
+    <Resource Include="Styles\Styles.xaml" />
   </ItemGroup>
 
   <ItemGroup>

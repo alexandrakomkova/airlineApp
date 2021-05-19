@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -10,19 +11,17 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using airlineApp.Model;
 using airlineApp.Model.Data;
 using airlineApp.View;
 using Microsoft.AspNet.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
+using System.Net.NetworkInformation;
 
 namespace airlineApp.ViewModel
 {
-   public class DataManageViewModel : INotifyPropertyChanged
+    public class DataManageViewModel : INotifyPropertyChanged
    {
 
         //get all flight
@@ -494,15 +493,15 @@ namespace airlineApp.ViewModel
                         }
                         else
                         {
-                            
+
                             resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
 
                             UpdateAllDataView();
-                            //UpdateCompaniesList(AllCompanies);
+                            UpdateCompaniesList(AllCompanies);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
 
-                          
+
                             window.Close();
 
                         }
@@ -511,6 +510,7 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+        
         private Command addFlightWndCommand;
         public Command AddFlightWndCommand
         {
@@ -958,13 +958,24 @@ namespace airlineApp.ViewModel
                             authUser = DataWorker.GetUserByEmail(LoginEmail);
                             if (authUser != null)
                             {
-                                resultStr = "Письмо отправлено на email под которым вы зарегистрированы. Проверьте также категорию Спам.";
-                                SendEmailAsync(LoginEmail).GetAwaiter();
-                                ShowMessageToUser(resultStr);
-                                authUser = DataWorker.GetUserByEmail(LoginEmail);
-                                //DataWorker.DeleteUser(authUser);
-                                //DataWorker.CreateUser(LoginEmail, newPassword);
-                                DataWorker.EditUser(LoginEmail, newPassword);
+                                const int timeout = 1000;
+                                const string host = "google.com";
+
+                                if (CanPingGoogle() == true)
+                                {
+                                    resultStr = "Письмо отправлено на email под которым вы зарегистрированы. Проверьте также категорию Спам.";
+                                    SendEmailAsync(LoginEmail).GetAwaiter();
+                                    ShowMessageToUser(resultStr);
+                                    authUser = DataWorker.GetUserByEmail(LoginEmail);
+                                   
+                                    DataWorker.EditUser(LoginEmail, newPassword);
+                                }
+                                else
+                                {
+                                    resultStr = "К сожалению, вы не подключены к сети Интернет, чтобы получить дальнейшую инстуркцию по почте.";
+                                    ShowMessageToUser(resultStr);
+                                }
+
                             }
                             else
                             {
@@ -1003,13 +1014,7 @@ namespace airlineApp.ViewModel
         {
             try
             {
-                //byte[] result = new byte[length];
-                //for (int index = 0; index < length; index++)
-                //{
-                //    result[index] = (byte)new Random().Next(33, 100);
-                //}
-
-                //return System.Text.Encoding.ASCII.GetString(result);
+                
                 char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".ToCharArray();
 
                 Random rand = new Random();
@@ -1024,6 +1029,25 @@ namespace airlineApp.ViewModel
             catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
+            }
+        }
+        private static bool CanPingGoogle()
+        {
+            const int timeout = 1000;
+            const string host = "google.com";
+
+            var ping = new Ping();
+            var buffer = new byte[32];
+            var pingOptions = new PingOptions();
+
+            try
+            {
+                var reply = ping.Send(host, timeout, buffer, pingOptions);
+                return (reply != null && reply.Status == IPStatus.Success);
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
         #endregion

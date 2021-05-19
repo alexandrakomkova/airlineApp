@@ -38,7 +38,7 @@
                   Background="WhiteSmoke"
                   Foreground="black"
                   Margin="0,00,0,0"
-                  materialDesign:HintAssist.Hint="Choose a company">
+                  materialDesign:HintAssist.Hint="{DynamicResource ChooseCompany}">
             </ComboBox>
             <ComboBox 
                 ItemsSource="{Binding AllDeparturesString}"
@@ -50,7 +50,7 @@
                   Margin="0,15,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a place of departure">
+                  materialDesign:HintAssist.Hint="{DynamicResource ChooseDeparture}">
             </ComboBox>
            
             <ComboBox 
@@ -62,7 +62,7 @@
                   Margin="0,0,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a place of arrival">
+                  materialDesign:HintAssist.Hint="{DynamicResource ChooseArrival}">
             </ComboBox>
             <ComboBox 
                 ItemsSource="{Binding AllWaysDateTime}"
@@ -74,7 +74,7 @@
                   Margin="0,0,0,15"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a departure datetime">
+                  materialDesign:HintAssist.Hint="{DynamicResource ChooseDepartureTime}">
             </ComboBox>
             <ComboBox 
                 ItemsSource="{Binding AllPlanes}"
@@ -86,12 +86,12 @@
                   Margin="0,0,0,0"
                   Background="WhiteSmoke"
                   Foreground="black"
-                  materialDesign:HintAssist.Hint="Choose a plane">
+                  materialDesign:HintAssist.Hint="{DynamicResource ChoosePlane}">
             </ComboBox>
             <TextBox
                 x:Name="CommentTextBox"
                 Text="{Binding FlightPrice}"
-                materialDesign:HintAssist.Hint="Price"
+                materialDesign:HintAssist.Hint="{DynamicResource Price}"
                 PreviewTextInput="PreviewTextInputOnlyNumbers"
                 Width="200" Height="25"
                 FontWeight="Light"
@@ -103,75 +103,15 @@
                          BorderThickness="1"
                          Margin="0,15,0,0" />
 
-            <!--<TextBox x:Name="PriceTextBox"
-                         FontWeight="Light"
-                         FontFamily="helvetica"
-                         FontSize="12"
-                         Foreground="WhiteSmoke"
-                         Background="Transparent"
-                         BorderBrush="Transparent"
-                         BorderThickness="1"
-                         Width="200"
-                         Height="25"
-                         HorizontalContentAlignment="Left"
-                         Opacity="0.7"
-                         Text="{Binding FlightPrice}"
-                         Margin="0,15,0,0" 
-                       PreviewTextInput="PreviewTextInputOnlyNumbers" Cursor="IBeam"/>-->
-                 
-            <!--<TextBlock  IsHitTestVisible="False" 
-                                Text="Price"
-                               Grid.Column="1"
-                        Grid.Row="1"
-                         HorizontalAlignment="Left"
-                         FontFamily="helvetica"
-                         FontSize="12"
-                         Foreground="White"
-                         Background="Transparent"
-                         FontWeight="Bold"
-                         Width="120"
-                         Height="20"
-                         Opacity="0.7"
-                        Margin="25,-20,0,0"
-                         >
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=PriceTextBox}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>-->
 
             <Button Style="{DynamicResource InstrumentsButton}" 
                     Width="100" 
                     Height="40" 
-                    Content="ADD FLIGHT"
+                    Content="{DynamicResource Add}"
                     Margin="0,20,0,0"
                     Command="{Binding AddFlightWndCommand}"
                     CommandParameter="{Binding AddFlightWnd}"/>
         </StackPanel>
-        <!--<StackPanel Grid.Row="1"
-                    Grid.Column="1"
-                    VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch">
-            <Grid Width="120"
-                  Height="120" 
-                  Background="WhiteSmoke"
-                  Margin="0,10,0,0">
-                <Image Width="120"
-                    Height="120" />
-            </Grid>
-            <Button 
-                    Style="{DynamicResource InstrumentsButton}" 
-                    Width="110" 
-                    Height="40" 
-                    Content="LOAD PICTURE"
-                    Margin="0,70,0,0"/>
-
-        </StackPanel>-->
+        
     </Grid>
 </Window>

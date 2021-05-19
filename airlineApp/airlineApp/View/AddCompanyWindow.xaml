@@ -43,24 +43,24 @@
                          Background="Transparent"
                          BorderBrush="Transparent"
                          BorderThickness="1"
-                         Width="120"
+                         Width="130"
                          Height="35"
                          HorizontalContentAlignment="Left"
                          Opacity="0.7"
                          Margin="-15,30,0,0"
                          Text="{Binding CompanyName}" Cursor="IBeam" />
             <TextBlock  IsHitTestVisible="False" 
-                                Text="Company name"
+                                Text="{DynamicResource CompanyNameTextBlock}"
                                 FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="18"
                          HorizontalAlignment="Left"
                          Foreground="WhiteSmoke"
                          Background="Transparent"
-                         Width="120"
+                         Width="130"
                          Height="25"
                          Opacity="0.7"
-                         Margin="-15,-30,0,0">
+                         Margin="0,-30,0,0">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -75,7 +75,7 @@
             <Button Style="{DynamicResource InstrumentsButton}" 
                     Width="100" 
                     Height="40" 
-                    Content="ADD COMPANY"
+                    Content="{DynamicResource Add}"
                     Margin="0,55,0,0"
                     Command="{Binding AddCompanyWndCommand}"
                     CommandParameter="{Binding ElementName=AddCompanyWnd}"/>
@@ -97,7 +97,7 @@
                     Style="{DynamicResource InstrumentsButton}" 
                     Width="100" 
                     Height="40" 
-                    Content="LOAD LOGO"
+                    Content="{DynamicResource LoadLogo}"
                     Margin="0,30,0,0"
                     Command="{Binding LoadCompanyLogoWndCommand}"
                 CommandParameter="{Binding ElementName=AddCompanyWnd}"/>

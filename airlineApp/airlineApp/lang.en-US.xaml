@@ -3,4 +3,48 @@
                     xmlns:local="clr-namespace:airlineApp.Resources"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <v:String x:Key="ViewAllFlight">VIEW ALL FLIGHTS</v:String>
+    <v:String x:Key="ViewAllFlightToolTip">View the list of airlines</v:String>
+    <v:String x:Key="ViewAllCompanies">VIEW ALL COMPANIES</v:String>
+    <v:String x:Key="ViewAllCompaniesToolTip">View the list of companies</v:String>
+    <v:String x:Key="ViewAllTickets">VIEW ALL TICKETS</v:String>
+    <v:String x:Key="ViewAllTicketsToolTip">View the list of boooked tickets</v:String>
+    <v:String x:Key="AddCompany">ADD COMPANY</v:String>
+    <v:String x:Key="AddFlight">ADD FLIGHT</v:String>
+    <v:String x:Key="PasswordText">Password</v:String>
+    <v:String x:Key="ConfirmPasswordText">Confirm Password</v:String>
+    <v:String x:Key="PasswordMiniText">At least 6 characters</v:String>
+    <v:String x:Key="ConfirmPasswordMiniText">Confirm to know if you type it correct :)</v:String>
+    <v:String x:Key="ForgotPassLabel">Forgot your password or login?</v:String>
+    <v:String x:Key="RegisterLabel">Don't have an account?</v:String>
+    <v:String x:Key="CompanyNameTextBlock">Company name</v:String>
+    <v:String x:Key="Add">ADD</v:String>
+    <v:String x:Key="LoadLogo">LOAD LOGO</v:String>
+    <v:String x:Key="ChooseCompany">Choose a company</v:String>
+    <v:String x:Key="ChooseDeparture">Choose a place of departure</v:String>
+    <v:String x:Key="ChooseDepartureTime">Choose a departure datetime</v:String>
+    <v:String x:Key="ChooseArrival">Choose a place of arrival</v:String>
+    <v:String x:Key="ChoosePlane">Choose a plane</v:String>
+    <v:String x:Key="Price">Price</v:String>
+    <v:String x:Key="SortByCompany">By company name</v:String>
+    <v:String x:Key="SortByDeparture">By place of departure</v:String>
+    <v:String x:Key="SortByArrival">By place of arrival</v:String>
+    <v:String x:Key="SortByPrice">By price</v:String>
+    <v:String x:Key="LoginLabel">Have already an account? Login!</v:String>
+    <v:String x:Key="ChoosePlace">Choose a place</v:String>
+
+    <v:String x:Key="TicketLabel">Ticket 'One-way'</v:String>
+    <v:String x:Key="FlightNumberLabel">Flight number :</v:String>
+    <v:String x:Key="FullnameLabel">Full passenger name :</v:String>
+    <v:String x:Key="CompanyLabel">Company :</v:String>
+    <v:String x:Key="DepartureLabel">Place of departure :</v:String>
+    <v:String x:Key="ArrivalLabel">Place of arrival :</v:String>
+    <v:String x:Key="DepartureTimeLabel">Departure Date :</v:String>
+    <v:String x:Key="ArrivalTimeLabel">Arrival Date :</v:String>
+    <v:String x:Key="SeatLabel">Seat :</v:String>
+    <v:String x:Key="PassportLabel">Passport :</v:String>
+    <v:String x:Key="AcceptLabel">Accept</v:String>
+    <v:String x:Key="AcceptMiniLabel">Check the data please and tick 'Accept'</v:String>
+
+    <v:String x:Key="Back">BACK</v:String>
+    <v:String x:Key="Next">NEXT</v:String>
 </ResourceDictionary>

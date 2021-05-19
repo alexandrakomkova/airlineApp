@@ -58,10 +58,10 @@
             <StackPanel Grid.Row="1" >
                 <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
                     <materialDesign:PackIcon
-                    Kind="Account" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke"
+                        Kind="Account" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
                          Margin="0,0,10,0"/>
                     <TextBox
                          x:Name="EmailBox"
@@ -74,53 +74,10 @@
                          FontSize="20"
                          Width="200"
                          Text="{Binding LoginEmail}"
-                          Cursor="IBeam"/>
-                    <!--<TextBox x:Name="UsernameTextBox"
-                         FontWeight="Light"
-                         FontFamily="helvetica"
-                         FontSize="20"
-                         HorizontalAlignment="Center"
-                         Foreground="WhiteSmoke"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Width="235"
-                         Height="25"
-                         HorizontalContentAlignment="Left"
-                         Opacity="0.7"
-                         Margin="63,0,0,0"/>
-                    <TextBlock  IsHitTestVisible="False" 
-                                Text="Username"
-                                FontWeight="Light"
-                         FontFamily="helvetica"
-                         FontSize="20"
-                         HorizontalAlignment="Left"
-                         Foreground="WhiteSmoke"
-                         Background="Transparent"
-                         Width="235"
-                         Height="25"
-                         Opacity="0.7"
-                         Margin="-235,0,0,0">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName= UsernameTextBox}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <materialDesign:PackIcon 
-                    Kind="Account" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke"/>-->
+                         Cursor="IBeam"/>
+                   
                 </StackPanel>
-                <!--<Border Width="250"
-                    Height="2"
-                    Background="WhiteSmoke"
-                    Opacity="0.5"/>-->
+                
 
                 <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0,20,0,0">
                     <materialDesign:PackIcon
@@ -136,9 +93,9 @@
                          FontWeight="Light"
                          FontFamily="helvetica"
                          FontSize="20"
-                         materialDesign:HintAssist.Hint="Password"
+                         materialDesign:HintAssist.Hint="{DynamicResource PasswordText}"
                          materialDesign:TextFieldAssist.HasClearButton="True"
-                         materialDesign:HintAssist.HelperText="At least 6 characters" 
+                         materialDesign:HintAssist.HelperText="{DynamicResource PasswordMiniText}" 
                         Width="200" 
                         Password="{Binding LoginPassword}"/>
                     <!--<PasswordBox x:Name="PasswordPassBox" 
@@ -173,8 +130,8 @@
                     <Button Style="{DynamicResource LoginRegisterButton}"  Width="100" Height="40" Content="LOGIN" Margin="0,0,0,0" 
                             Command="{Binding LoginCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:LoginRegisterWindow}}"/>
                 
-                    <Button Name="ForgotPassLabel" 
-                           Content="Forgot your password or login?"
+                    <Button x:Name="ForgotPassLabel" 
+                           Content="{DynamicResource ForgotPassLabel}"
                            Foreground="WhiteSmoke"
                          FontWeight="Light"
                          FontFamily="helvetica"
@@ -186,7 +143,7 @@
                            HorizontalContentAlignment="Center"
                              Command="{Binding ForgotPasswordCommand}" Cursor="Hand"/>
                     <Button Name="RegisterLabel" 
-                           Content="Don't have an account?"
+                           Content="{DynamicResource RegisterLabel}"
                            Foreground="WhiteSmoke"
                            FontWeight="Light"
                            FontFamily="helvetica"

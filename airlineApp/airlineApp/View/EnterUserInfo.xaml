@@ -12,12 +12,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <Button Style="{DynamicResource InstrumentsButton}"  
-                Width="80" Height="40" 
-                Content="BACK" 
+        <Button Style="{DynamicResource InstrumentsButton}" Height="40" 
+                Content="{DynamicResource Back}" 
                 Margin="20,0,0,20" 
-                Command="{Binding UpdateViewCommand}" 
-                HorizontalAlignment="Left"
+                Command="{Binding UpdateViewCommand}"
                 VerticalAlignment="Bottom"
                 CommandParameter="Place"
                 Grid.Column="0"/>
@@ -35,7 +33,7 @@
                        FontWeight="Bold"
                        Foreground="WhiteSmoke"
                        FontSize="16"/>
-            
+
 
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
@@ -92,13 +90,13 @@
                          FontSize="16"
                          Text="{Binding PassengerPassport}" Cursor="IBeam"/>
             </StackPanel>
-            
-            
+
+
         </StackPanel>
         <Button  Grid.Column="2"
                 Style="{DynamicResource InstrumentsButton}"  
                 Width="80" Height="40" 
-                Content="NEXT" 
+                Content="{DynamicResource Next}" 
                 Margin="0,0,20,20" 
                 Command="{Binding UpdateViewCommand }" 
                 HorizontalAlignment="Right"
