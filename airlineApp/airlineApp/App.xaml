@@ -4,16 +4,15 @@
              xmlns:local="clr-namespace:airlineApp"
              xmlns:views="clr-namespace:airlineApp.View"
              xmlns:vm="clr-namespace:airlineApp.ViewModel"
-             StartupUri="/View/LoginRegisterWindow.xaml">
+             StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
         
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Styles.xaml"></ResourceDictionary>
-                
-                <!--<ResourceDictionary Source="Styles/no_image.png"></ResourceDictionary>-->
                 <ResourceDictionary Source="CustomControls/AnalogClock.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="lang.ru-RU.xaml" />
                 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

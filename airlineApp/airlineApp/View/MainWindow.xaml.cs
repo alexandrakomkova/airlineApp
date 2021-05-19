@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 using airlineApp.Model;
 using airlineApp.ViewModel;
@@ -14,13 +16,8 @@ namespace airlineApp.View
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+            
         }
-        //private User user; 
-        //public MainWindow(User user)
-        //{
-        //    this.user = user;
-        //    InitializeComponent();
-        //    DataContext = new MainWindowViewModel(user);
-        //}
+        
     }
 }

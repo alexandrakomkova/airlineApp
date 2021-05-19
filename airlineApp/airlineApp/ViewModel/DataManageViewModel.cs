@@ -262,8 +262,9 @@ namespace airlineApp.ViewModel
             EditCompanyWindow editCompanyWindow = new EditCompanyWindow();
             SelectedCompany = selectedCompany;
             CompanyName = selectedCompany.Name;
-           // CompanyLogo = selectedCompany.Logo;
+            CompanyLogo = new BitmapImage(new Uri(selectedCompany.Logo, UriKind.RelativeOrAbsolute));
             SetWindowPosition(editCompanyWindow);
+           // MessageBox.Show(selectedCompany.Logo);
         }
         private void OpenAddCompanyWndMethod()
         {
@@ -1002,24 +1003,23 @@ namespace airlineApp.ViewModel
         {
             try
             {
-                byte[] result = new byte[length];
-                for (int index = 0; index < length; index++)
-                {
-                    result[index] = (byte)new Random().Next(33, 100);
-                }
-
-                return System.Text.Encoding.ASCII.GetString(result);
-                //char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".ToCharArray();
-
-                //char[] letters = "1234567890".ToCharArray();
-                //Random rand = new Random();
-                //newPassword = null;
-                //for (int i = 1; i <= length; i++)
+                //byte[] result = new byte[length];
+                //for (int index = 0; index < length; index++)
                 //{
-                //    int letter_num = rand.Next(0, letters.Length - 1);
-                //    newPassword += letters[letter_num];
+                //    result[index] = (byte)new Random().Next(33, 100);
                 //}
-                //return newPassword;
+
+                //return System.Text.Encoding.ASCII.GetString(result);
+                char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".ToCharArray();
+
+                Random rand = new Random();
+                newPassword = null;
+                for (int i = 1; i <= length; i++)
+                {
+                    int letter_num = rand.Next(0, letters.Length - 1);
+                    newPassword += letters[letter_num];
+                }
+                return newPassword;
             }
             catch (Exception ex)
             {
@@ -1028,11 +1028,11 @@ namespace airlineApp.ViewModel
         }
         #endregion
 
-        private void SetRedBlockControll(Window wnd, string blockName)
-        {
-            Control block = wnd.FindName(blockName) as Control;
-            block.BorderBrush = Brushes.Red;
-        }
+        //private void SetRedBlockControll(Window wnd, string blockName)
+        //{
+        //    Control block = wnd.FindName(blockName) as Control;
+        //    block.BorderBrush = Brushes.Red;
+        //}
         private static List<Way> OnlyAvailableArrivals(Way d)
         {
             MessageBox.Show($"{d.Arrival}");

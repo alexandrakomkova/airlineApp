@@ -78,6 +78,9 @@
     <Page Update="CustomControls\SearchTicket.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Resource Update="lang.en-US.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Page Update="Styles\Styles.xaml">
       <SubType>Designer</SubType>
     </Page>

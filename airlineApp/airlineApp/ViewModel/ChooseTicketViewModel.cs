@@ -19,7 +19,7 @@ namespace airlineApp.ViewModel
         private Flight userSelectedFlight;
         private User user;
         private UserWindowViewModel parentVM;
-        public DateTime ThisDate { get; set; } //= DateTime.Now;
+      
         public Flight UserSelectedFlight
         {
             get { return userSelectedFlight; }
@@ -31,16 +31,6 @@ namespace airlineApp.ViewModel
         }
 
         
-        private bool isBackEnable = false;
-        public bool IsBackEnable
-        {
-            get { return isBackEnable; }
-            set
-            {
-                isBackEnable = value;
-                NotifyPropertyChanged(nameof(IsBackEnable));
-            }
-        }
         private List<Flight> userListOneWay { get; set; } //= DataWorker.GetAllFlights();
         public List<Flight> UserListOneWay
         {
@@ -61,22 +51,12 @@ namespace airlineApp.ViewModel
                 return userSearchCommand ?? new Command(
                     obj =>
                     {
-
                         UpdateUserFlights();
-                        //if (IsBackEnable == true)
-                        //{
-                        //    UserListBackWay = UserBackWaySearch(FlightWayDepartureString, FlightWayArrivalString, SelectedBackDate);
-                        //    ChooseTicketPage.UserBackFlightsView.ItemsSource = null;
-                        //    ChooseTicketPage.UserBackFlightsView.Items.Clear();
-                        //    ChooseTicketPage.UserBackFlightsView.ItemsSource = UserListBackWay;
-                        //    ChooseTicketPage.UserBackFlightsView.Items.Refresh();
-                        //}
-
                     }
                     );
             }
         }
-        public static DateTime SelectedDepartureDate { get; set; }
+        public static DateTime SelectedDepartureDate { get; set; } = DateTime.Now; 
         public static List<Flight> UserSearch(string d, string a, DateTime dt)
         {
 
@@ -101,10 +81,12 @@ namespace airlineApp.ViewModel
                 ChooseTicketPage.UserFlightsView.ItemsSource = UserListOneWay;
                 ChooseTicketPage.UserFlightsView.Items.Refresh();
             }
-            else
+            else 
             {
-                MessageBox.Show("list is null");
+                //string resultStr = "К сожалению авиарейсов на эту дату нет.";
+                //ShowMessageToUser(resultStr);
             }
+            
 
             //это грязно
             //придумать что-нибудь
@@ -113,17 +95,29 @@ namespace airlineApp.ViewModel
         private void OnUpdateViewCommandExecuted(object p)
         {
             //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
-
-            parentVM.CurrentPage = new GetPlaceViewModel(parentVM, userSelectedFlight, user);
+            if (userSelectedFlight != null)
+            {
+                parentVM.CurrentPage = new GetPlaceViewModel(parentVM, userSelectedFlight, user);
+            }
+            else 
+            {
+                string resultStr = "Пожалуйста, выберите инетресующий вас авиарейс.";
+                ShowMessageToUser(resultStr);
+            }
         }
         public ChooseTicketViewModel(UserWindowViewModel parentVM, User user, Flight f)
         {
            
             this.parentVM = parentVM;
             this.user = user;
-            //MessageBox.Show($"{this.user.Email}");
+            
             userSelectedFlight = f;
-            ThisDate = DateTime.Now;
+            if (userSelectedFlight != null)
+            {
+                FlightWayDepartureString = userSelectedFlight.flightWay.Departure;
+                FlightWayArrivalString = userSelectedFlight.flightWay.Arrival;
+            }
+           
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
         private Command switchDapartureArrivalCommand;

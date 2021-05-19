@@ -209,6 +209,15 @@ namespace airlineApp.Model
                 return result;
             }
         }
+        public static List<Ticket> GetAllUserTicketsSorted(User user)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Tickets.Where(t => t.UserId == user.Id).OrderBy(t=>t.ticketWay).ToList();
+
+                return result;
+            }
+        }
         public static List<Ticket> GetAllTickets()
         {
             using (ApplicationContext db = new ApplicationContext())

@@ -90,8 +90,8 @@
                   Margin="0,10,0,0">
                 <Image Width="80"
                     Height="80" 
-                    Source="{Binding CompanyLogo}"
-                       Stretch="Fill"/>
+                    Source="{Binding Path=selectedCompany.Logo}"
+                    Stretch="Fill"/>
             </Grid>
             <Button 
                     Style="{DynamicResource InstrumentsButton}" 
