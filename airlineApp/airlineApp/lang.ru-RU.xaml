@@ -47,4 +47,11 @@
 
 	<v:String x:Key="Back">НАЗАД</v:String>
 	<v:String x:Key="Next">ДАЛЕЕ</v:String>
+
+	<v:String x:Key="Name">Имя</v:String>
+	<v:String x:Key="Surname">Фамилия</v:String>
+	<v:String x:Key="MiddleName">Отчество</v:String>
+	<v:String x:Key="Passport">Номер паспорта</v:String>
+	<v:String x:Key="EnterUserInfoLabel">Введите данные пассажира</v:String>
+	
 </ResourceDictionary>

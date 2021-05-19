@@ -28,7 +28,7 @@
                     Orientation="Vertical"
                     Grid.Column="1">
 
-            <TextBlock Text="Enter passenger data" HorizontalAlignment="Center"
+            <TextBlock Text="{DynamicResource EnterUserInfoLabel}" HorizontalAlignment="Center"
                        Margin="0,10,0,0"
                        FontWeight="Bold"
                        Foreground="WhiteSmoke"
@@ -37,8 +37,8 @@
 
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
-                <TextBlock Text="Surname : " 
-                    Width="110" FontSize="16"
+                <TextBlock Text="{DynamicResource Surname}" 
+                    Width="140" FontSize="16"
                            Margin="0,10,0,0"
                            FontWeight="DemiBold"
                            Foreground="WhiteSmoke"/>
@@ -51,8 +51,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
-                <TextBlock Text="Name : " 
-                    Width="110" FontSize="16"
+                <TextBlock Text="{DynamicResource Name}" 
+                    Width="140" FontSize="16"
                            Margin="0,10,0,0"
                            FontWeight="DemiBold"
                            Foreground="WhiteSmoke"/>
@@ -65,8 +65,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
-                <TextBlock Text="Middle name : " 
-                    Width="110" FontSize="16"
+                <TextBlock Text="{DynamicResource MiddleName}" 
+                    Width="140" FontSize="16"
                            Margin="0,10,0,0"
                            FontWeight="DemiBold"
                            Foreground="WhiteSmoke"/>
@@ -79,8 +79,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="10,10,0,0">
-                <TextBlock Text="Passport : " 
-                    Width="110" FontSize="16"
+                <TextBlock Text="{DynamicResource Passport}" 
+                    Width="140" FontSize="16"
                            Foreground="WhiteSmoke"
                            Margin="0,10,0,0"
                            FontWeight="DemiBold"/>
