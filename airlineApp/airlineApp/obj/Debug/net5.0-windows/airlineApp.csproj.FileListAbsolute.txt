@@ -78,7 +78,6 @@ D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Message.b
 D:\uni\ооп\кп\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserWindow.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddCompanyWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddFlightWindow.g.cs
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\FindTicketPage.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\LoginRegisterWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\MainWindow.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Message.g.cs
@@ -140,7 +139,6 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\App.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\AnalogClock.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddCompanyWindow.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\AddFlightWindow.baml
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\FindTicketPage.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\LoginRegisterWindow.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\MainWindow.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Message.baml
@@ -159,8 +157,6 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Reg
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\BindablePasswordBox.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\BindablePasswordBox.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\bin\Debug\net5.0-windows\Microsoft.AspNet.Identity.Core.dll
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\SearchTicket.g.cs
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\CustomControls\SearchTicket.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ChooseTicketPage.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ChooseTicketPage.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\ViewAllFlightsPage.g.cs
@@ -173,10 +169,8 @@ D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\Edi
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\GetPlace.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\GetPlace.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EnterUserInfo.g.cs
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutReturnTickets.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutTicket.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\EnterUserInfo.baml
-D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutReturnTickets.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\InfoAboutTicket.baml
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserViewTickets.g.cs
 D:\uni\ооп\coursework\airlineApp\airlineApp\obj\Debug\net5.0-windows\View\UserViewTickets.baml

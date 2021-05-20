@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:airlineApp"
              xmlns:views="clr-namespace:airlineApp.View"
              xmlns:vm="clr-namespace:airlineApp.ViewModel"
-             StartupUri="/View/MainWindow.xaml">
+             StartupUri="/View/LoginRegisterWindow.xaml">
     <Application.Resources>
         
 
@@ -40,9 +40,6 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:InfoAboutTicketViewModel}">
                 <views:InfoAboutTicket/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:InfoAboutReturnTicketsViewModel}">
-                <views:InfoAboutReturnTickets/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:UserViewTicketViewModel}">
                 <views:UserViewTickets/>

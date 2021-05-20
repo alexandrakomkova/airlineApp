@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using airlineApp.CustomControls;
 using airlineApp.Model;
 using airlineApp.ViewModel;
 
@@ -18,6 +19,7 @@ namespace airlineApp.View
             DataContext = new MainWindowViewModel();
             
         }
-        
+       
+
     }
 }

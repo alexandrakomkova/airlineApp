@@ -10,6 +10,7 @@
     <None Remove="Styles\120.jpg" />
     <None Remove="Styles\149.jpg" />
     <None Remove="Styles\189.jpg" />
+    <None Remove="Styles\logo.png" />
     <None Remove="Styles\no_image.png" />
   </ItemGroup>
 
@@ -40,6 +41,7 @@
     <Resource Include="Styles\189.jpg">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Styles\logo.png" />
     <Resource Include="Styles\no_image.png" />
     <Resource Include="Styles\Styles.xaml" />
   </ItemGroup>

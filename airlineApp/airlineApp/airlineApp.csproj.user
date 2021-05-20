@@ -10,9 +10,6 @@
     <Compile Update="CustomControls\BindablePasswordBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="CustomControls\SearchTicket.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\AddCompanyWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,13 +28,7 @@
     <Compile Update="View\EnterUserInfo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\FindTicketPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\GetPlace.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\InfoAboutReturnTickets.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\InfoAboutTicket.xaml.cs">
@@ -75,9 +66,6 @@
     <Page Update="CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="CustomControls\SearchTicket.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Resource Update="lang.en-US.xaml">
       <SubType>Designer</SubType>
     </Resource>
@@ -102,13 +90,7 @@
     <Page Update="View\EnterUserInfo.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\FindTicketPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\GetPlace.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\InfoAboutReturnTickets.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\InfoAboutTicket.xaml">

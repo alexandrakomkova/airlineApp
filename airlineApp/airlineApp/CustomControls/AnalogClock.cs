@@ -8,9 +8,11 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using airlineApp.CustomControls;
 
 namespace AirlineApp.CustomControls
 {
+   
     public class AnalogClock : Control
     {
         static AnalogClock()
@@ -22,14 +24,6 @@ namespace AirlineApp.CustomControls
         private Line minuteHand;
         private Line secondHand;
 
-        public static DependencyProperty ShowSecondsProperty = DependencyProperty.Register(
-            "ShowSeconds", typeof(bool), typeof(AnalogClock), new PropertyMetadata(true));
-
-        public bool ShowSeconds
-        {
-            get { return (bool)GetValue(ShowSecondsProperty); }
-            set { SetValue(ShowSecondsProperty, value); }
-        }
         public override void OnApplyTemplate()
         {
             hourHand = Template.FindName("PART_hourHand", this) as Line;
@@ -44,28 +38,11 @@ namespace AirlineApp.CustomControls
             timer.Start();
         }
 
-        //public static RoutedEvent TimeChanged = EventManager.RegisterRoutedEvent(
-        //    "TimeChange", RoutingStrategy.Bubble, typeof(TimeChangedEventHandler), typeof(AnalogClock));
-        //public event TimeChangedEventHandler TimeChange
-        //{
-        //    add
-        //    {
-        //        AddHandler(TimeChanged, value);
-        //    }
-        //    remove
-        //    {
-        //        RemoveHandler(TimeChanged, value);
-        //    }
-        //}
         protected virtual void OnTimeChanged(DateTime time)
         {
             UpdateHandAngles(time);
-           // RaiseEvent(new TimeChangedEventArgs(TimeChanged, this) { newTime = time });
+            
         }
-
-
-
-
 
         private void UpdateHandAngles(DateTime time)
         {

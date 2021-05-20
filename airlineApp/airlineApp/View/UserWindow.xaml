@@ -28,12 +28,17 @@
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
 
-
+        <Image Source="/Styles/logo.png" Width="30"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                       Margin="20,0,0,0"
+                       HorizontalAlignment="Left"/>
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
+            
             <StackPanel VerticalAlignment="Center"
                             Margin="0,0,30,0"
                             Orientation="Horizontal">
@@ -49,20 +54,7 @@
                             
                             Content="English" />
                 </ComboBox>
-                <materialDesign:PackIcon Kind="WhiteBalanceSunny" 
-                                             Width="22" Height="22"
-                                             Foreground="WhiteSmoke"
-                                             Margin="50,0,0,0"/>
-                <ToggleButton
-                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                        ToolTip="MaterialDesignSwitchToggleButton"
-                        IsChecked="true" 
-                        Margin="7,0,0,0"/>
-                <materialDesign:PackIcon 
-                        Kind="MoonWaxingCrescent " 
-                        Width="22" Height="22"
-                        Foreground="WhiteSmoke"
-                        Margin="0,0,0,0"/>
+                
             </StackPanel>
             <Button  Margin="10,0,0,0"
                         Width="30" Height="30"  
