@@ -97,7 +97,9 @@
                         BorderBrush="{x:Null}"
                         Padding="1"
                          Margin="6,0,6,0"
-                        Command="{Binding ChangeAccountWndCommand}" Cursor="Hand">
+                        Command="{Binding ChangeAccountWndCommand}" 
+                        Cursor="Hand"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:UserWindow}}">
 
                 <materialDesign:PackIcon 
                         Kind="Logout" 

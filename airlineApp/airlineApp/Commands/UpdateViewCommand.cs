@@ -14,8 +14,7 @@ namespace airlineApp.Commands
     {
         private MainWindowViewModel viewModel;
         private UserWindowViewModel userViewModel;
-        //private DataManageViewModel model;
-        //private List<string> list;
+        
         private Flight f;
         private User user;
         private string str;
@@ -25,11 +24,7 @@ namespace airlineApp.Commands
         {
             this.viewModel = viewModel;
         }
-        //public UpdateViewCommand(UserWindowViewModel userViewModel, DataManageViewModel model)
-        //{
-        //    this.userViewModel = userViewModel;
-        //    this.model = model;
-        //}
+       
         public UpdateViewCommand(UserWindowViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
@@ -93,23 +88,23 @@ namespace airlineApp.Commands
                 viewModel.CurrentList = new ViewAllCompaniesPageViewModel();
 
             }
-            else if (parameter.ToString() == "GetTicket")
-            {
-                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, user, f);
-            }
-            else if (parameter.ToString() == "Place")
-            {
-                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f, user);
-            }
-            else if (parameter.ToString() == "Passenger")
-            {
+            //else if (parameter.ToString() == "GetTicket")
+            //{
+            //    userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, user, f);
+            //}
+            //else if (parameter.ToString() == "Place")
+            //{
+            //    userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f, user);
+            //}
+            //else if (parameter.ToString() == "Passenger")
+            //{
                 
-                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user, str, str, str, str);
-            }
-            else if (parameter.ToString() == "BookATicket")
-            {
-                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str, user);
-            }
+            //    userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user, str, str, str, str);
+            //}
+            //else if (parameter.ToString() == "BookATicket")
+            //{
+            //    userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str, user);
+            //}
             
         }
     }

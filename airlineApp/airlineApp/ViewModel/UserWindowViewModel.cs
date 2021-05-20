@@ -71,29 +71,7 @@ namespace airlineApp.ViewModel
 
         }
         
-        //private Command switchDapartureArrivalCommand;
-        //public Command SwitchDapartureArrivalCommand
-        //{
-        //    get
-        //    {
-        //        return switchDapartureArrivalCommand ?? new Command(
-        //            obj =>
-        //            {
-                        
-        //                Way middle = UserFlightDeparture;
-        //                UserFlightDeparture = null;
-        //                UserFlightDeparture = UserFlightArrival;
-        //                UserFlightArrival = null;
-        //                UserFlightArrival = middle;
-
-        //                NotifyPropertyChanged("UserFlightDeparture");
-        //                NotifyPropertyChanged("UserFlightArrival");
-        //                ShowMessageToUser($"{UserFlightDeparture.Departure} - {UserFlightArrival.Arrival}");
-
-        //            }
-        //            );
-        //    }
-        //}
+        
         private Command needBackTicketCommand;
         public Command NeedBackTicketCommand
         {
@@ -148,9 +126,26 @@ namespace airlineApp.ViewModel
             window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             window.ShowDialog();
         }
-        
+        private Command changeAccountWndCommand;
+        public Command ChangeAccountWndCommand
+        {
+            get
+            {
+                return changeAccountWndCommand ?? new Command(
+                    obj =>
+                    {
+                        //Application.Current.MainWindow.Close();
 
-        
+                        LoginRegisterWindow loginWindow = new LoginRegisterWindow();
+                        loginWindow.Show();
+                        (obj as Window).Close();
+
+                    }
+                    );
+            }
+        }
+
+
     }
 }
 

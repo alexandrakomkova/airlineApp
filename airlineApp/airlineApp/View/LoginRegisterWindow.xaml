@@ -98,31 +98,11 @@
                          materialDesign:HintAssist.HelperText="{DynamicResource PasswordMiniText}" 
                         Width="200" 
                         Password="{Binding LoginPassword}"/>
-                    <!--<PasswordBox x:Name="PasswordPassBox" 
-                        Password="1111"
-                         FontWeight="Light"
-                         FontFamily="Helvetica"
-                         FontSize="20"
-                         HorizontalAlignment="Center"
-                         Foreground="WhiteSmoke"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Width="235"
-                         Height="25"
-                         HorizontalContentAlignment="Left"
-                         Opacity="0.7"
-                         Margin="63,0,0,0"/>-->
+                  
 
-                    <!--<materialDesign:PackIcon
-                    Kind="FormTextboxPassword" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Foreground="WhiteSmoke"/>-->
+                   
                 </StackPanel>
-                <!--<Border Width="250"
-                    Height="2"
-                    Background="WhiteSmoke"
-                    Opacity="0.5"/>-->
+                
 
                 <StackPanel Orientation="Vertical" 
                             HorizontalAlignment="Center" 

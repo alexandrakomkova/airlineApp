@@ -374,7 +374,7 @@ namespace airlineApp.ViewModel
                         
                         LoginRegisterWindow loginWindow = new LoginRegisterWindow();
                         loginWindow.Show();
-                       // (obj as Window).Close();
+                       (obj as Window).Close();
 
                     }
                     );
@@ -495,8 +495,9 @@ namespace airlineApp.ViewModel
                         {
 
                             resultStr = DataWorker.CreateCompany(CompanyName, companyLogoPath);
-
+                           
                             UpdateAllDataView();
+                            CurrentList = new ViewAllCompaniesPageViewModel();
                             UpdateCompaniesList(AllCompanies);
                             ShowMessageToUser(resultStr);
                             SetNullValuesToProperties();
@@ -510,7 +511,17 @@ namespace airlineApp.ViewModel
                     );
             }
         }
-        
+        private DataManageViewModel currentList;
+        public DataManageViewModel CurrentList
+        {
+            get { return currentList; }
+            set
+            {
+                currentList = value;
+                NotifyPropertyChanged("CurrentList");
+
+            }
+        }
         private Command addFlightWndCommand;
         public Command AddFlightWndCommand
         {
@@ -534,12 +545,13 @@ namespace airlineApp.ViewModel
                                 resultStr = DataWorker.CreateFlight(FlightWay, FlightCompany.ToString(), FlightPlane, Convert.ToInt32(FlightPrice));
                                  
                                 UpdateAllDataView();
+                                CurrentList = new ViewAllFlightsPageViewModel();
                                 UpdateFlightsList(AllFlights);
                                 SetNullValuesToProperties();
                                 ShowMessageToUser(resultStr);
 
                             }
-                            //window.Close();
+                            window.Close();
                         }
                         else 
                         {
@@ -722,7 +734,7 @@ namespace airlineApp.ViewModel
                                 SetNullValuesToProperties();
                                 ShowMessageToUser(resultStr);
 
-                                // window.Close(); //----------------------------------------------------
+                                 window.Close(); //----------------------------------------------------
 
                             }
                             else
