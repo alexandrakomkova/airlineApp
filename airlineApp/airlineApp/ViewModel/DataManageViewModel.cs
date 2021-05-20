@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing.Imaging;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using airlineApp.Model;
 using airlineApp.Model.Data;
 using airlineApp.View;
 using Microsoft.AspNet.Identity;
 using Microsoft.Win32;
-using System.Net.NetworkInformation;
 
 namespace airlineApp.ViewModel
 {
@@ -26,7 +22,7 @@ namespace airlineApp.ViewModel
 
         //get all flight
 
-        //private List<Plane> allPlanes = DataWorker.GetAllPlanes();
+        
         private List<string> allPlanes = DataWorker.GetAllPlanesString();
         private List<Company> allCompanies = DataWorker.GetAllCompanies();
         private List<string> allCompaniesString = DataWorker.GetAllCompaniesString();
@@ -34,7 +30,7 @@ namespace airlineApp.ViewModel
         private List<Ticket> allTickets = DataWorker.GetAllTickets();
         private List<string> allDeparturesString = DataWorker.GetAllDepartures();
         private List<Flight> allFlights = DataWorker.GetAllFlights();
-        //private List<List<Way>> allWaysGr = DataWorker.GetAllWaysGr();
+        
         public List<string> AllDeparturesString
         {
             get { return allDeparturesString; }
@@ -128,8 +124,8 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("CompanyLogo");
             }
         }
-        
-        private List<string> allArrivalsString { get; set; }
+
+        private List<string> allArrivalsString;
         public List<string> AllArrivalsString
         {
             get { return allArrivalsString; }
@@ -140,7 +136,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        private string flightWayDepartureString { get; set; }
+        private string flightWayDepartureString;
         public string FlightWayDepartureString
         {
             get { return flightWayDepartureString; }
@@ -153,7 +149,7 @@ namespace airlineApp.ViewModel
                 
             }
         }
-        private string flightWayArrivalString { get; set; }
+        private string flightWayArrivalString;
         public string FlightWayArrivalString
         {
             get { return flightWayArrivalString; }
@@ -189,17 +185,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        //private Way flightWay { get; set; } 
-        //public Way FlightWay
-        //{
-        //    get { return flightWay; }
-        //    set
-        //    {
-        //        flightWay = value;
-        //        NotifyPropertyChanged("FlightWay");
-        //    }
-        //}
-        private Way flightWay { get; set; }
+        private Way flightWay;
         public Way FlightWay
         {
             get { return flightWay; }
@@ -212,7 +198,7 @@ namespace airlineApp.ViewModel
 
 
         public static string FlightCompany { get; set; }
-        //public static Plane FlightPlane { get; set; }
+       
         public static string FlightPlane { get; set; }
         public static string FlightPrice { get; set; }
         
@@ -245,7 +231,6 @@ namespace airlineApp.ViewModel
             
             FlightWayDepartureString = flight.flightWay.Departure.ToString();
             FlightWayArrivalString = flight.flightWay.Arrival.ToString();
-            //FlightWay = flight.flightWay;
             FlightWay = flight.flightWay;
             FlightPlane = flight.flightPlane.Name;
             FlightPrice = flight.Price.ToString();
@@ -263,7 +248,7 @@ namespace airlineApp.ViewModel
             CompanyName = selectedCompany.Name;
             CompanyLogo = new BitmapImage(new Uri(selectedCompany.Logo, UriKind.RelativeOrAbsolute));
             SetWindowPosition(editCompanyWindow);
-           // MessageBox.Show(selectedCompany.Logo);
+           
         }
         private void OpenAddCompanyWndMethod()
         {
@@ -291,43 +276,17 @@ namespace airlineApp.ViewModel
                 }
             }
         }
-        private void OpenLoginWndMethod()
-        {
-            //LoginRegisterWindow loginWindow = new LoginRegisterWindow();
-            //registerWindow.Show();
-            //(obj as Window).Close();
-            //SetWindowPosition(loginWindow);
-        }
-        private void OpenRegisterWndMethod()
-        {
-            RegisterWindow registerWindow = new RegisterWindow();
-            SetWindowPosition(registerWindow);
-        }
+       
+       
         private User user;
-        //private void OpenMainWndMethod(User user)
-        //{
-        //    this.user = user;
-        //    MainWindow mainWindow = new MainWindow(user);
-        //    SetWindowPosition(mainWindow);
-        //}
-        private void OpenMainWndMethod()
-        {
-            MainWindow mainWindow = new MainWindow();
-            SetWindowPosition(mainWindow);
-        }
-        //private void OpenUserWndMethod(User user)
-        //{
-        //    this.user = user;
-        //    UserWindow userWindow = new UserWindow(user);
-        //    SetWindowPosition(userWindow);
-        //}
+       
         private void OpenUserWndMethod(User user)
         {
-            //MessageBox.Show($"{user.Email}"); //тут тоже классно я проверила всё показывает правильно
+            
             var UserWindowViewModel = new UserWindowViewModel(user);
             var userWindow = new UserWindow { DataContext = UserWindowViewModel};
             userWindow.Show();
-            //SetWindowPosition(userWindow);
+            
         }
 
         private void CloseWndMethod(object obj)
@@ -585,9 +544,7 @@ namespace airlineApp.ViewModel
         private void UpdateFlights()
         {
             AllFlights = DataWorker.GetAllFlights();
-            //UpdateFlightsList(AllFlights);
-            //это грязно
-            //придумать что-нибудь
+            NotifyPropertyChanged(nameof(AllFlights));
         }
         
         private void UpdateFlightsList(List<Flight> list)
@@ -613,7 +570,7 @@ namespace airlineApp.ViewModel
 
         //delete data
         #region commands to delete data
-        private Command deleteFlight { get; set; }
+        private Command deleteFlight;
         public Command DeleteFlightCommand
         {
             get 
@@ -636,7 +593,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        private Command deleteCompany { get; set; }
+        private Command deleteCompany;
         public Command DeleteCompanyCommand
         {
             get
@@ -662,7 +619,7 @@ namespace airlineApp.ViewModel
 
         //edit data
         #region edit data
-        private Command editFlight { get; set; }
+        private Command editFlight;
         public Command EditFlightWndCommand
         {
             get
@@ -679,7 +636,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        private Command editCompany { get; set; }
+        private Command editCompany;
         public Command EditCompanyWndCommand
         {
             get
@@ -699,7 +656,7 @@ namespace airlineApp.ViewModel
         #endregion
 
         #region edit command
-        private Command editFlightCommand { get; set; }
+        private Command editFlightCommand;
         public Command EditFlightCommand
         {
             get
@@ -734,7 +691,7 @@ namespace airlineApp.ViewModel
                                 SetNullValuesToProperties();
                                 ShowMessageToUser(resultStr);
 
-                                 window.Close(); //----------------------------------------------------
+                                 window.Close(); 
 
                             }
                             else
@@ -756,7 +713,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        private Command editCompanyCommand { get; set; }
+        private Command editCompanyCommand;
         public Command EditCompany
         {
             get
@@ -768,7 +725,7 @@ namespace airlineApp.ViewModel
                     
                     if (SelectedCompany != null)
                     {
-                        //resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, CompanyLogo);
+                      
                         resultStr = DataWorker.EditCompany(SelectedCompany, CompanyName, companyLogoPath);
                         UpdateAllDataView();
                         UpdateCompaniesList(AllCompanies);
@@ -792,9 +749,9 @@ namespace airlineApp.ViewModel
         public string ConfirmPasswordText { get; set; }
         public string LoginEmail { get; set; }
         public string LoginPassword { get; set; }
-        private Command login { get; set; }
-        private Command register { get; set; }
-        private Command forgotPassword { get; set; }
+        private Command login;
+        private Command register;
+        private Command forgotPassword;
         public Command LoginCommand
         {
             get
@@ -819,8 +776,7 @@ namespace airlineApp.ViewModel
                             authUser = DataWorker.GetUserByEmail(LoginEmail);
                             if (authUser != null)
                             {
-                                //string str = Convert.FromBase64String(authUser.Password);
-                               // BitConverter.ToString(Convert.FromBase64String(authUser.Password))
+                                
                                 PasswordVerificationResult verificationResult = passwordHashed.VerifyHashedPassword(authUser.Password, LoginPassword);
                                 if (verificationResult == PasswordVerificationResult.Success)
                                 {
@@ -914,7 +870,7 @@ namespace airlineApp.ViewModel
                                     User authUser = null;
                                     authUser = DataWorker.GetUserByEmail(EmailText);
                                     OpenUserWndMethod(authUser);
-                                    //window.Close();
+                                    window.Close();
                                     SetNullValuesToProperties();
 
                                 }
@@ -1011,9 +967,9 @@ namespace airlineApp.ViewModel
         {
             newPassword = Random(7);
             
-            //MessageBox.Show(Random(7));
+            
             MailAddress from = new MailAddress("airlineapp377@gmail.com", "AirlineApp");
-            MailAddress to = new MailAddress(str); //"monmiel@yandex.by"
+            MailAddress to = new MailAddress(str); 
             MailMessage m = new MailMessage(from, to);
             m.Subject = "Никому не сообщайте информацию из письма!";
             m.Body = $"Здравствуйте! Ваш новый пароль: {newPassword}";
@@ -1064,20 +1020,8 @@ namespace airlineApp.ViewModel
         }
         #endregion
 
-        //private void SetRedBlockControll(Window wnd, string blockName)
-        //{
-        //    Control block = wnd.FindName(blockName) as Control;
-        //    block.BorderBrush = Brushes.Red;
-        //}
-        private static List<Way> OnlyAvailableArrivals(Way d)
-        {
-            MessageBox.Show($"{d.Arrival}");
-            using (ApplicationContext db = new ApplicationContext()) 
-            {
-                var result = db.Ways.Where(w=> w.Departure == d.Departure).ToList();
-                return result;
-            }
-        }
+       
+        
         protected void ShowMessageToUser(string text)
         {
             Message message = new Message(text);
@@ -1095,15 +1039,7 @@ namespace airlineApp.ViewModel
             FlightPrice = null;
             FlightPlane = null;
         }
-        private void SetNullValuesToUserProperties()
-        {
-
-            EmailText = null;
-            PasswordText = null;
-            LoginPassword = null;
-            LoginEmail = null;
-            ConfirmPasswordText = null;
-        }
+       
 
         #region search bar and sorting
         private string searchText;

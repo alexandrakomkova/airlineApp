@@ -14,7 +14,7 @@ namespace airlineApp.ViewModel
     public class InfoAboutTicketViewModel : DataManageViewModel
     {
 
-        //public static Flight UserSelectedFlight;
+        
         private Flight userSelectedFlight;
         private User user;
         private UserWindowViewModel parentVM;
@@ -34,9 +34,9 @@ namespace airlineApp.ViewModel
         public InfoAboutTicketViewModel(UserWindowViewModel parentVM, string passSur, string passName, string passMiddle, string passPassport, Flight f, string passSeat, User user)
         {
             this.user = user;
-            //MessageBox.Show($"{user.Email}");
+           
             passengerFullName = passSur + " "+ passName + " "+ passMiddle;
-            //NotifyPropertyChanged("PassengerFullName");
+           
             passengerPassport = passPassport;
             passengerSeat = passSeat;
             userSelectedFlight = f;
@@ -56,7 +56,7 @@ namespace airlineApp.ViewModel
             else if(p.ToString() == "ViewTicket")
             {
                 string resultStr = "";
-                //MessageBox.Show("dsds");
+                
                 if (IsAccept == true)
                 {
                     resultStr = DataWorker.CreateTicket(PassengerFullName, PassengerPassport, Convert.ToInt32(passengerSeat), userSelectedFlight, user);
@@ -113,26 +113,6 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged(nameof(IsAccept));
             }
         }
-        private Command isAcceptCommand;
-        public Command IsAcceptCommand
-        {
-            get
-            {
-                return isAcceptCommand ?? new Command(
-                    obj =>
-                    {
-                        if (IsAccept == false)
-                        {
-                            IsAccept = true;
-                            NotifyPropertyChanged("IsAccept");
-                        }
-                      
-                    }
-                    );
-            }
-        }
         
-        
-
     }
 }

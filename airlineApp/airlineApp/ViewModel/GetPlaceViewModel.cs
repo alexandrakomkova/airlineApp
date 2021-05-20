@@ -17,11 +17,11 @@ namespace airlineApp.ViewModel
         private UserWindowViewModel parentVM;
         private User user;
         public static Flight UserSelectedFlight;
-        public string schemeOfPlane { get; set; }
+        public string schemeOfPlane;
         public GetPlaceViewModel(UserWindowViewModel parentVM, Flight f, User user)
         {
             this.user = user;
-            //MessageBox.Show($"{user.Email}");
+           
             UserSelectedFlight = f;
             
             if (UserSelectedFlight.flightPlane.MaxOfPlaces == 120)
@@ -58,7 +58,7 @@ namespace airlineApp.ViewModel
             UpdateViewCommand = new Command(OnUpdateViewCommandExecuted);
         }
         public static string ChosenPlace { get; set; }
-        private List<string> placesList { get; set; }
+        private List<string> placesList;
 
         public List<string> PlacesList 
         {
@@ -69,8 +69,8 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("PlacesList");
             }
         }
-        public ICommand UpdateViewCommand { get; }
-        public ICommand UpdateBackViewCommand { get; }
+        public ICommand UpdateViewCommand;
+       
         private void OnUpdateViewCommandExecuted(object p)
         {
 

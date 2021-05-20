@@ -27,7 +27,7 @@ namespace airlineApp.ViewModel
             }
         }
 
-        private string passengerName { get; set; }
+        private string passengerName;
         public string PassengerName
         {
             get { return passengerName; }
@@ -37,7 +37,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("PassengerName");
             }
         }
-        private string passengerMiddleName { get; set; }
+        private string passengerMiddleName;
         public string PassengerMiddleName
         {
             get { return passengerMiddleName; }
@@ -47,7 +47,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("PassengerMiddleName");
             }
         }
-        private string passengerPassport { get; set; }
+        private string passengerPassport;
         public string PassengerPassport
         {
             get { return passengerPassport; }
@@ -57,7 +57,7 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("PassengerPassport");
             }
         }
-        private string passengerSeat { get; set; }
+        private string passengerSeat;
         public string PassengerSeat
         {
             get { return passengerSeat; }
@@ -71,7 +71,7 @@ namespace airlineApp.ViewModel
         public EnterUserInfoViewModel(UserWindowViewModel parentVM, Flight f, string place, User user, string pass, string ps, string pn, string pm)
         {
             this.user = user;
-           // MessageBox.Show($"{user.Email}");
+           
             UserSelectedFlight = f;
             passengerSeat = place;
             this.parentVM = parentVM;

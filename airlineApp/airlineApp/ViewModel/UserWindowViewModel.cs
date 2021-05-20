@@ -15,7 +15,7 @@ namespace airlineApp.ViewModel
     public class UserWindowViewModel : DataManageViewModel
     {
         private readonly User user;
-        public ICommand UpdateViewCommand { get; set; }
+        public ICommand UpdateViewCommand;
 
         public UserWindowViewModel(User user)
         {
@@ -24,7 +24,7 @@ namespace airlineApp.ViewModel
             UpdateViewCommand = new UpdateViewCommand(this);
             currentPage = new ChooseTicketViewModel(this, user, null);
         }
-        private DataManageViewModel currentPage; //= new ChooseTicketViewModel();
+        private DataManageViewModel currentPage;
         public DataManageViewModel CurrentPage
         {
             get { return currentPage; }
@@ -38,54 +38,10 @@ namespace airlineApp.ViewModel
         public static Way UserFlightDeparture { get; set; }
         public static Way UserFlightArrival { get; set; }
        
-        public static DateTime SelectedBackDate { get; set; }
+       
         public static DateTime SelectedDepartureDate { get; set; }
         
-        public static Flight UserSelectedBackFlight { get; set; }
-
         
-        private List<Flight> userListBackWay { get; set; }//= DataWorker.GetAllFlights();
-
-        
-        public List<Flight> UserListBackWay
-        {
-            get { return userListBackWay; }
-            set
-            {
-                userListBackWay = value;
-                NotifyPropertyChanged("UserListBackWay");
-            }
-        }
-
-       
-        public static List<Flight> UserBackWaySearch(string d, string a, DateTime dt)
-        {
-
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Flights.Where(f => f.Way.Departure == d
-                && f.Way.Arrival == a
-                && f.Way.DepartureTime.Date == dt.Date).ToList();
-                return result;
-            }
-
-        }
-        
-        
-        private Command needBackTicketCommand;
-        public Command NeedBackTicketCommand
-        {
-            get
-            {
-                return needBackTicketCommand ?? new Command(
-                    obj =>
-                    {
-                       // IsBackEnable = true;
-                        NotifyPropertyChanged("IsBackEnable");
-                    }
-                    );
-            }
-        }
         private Command viewUserTicketCommand;
         public Command ViewUserTicketCommand
         {
@@ -95,7 +51,7 @@ namespace airlineApp.ViewModel
                     obj =>
                     {
                         CurrentPage = new UserViewTicketViewModel(this, null, user);
-                        //MessageBox.Show("gbcz");
+                        
                     }
                     );
             }
@@ -109,23 +65,14 @@ namespace airlineApp.ViewModel
                     obj =>
                     {
                         CurrentPage = new ChooseTicketViewModel(this, user, null);
-                        //MessageBox.Show("gbcz");
+                        
                     }
                     );
             }
         }
-        private void ShowMessageToUser(string text)
-        {
-            Message message = new Message(text);
-            SetWindowPosition(message);
-        }
+        
        
-        private void SetWindowPosition(Window window)
-        {
-            window.Owner = Application.Current.MainWindow;
-            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            window.ShowDialog();
-        }
+       
         private Command changeAccountWndCommand;
         public Command ChangeAccountWndCommand
         {
@@ -134,8 +81,7 @@ namespace airlineApp.ViewModel
                 return changeAccountWndCommand ?? new Command(
                     obj =>
                     {
-                        //Application.Current.MainWindow.Close();
-
+                        
                         LoginRegisterWindow loginWindow = new LoginRegisterWindow();
                         loginWindow.Show();
                         (obj as Window).Close();

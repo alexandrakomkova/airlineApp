@@ -30,8 +30,8 @@ namespace airlineApp.ViewModel
             }
         }
 
-        
-        private List<Flight> userListOneWay { get; set; } //= DataWorker.GetAllFlights();
+
+        private List<Flight> userListOneWay;
         public List<Flight> UserListOneWay
         {
             get { return userListOneWay; }
@@ -72,7 +72,7 @@ namespace airlineApp.ViewModel
 
         }
         private void UpdateUserFlights()
-        { //возможно надо будет в другой вьюмодел
+        { 
             UserListOneWay = UserSearch(FlightWayDepartureString, FlightWayArrivalString, SelectedDepartureDate);
             if (UserListOneWay != null)
             {
@@ -91,10 +91,10 @@ namespace airlineApp.ViewModel
             //это грязно
             //придумать что-нибудь
         }
-        public ICommand UpdateViewCommand { get; }
+        public ICommand UpdateViewCommand;
         private void OnUpdateViewCommandExecuted(object p)
         {
-            //MessageBox.Show($"{userSelectedFlight.FreePlaces}");
+            
             if (userSelectedFlight != null)
             {
                 parentVM.CurrentPage = new GetPlaceViewModel(parentVM, userSelectedFlight, user);

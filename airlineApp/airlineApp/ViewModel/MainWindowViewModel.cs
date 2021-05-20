@@ -14,8 +14,7 @@ namespace airlineApp.ViewModel
 {
     public class MainWindowViewModel : DataManageViewModel
     {
-        public ICommand UpdateViewCommand { get; set; }
-       // public ICommand ViewTicketsCommand { get; set; }
+        public ICommand UpdateViewCommand;
 
         public MainWindowViewModel()
         {
@@ -45,28 +44,22 @@ namespace airlineApp.ViewModel
 
         public void UpdateCompanies()
         {
-
             AllCompanies = DataWorker.GetAllCompanies();
-            //ViewAllCompaniesPage.AllCompaniesView.ItemsSource = null;
-            //ViewAllCompaniesPage.AllCompaniesView.Items.Clear();
-            //ViewAllCompaniesPage.AllCompaniesView.ItemsSource = AllCompanies;
-            //ViewAllCompaniesPage.AllCompaniesView.Items.Refresh();
+            NotifyPropertyChanged(nameof(AllCompanies));
         }
         public void UpdateFlights()
         {
             AllFlights = DataWorker.GetAllFlights();
-            //ViewAllFlightsPage.AllFlightsView.ItemsSource = null;
-            //ViewAllFlightsPage.AllFlightsView.Items.Clear();
-            //ViewAllFlightsPage.AllFlightsView.ItemsSource = AllFlights;
-            //ViewAllFlightsPage.AllFlightsView.Items.Refresh();
+            NotifyPropertyChanged(nameof(AllFlights));
 
         }
         public void UpdateTickets()
         {
 
             AllTickets = DataWorker.GetAllTickets();
+            NotifyPropertyChanged(nameof(AllTickets));
         }
-        private int selectedLanguage { get; set; }
+        private int selectedLanguage;
         public int SelectedLanguage 
         { 
            get 

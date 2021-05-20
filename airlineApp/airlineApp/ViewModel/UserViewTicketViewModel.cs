@@ -14,7 +14,7 @@ namespace airlineApp.ViewModel
         private UserWindowViewModel parentVM;
         private Flight userSelectedFlight;
         private User user;
-        private static List<Ticket> allUserTickets { get; set; }
+        private static List<Ticket> allUserTickets;
         public List<Ticket> AllUserTickets
         {
             get { return allUserTickets; }
