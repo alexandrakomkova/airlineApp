@@ -22,10 +22,10 @@ namespace airlineApp.View
     /// </summary>
     public partial class EditCompanyWindow : Window
     {
-        public EditCompanyWindow()
+        public EditCompanyWindow(DataManageViewModel data)
         {
             InitializeComponent();
-            DataContext = new DataManageViewModel();
+            DataContext = data;
           
         }
         private void PreviewTextInputOnlyLetters(object sender, System.Windows.Input.TextCompositionEventArgs e)

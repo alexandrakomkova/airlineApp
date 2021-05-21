@@ -17,7 +17,7 @@ namespace airlineApp.ViewModel
         private UserWindowViewModel parentVM;
         private User user;
         public static Flight UserSelectedFlight;
-        public string schemeOfPlane;
+        public string schemeOfPlane { get; set; }
         public GetPlaceViewModel(UserWindowViewModel parentVM, Flight f, User user)
         {
             this.user = user;
@@ -69,8 +69,8 @@ namespace airlineApp.ViewModel
                 NotifyPropertyChanged("PlacesList");
             }
         }
-        public ICommand UpdateViewCommand;
-       
+        public ICommand UpdateViewCommand { get; set; }
+
         private void OnUpdateViewCommandExecuted(object p)
         {
 

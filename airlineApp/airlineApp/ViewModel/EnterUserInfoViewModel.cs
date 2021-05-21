@@ -99,13 +99,22 @@ namespace airlineApp.ViewModel
             }
             else 
             {
-                if (IsValidPassport(passengerPassport) == true)
+                if (PassengerSurname != null && PassengerName != null
+                    && PassengerMiddleName != null && PassengerPassport != null)
                 {
-                    parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+                    if (IsValidPassport(passengerPassport) == true)
+                    {
+                        parentVM.CurrentPage = new InfoAboutTicketViewModel(parentVM, passengerSurname, passengerName, passengerMiddleName, passengerPassport, UserSelectedFlight, passengerSeat, user);
+                    }
+                    else
+                    {
+                        string resultStr = "Неправильный формат записи номера пасспорта.\nПример: XX1234567";
+                        ShowMessageToUser(resultStr);
+                    }
                 }
                 else 
                 {
-                    string resultStr = "Неправильный формат записи номера пасспорта.\nПример: XX1234567";
+                    string resultStr = "Пожалуйста, заполните все поля формы.";
                     ShowMessageToUser(resultStr);
                 }
             }

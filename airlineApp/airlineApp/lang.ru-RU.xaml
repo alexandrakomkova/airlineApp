@@ -17,8 +17,10 @@
 	<v:String x:Key="ForgotPassLabel">Забыли пароль?</v:String>
 	<v:String x:Key="RegisterLabel">Нет аккаунта? Зарегистрируйтесь!</v:String>
 	<v:String x:Key="CompanyNameTextBlock">Имя компании</v:String>
-	<v:String x:Key="Add">ДОБАВИТЬ</v:String>
-	<v:String x:Key="LoadLogo">ЗАГРУЗИТЬ</v:String>
+    <v:String x:Key="Add">ДОБАВИТЬ</v:String>
+    <v:String x:Key="Edit">Изменить</v:String>
+    <v:String x:Key="Delete">Удалить</v:String>
+    <v:String x:Key="LoadLogo">ЗАГРУЗИТЬ</v:String>
 	<v:String x:Key="ChooseCompany">Выберите компанию</v:String>
 	<v:String x:Key="ChooseDeparture">Выберите пункт отправления</v:String>
 	<v:String x:Key="ChooseDepartureTime">Выберите дату отправления</v:String>
@@ -47,6 +49,8 @@
 
 	<v:String x:Key="Back">НАЗАД</v:String>
 	<v:String x:Key="Next">ДАЛЕЕ</v:String>
+    <v:String x:Key="Search">ПОИСК</v:String>
+    <v:String x:Key="DepartureTime">Дата отправления</v:String>
 
 	<v:String x:Key="Name">Имя</v:String>
 	<v:String x:Key="Surname">Фамилия</v:String>

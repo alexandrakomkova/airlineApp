@@ -34,7 +34,7 @@
                   Margin="0,0,10,0"
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center"
-                  materialDesign:HintAssist.Hint="Place of daparture"
+                  materialDesign:HintAssist.Hint="{DynamicResource DepartureLabel}"
                   ItemsSource="{Binding AllDeparturesString}"
                   SelectedItem="{Binding FlightWayDepartureString}"
                   >
@@ -60,7 +60,7 @@
                   Margin="0,0,0,0"
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center"
-                  materialDesign:HintAssist.Hint="Place of arrival"
+                  materialDesign:HintAssist.Hint="{DynamicResource ArrivalLabel}"
                   ItemsSource="{Binding AllArrivalsString}"
                   SelectedItem="{Binding FlightWayArrivalString}">
 
@@ -76,7 +76,7 @@
                 <DatePicker
                     VerticalAlignment="Top"
                     Width="135"
-                    materialDesign:HintAssist.Hint="Departure date"
+                    materialDesign:HintAssist.Hint="{DynamicResource DepartureTime}"
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     Foreground="LightGray"
                     BorderBrush="WhiteSmoke"
@@ -96,7 +96,7 @@
                    
                     <Button Style="{DynamicResource InstrumentsButton}" 
                     Width="110" Height="40" 
-                    Content="SEARCH" Margin="0,0,0,0" 
+                    Content="{DynamicResource Search}" Margin="0,0,0,0" 
                     Command="{Binding UserSearchCommand}"/>
                 </StackPanel>
             </StackPanel>

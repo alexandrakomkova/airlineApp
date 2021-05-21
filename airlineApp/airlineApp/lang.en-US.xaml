@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:airlineApp.Resources"
+                   
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <v:String x:Key="ViewAllFlight">VIEW ALL FLIGHTS</v:String>
     <v:String x:Key="ViewAllFlightToolTip">View the list of airlines</v:String>
@@ -18,6 +18,8 @@
     <v:String x:Key="RegisterLabel">Don't have an account?</v:String>
     <v:String x:Key="CompanyNameTextBlock">Company name</v:String>
     <v:String x:Key="Add">ADD</v:String>
+    <v:String x:Key="Edit">Edit</v:String>
+    <v:String x:Key="Delete">Delete</v:String>
     <v:String x:Key="LoadLogo">LOAD LOGO</v:String>
     <v:String x:Key="ChooseCompany">Choose a company</v:String>
     <v:String x:Key="ChooseDeparture">Choose a place of departure</v:String>
@@ -47,10 +49,12 @@
 
     <v:String x:Key="Back">BACK</v:String>
     <v:String x:Key="Next">NEXT</v:String>
+    <v:String x:Key="Search">SEARCH</v:String>
+    <v:String x:Key="DepartureTime">Departure Date</v:String>
 
     <v:String x:Key="Name">Name</v:String>
     <v:String x:Key="Surname">Surname</v:String>
-    <v:String x:Key="MiddleName">Отчество</v:String>
+    <v:String x:Key="MiddleName">Middle name</v:String>
     <v:String x:Key="Passport">Passport</v:String>
     <v:String x:Key="EnterUserInfoLabel">Enter passenger data</v:String>
     

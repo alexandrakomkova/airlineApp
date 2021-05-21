@@ -16,8 +16,8 @@
                 >
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit" Command="{Binding EditFlightWndCommand}"/>
-                    <MenuItem Header="Delete" Command="{Binding DeleteFlightCommand}"/>
+                    <MenuItem Header="{DynamicResource Edit}" Command="{Binding EditFlightWndCommand}"/>
+                    <MenuItem Header="{DynamicResource Delete}" Command="{Binding DeleteFlightCommand}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
 

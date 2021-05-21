@@ -8,11 +8,6 @@ namespace airlineApp.ViewModel
 {
     public class ViewAllCompaniesPageViewModel : DataManageViewModel
     {
-        //private MainWindowViewModel viewModel;
-
-        //public ViewAllCompaniesPageViewModel(MainWindowViewModel viewModel)
-        //{
-        //    this.viewModel = viewModel;
-        //}
+        
     }
 }

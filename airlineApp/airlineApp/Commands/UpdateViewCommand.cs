@@ -88,24 +88,24 @@ namespace airlineApp.Commands
                 viewModel.CurrentList = new ViewAllCompaniesPageViewModel();
 
             }
-            //else if (parameter.ToString() == "GetTicket")
-            //{
-            //    userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, user, f);
-            //}
-            //else if (parameter.ToString() == "Place")
-            //{
-            //    userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f, user);
-            //}
-            //else if (parameter.ToString() == "Passenger")
-            //{
-                
-            //    userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user, str, str, str, str);
-            //}
-            //else if (parameter.ToString() == "BookATicket")
-            //{
-            //    userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str, user);
-            //}
-            
+            else if (parameter.ToString() == "GetTicket")
+            {
+                userViewModel.CurrentPage = new ChooseTicketViewModel(userViewModel, user, f);
+            }
+            else if (parameter.ToString() == "Place")
+            {
+                userViewModel.CurrentPage = new GetPlaceViewModel(userViewModel, f, user);
+            }
+            else if (parameter.ToString() == "Passenger")
+            {
+
+                userViewModel.CurrentPage = new EnterUserInfoViewModel(userViewModel, f, str, user, str, str, str, str);
+            }
+            else if (parameter.ToString() == "BookATicket")
+            {
+                userViewModel.CurrentPage = new InfoAboutTicketViewModel(userViewModel, str, str, str, str, f, str, user);
+            }
+
         }
     }
 }

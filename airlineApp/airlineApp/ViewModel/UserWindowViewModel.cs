@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,12 @@ namespace airlineApp.ViewModel
     public class UserWindowViewModel : DataManageViewModel
     {
         private readonly User user;
-        public ICommand UpdateViewCommand;
+        public ICommand UpdateViewCommand { get; set; }
 
         public UserWindowViewModel(User user)
         {
+            App.LanguageChanged += LanguageChanged;
+            CultureInfo currLang = App.Language;
             this.user = user;
            
             UpdateViewCommand = new UpdateViewCommand(this);
@@ -90,7 +93,37 @@ namespace airlineApp.ViewModel
                     );
             }
         }
+        private void LanguageChanged(Object sender, EventArgs e)
+        {
+            CultureInfo currLang = App.Language;
+        }
+        private int selectedLanguage;
+        public int SelectedLanguage
+        {
+            get
+            {
+                return selectedLanguage;
+            }
+            set
+            {
+                selectedLanguage = value;
+                if (selectedLanguage == 0)
+                {
+                    CultureInfo lang = new CultureInfo("ru-RU");
+                    App.Language = lang;
 
+
+                }
+                if (selectedLanguage == 1)
+                {
+                    CultureInfo lang = new CultureInfo("en-US");
+                    App.Language = lang;
+
+
+                }
+                NotifyPropertyChanged(nameof(SelectedLanguage));
+            }
+        }
 
     }
 }

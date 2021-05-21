@@ -14,7 +14,7 @@ namespace airlineApp.ViewModel
 {
     public class MainWindowViewModel : DataManageViewModel
     {
-        public ICommand UpdateViewCommand;
+        public ICommand UpdateViewCommand { get; set; }
 
         public MainWindowViewModel()
         {

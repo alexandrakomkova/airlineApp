@@ -17,7 +17,7 @@ namespace airlineApp.Model
            
             using (ApplicationContext db = new ApplicationContext()) 
             {
-                //check existence
+                
                 bool IsExist = db.Companies.Any(el => el.Name == name);
                 if (IsExist == false) 
                 {
@@ -120,17 +120,17 @@ namespace airlineApp.Model
             }
             return result;
         }
-        public static void DeleteUser(User user)
-        {
-            //MessageBox.Show("123");
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                db.Users.Remove(user);
-                db.SaveChanges();
+        //public static void DeleteUser(User user)
+        //{
+            
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
+        //        db.Users.Remove(user);
+        //        db.SaveChanges();
 
-            }
+        //    }
 
-        }
+        //}
         public static void EditUser(string email, string newPassword)
         {
             using (ApplicationContext db = new ApplicationContext())

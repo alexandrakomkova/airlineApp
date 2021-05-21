@@ -91,7 +91,7 @@ namespace airlineApp.ViewModel
             //это грязно
             //придумать что-нибудь
         }
-        public ICommand UpdateViewCommand;
+        public ICommand UpdateViewCommand { get; set; }
         private void OnUpdateViewCommandExecuted(object p)
         {
             

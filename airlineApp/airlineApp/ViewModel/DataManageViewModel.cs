@@ -109,7 +109,17 @@ namespace airlineApp.ViewModel
         
 
         public static Flight SelectedFlight { get; set; }
-        public static Company SelectedCompany { get; set; }
+      //  public static Company SelectedCompany { get; set; }
+        private Company selectedCompany;
+        public Company SelectedCompany
+        {
+            get { return selectedCompany; }
+            set
+            {
+                selectedCompany = value;
+                NotifyPropertyChanged("SelectedCompany");
+            }
+        }
         public static string CompanyName { get; set; }
         
         private string companyLogoPath = @"../../Styles/no_image.png";
@@ -197,11 +207,41 @@ namespace airlineApp.ViewModel
         }
 
 
-        public static string FlightCompany { get; set; }
-       
-        public static string FlightPlane { get; set; }
-        public static string FlightPrice { get; set; }
         
+        private string flightCompany;
+        public string FlightCompany
+        {
+            get { return flightCompany; }
+            set
+            {
+                flightCompany = value;
+                NotifyPropertyChanged("FlightCompany");
+            }
+        }
+
+      
+        private string flightPlane;
+        public string FlightPlane
+        {
+            get { return flightPlane; }
+            set
+            {
+                flightPlane = value;
+                NotifyPropertyChanged("FlightPlane");
+            }
+        }
+       
+        private string flightPrice;
+        public string FlightPrice
+        {
+            get { return flightPrice; }
+            set
+            {
+                flightPrice = value;
+                NotifyPropertyChanged("FlightPrice");
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(String propertyName) 
@@ -243,10 +283,13 @@ namespace airlineApp.ViewModel
         }
         private void OpenEditCompanyWndMethod(Company selectedCompany)
         {
-            EditCompanyWindow editCompanyWindow = new EditCompanyWindow();
             SelectedCompany = selectedCompany;
             CompanyName = selectedCompany.Name;
             CompanyLogo = new BitmapImage(new Uri(selectedCompany.Logo, UriKind.RelativeOrAbsolute));
+            companyLogoPath = selectedCompany.Logo;
+            EditCompanyWindow editCompanyWindow = new EditCompanyWindow(this);
+           
+            
             SetWindowPosition(editCompanyWindow);
            
         }
@@ -1034,9 +1077,12 @@ namespace airlineApp.ViewModel
             FlightWay = null;
             FlightWayDepartureString = null;
             FlightWayArrivalString = null;
-            FlightCompany = null;
-            NotifyPropertyChanged(nameof(FlightCompany));
+           
+            //FlightCompany = null;
+           
             FlightPrice = null;
+            FlightCompany = null;
+           //NotifyPropertyChanged("FlightCompany");
             FlightPlane = null;
         }
        

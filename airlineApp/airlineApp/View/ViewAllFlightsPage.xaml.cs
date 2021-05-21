@@ -31,16 +31,6 @@ namespace airlineApp.View
             DataContext = new MainWindowViewModel();
 
         }
-        //public static ListView AllFlightsView;
-        //private User user;
-
-        //public ViewAllFlightsPage(User user)
-        //{
-        //    this.user = user;
-        //    InitializeComponent();
-        //    AllFlightsView = ViewAllFlights;
-        //    DataContext = new MainWindowViewModel(user);
-
-        //}
+        
     }
 }

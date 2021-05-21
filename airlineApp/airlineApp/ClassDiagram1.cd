@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="airlineApp.Model.Company">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="airlineApp.Model.Flight">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCCIAAAQNAAAgAAAAAACAAAAAEAAAAAAIABAAAAAA=</HashCode>
+      <FileName>Model\Flight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="airlineApp.Model.Plane">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Plane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="airlineApp.Model.Ticket">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIDAAAAABAQAAAAABAAQAgAAABACQAAAAAIAAAAgAA=</HashCode>
+      <FileName>Model\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="airlineApp.Model.User">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="airlineApp.Model.Way">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBAAAAAAQAAIAAAgAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Way.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
