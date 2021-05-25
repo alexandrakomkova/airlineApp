@@ -30,7 +30,7 @@ namespace airlineApp.ViewModel
             }
             else if (UserSelectedFlight.flightPlane.MaxOfPlaces == 148)
             {
-                schemeOfPlane = "/Styles/149.jpg";
+                schemeOfPlane = "/Styles/148.jpg";
             }
             else if (UserSelectedFlight.flightPlane.MaxOfPlaces == 189)
             {

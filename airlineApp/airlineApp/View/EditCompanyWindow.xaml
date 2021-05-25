@@ -79,7 +79,7 @@
                     Content="SAVE EDITS"
                     Margin="0,55,0,0"
                     Command="{Binding EditCompany}"
-                    CommandParameter="{Binding ElementName=EditCompanyWnd}"/>
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:EditCompanyWindow}}"/>
         </StackPanel>
         <StackPanel Grid.Row="1"
                     Grid.Column="1"

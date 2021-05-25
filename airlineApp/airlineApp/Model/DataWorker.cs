@@ -361,7 +361,7 @@ namespace airlineApp.Model
                     User newUser = new User { Email = email, Password = hashedPassword };
                     db.Users.Add(newUser);
                     db.SaveChanges();
-                    result = "Регистрация прошла успешно! Войдите в систему для дальнейшей работы.";
+                    result = "Регистрация прошла успешно!";
 
                 }
                 return result;

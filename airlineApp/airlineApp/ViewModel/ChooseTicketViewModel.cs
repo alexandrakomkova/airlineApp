@@ -83,13 +83,11 @@ namespace airlineApp.ViewModel
             }
             else 
             {
-                //string resultStr = "К сожалению авиарейсов на эту дату нет.";
-                //ShowMessageToUser(resultStr);
+                string resultStr = "К сожалению авиарейсов на эту дату нет.";
+                ShowMessageToUser(resultStr);
             }
             
 
-            //это грязно
-            //придумать что-нибудь
         }
         public ICommand UpdateViewCommand { get; set; }
         private void OnUpdateViewCommandExecuted(object p)

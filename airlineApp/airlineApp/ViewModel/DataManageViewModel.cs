@@ -436,6 +436,11 @@ namespace airlineApp.ViewModel
                         {
                             OpenEditFlightWndMethod(SelectedFlight);
                         }
+                        else 
+                        {
+                            string resultStr = "Пожалуйста, выберите рейс для редактирования.";
+                            ShowMessageToUser(resultStr);
+                        }
                     }
                     );
             }
@@ -709,45 +714,52 @@ namespace airlineApp.ViewModel
                 {
                     Window window = obj as Window;
                     string resultStr = "";
-                    
-                    if (FlightCompany != null &&
-                            FlightWayDepartureString != null &&
-                            FlightWayArrivalString != null &&
-                            FlightWay != null &&
-                            FlightPlane !=null &&
-                            FlightPrice != null && Convert.ToInt32(FlightPrice) != 0
-                            )
+                    if (SelectedFlight != null)
                     {
-                        using (ApplicationContext db = new ApplicationContext()) 
+                        if (FlightCompany != null &&
+                                FlightWayDepartureString != null &&
+                                FlightWayArrivalString != null &&
+                                FlightWay != null &&
+                                FlightPlane != null &&
+                                FlightPrice != null && Convert.ToInt32(FlightPrice) != 0
+                                )
                         {
-                            var plane = db.Planes.FirstOrDefault(p => p.Name == FlightPlane);
-                           
-                            int diff = plane.MaxOfPlaces - (SelectedFlight.flightPlane.MaxOfPlaces - SelectedFlight.FreePlaces);
-                            if (diff > 0)
+                            using (ApplicationContext db = new ApplicationContext())
                             {
+                                var plane = db.Planes.FirstOrDefault(p => p.Name == FlightPlane);
 
-                                resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice));
+                                int diff = plane.MaxOfPlaces - (SelectedFlight.flightPlane.MaxOfPlaces - SelectedFlight.FreePlaces);
+                                if (diff > 0)
+                                {
 
-                                UpdateAllDataView();
-                                UpdateFlightsList(AllFlights);
+                                    resultStr = DataWorker.EditFlight(SelectedFlight, FlightWay, FlightCompany, FlightPlane, Convert.ToInt32(FlightPrice));
 
-                                SetNullValuesToProperties();
-                                ShowMessageToUser(resultStr);
+                                    UpdateAllDataView();
+                                    UpdateFlightsList(AllFlights);
 
-                                 window.Close(); 
+                                    SetNullValuesToProperties();
+                                    ShowMessageToUser(resultStr);
 
+                                    window.Close();
+
+                                }
+                                else
+                                {
+                                    resultStr = "Количество забронированных билетов превышает места в новом самолете. Выберите самолет побольше.";
+                                    ShowMessageToUser(resultStr);
+                                }
                             }
-                            else
-                            {
-                                resultStr = "Количество забронированных билетов превышает места в новом самолете. Выберите самолет побольше.";
-                                ShowMessageToUser(resultStr);
-                            } 
+
                         }
-                            
+                        else
+                        {
+                            resultStr = "Пожалуйста, заполните все поля.";
+                            ShowMessageToUser(resultStr);
+                        }
                     }
-                    else
+                    else 
                     {
-                        resultStr = "Пожалуйста, заполните все поля.";
+                        resultStr = "Пожалуйста, выберите обеъект для редатирования.";
                         ShowMessageToUser(resultStr);
                     }
 

@@ -13,8 +13,9 @@
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Image Source="{Binding schemeOfPlane}" Width="900"
-               Height="340"
-               VerticalAlignment="top"
+               Height="200"
+               VerticalAlignment="bottom"
+              
                Grid.Row="0"/>
        
             <Button Style="{DynamicResource InstrumentsButton}"  

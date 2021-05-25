@@ -68,7 +68,7 @@
 
 
         <Grid x:Name="ToolBarGrid" Grid.ColumnSpan="2" Background="#000080">
-            <!--MouseDown="ToolBarGrid_MouseDown"-->
+            
             <Image Source="/Styles/logo.png" Width="30"
                        Margin="20,0,0,0"
                        HorizontalAlignment="Left"/>

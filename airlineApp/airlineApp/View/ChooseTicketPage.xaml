@@ -76,6 +76,7 @@
                 <DatePicker
                     VerticalAlignment="Top"
                     Width="135"
+                    
                     materialDesign:HintAssist.Hint="{DynamicResource DepartureTime}"
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     Foreground="LightGray"

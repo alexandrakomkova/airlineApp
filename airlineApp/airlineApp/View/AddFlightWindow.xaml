@@ -110,7 +110,7 @@
                     Content="{DynamicResource Add}"
                     Margin="0,20,0,0"
                     Command="{Binding AddFlightWndCommand}"
-                    CommandParameter="{Binding AddFlightWnd}"/>
+                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:AddFlightWindow}}"/>
         </StackPanel>
         
     </Grid>
